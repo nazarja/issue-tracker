@@ -1,0 +1,39 @@
+
+
+# Virtual Environments
+.venv
+venv/
+
+
+#  IDE / Text Editors
+.idea
+.vscode
+
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media
+
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+
+
+
+
