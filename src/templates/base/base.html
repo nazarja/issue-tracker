@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- meta -->
+	{% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Submit your bugs for free or have us work on your projects next upcoming feature. What are we working on next?. Up-vote tickets to see them realised sooner. Log in to get started!">
+    <meta name="author" content="Sean Murphy">
+    <title>{% block title %}{% endblock %}</title>
+
+	<!-- styles -->
+	<link rel="shortcut icon" type="image/png" href="{% static 'img/bug-icon.png' %}" sizes="128x128">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+	<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+</head>
+<body>
+
+	<!-- header -->
+    <header>
+        {% include './navbar.html' %}
+    </header>
+
+	<!-- main content -->
+	<main>
+		{% block content %}{% endblock %}
+	</main>
+
+	<!-- footer -->
+	<footer>
+		{% include './footer.html' %}
+	</footer>
+
+	<!-- scripts -->
+	<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+	<script type="application/javascript" src="{% static 'js/base.js' %}"></script>
+	<script>{% block javascript %}{% endblock %}</script>
+</body>
+</html>
