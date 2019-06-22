@@ -18,6 +18,7 @@ __pycache__/
 local_settings.py
 db.sqlite3
 media
+local.py
 
 
 # Unit test / coverage reports
