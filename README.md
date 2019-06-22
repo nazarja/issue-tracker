@@ -45,25 +45,25 @@ Sitemap:
 
 #### Wireframes:
 
-[home](planning/wireframes/home.png)
+[home](planning/wireframes/home.png)  
 ![home](planning/wireframes/home.png "home")
 
-[tickets](planning/wireframes/tickets.png)
+[tickets](planning/wireframes/tickets.png)  
 ![tickets](planning/wireframes/tickets.png "tickets")
 
-[details](planning/wireframes/details.png)
+[details](planning/wireframes/details.png)  
 ![details](planning/wireframes/details.png "details")
 
-[charts](planning/wireframes/charts.png)
+[charts](planning/wireframes/charts.png)  
 ![charts](planning/wireframes/charts.png "charts")
 
-[activity-feed](planning/wireframes/activity-feed.png)
+[activity-feed](planning/wireframes/activity-feed.png)  
 ![activity-feed](planning/wireframes/activity-feed.png "activity-feed")
 
-[faq](planning/wireframes/faq.png)
+[faq](planning/wireframes/faq.png)  
 ![faq](planning/wireframes/faq.png "faq")
 
-[contact](planning/wireframes/contact.png)
+[contact](planning/wireframes/contact.png)  
 ![contact](planning/wireframes/contact.png "contact")
 
 ---
