@@ -32,6 +32,10 @@
 
 ## Phases
 
+1. Pre-Development Notes  
+    - [App Requirements](planning/requirements/app-requirements.md)
+    - [Create Wireframes](planning/wireframes)
+
 ---
 
 ## Content-Structure
