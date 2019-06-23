@@ -1,5 +1,5 @@
 
-// init jquery navbar animations
+// init jquery nav-bar animations
 function init() {
 
     // nav-bar items
@@ -21,5 +21,19 @@ function init() {
 }
 init();
 
+function smoothScroll() {
+    $('a[href*="#"]').on('click', function(e) {
+        e.preventDefault();
+
+        $('html, body').animate(
+            {
+                scrollTop: $($(this).attr('href')).offset().top - 100,
+            },
+            500,
+            'linear'
+        );
+    });
+}
+smoothScroll();
 
 

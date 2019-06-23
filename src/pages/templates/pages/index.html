@@ -1,7 +1,7 @@
 {% extends '../base/base.html' %}
 {% load static %}
 {% block title %}Issue Tracker{% endblock %}
-{% block css %}<link rel="stylesheet" href="{% static 'css/index.css' %}" />{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/index.css' %}"/>{% endblock %}
 
 
 {% block content %}
@@ -15,6 +15,94 @@
 				Get Started for Free
 			</button>
 		</div>
+	</div>
+
+	<div id="statistics">
+		<div class="ui container">
+			<div class="ui four column grid stackable inverted centered statistics">
+				<div class="column">
+					<div class="red inverted statistic">
+						<div class="value">
+							500
+						</div>
+						<div class="label">
+							Features Completed
+						</div>
+					</div>
+				</div>
+				<div class="column">
+					<div class="blue inverted statistic">
+						<div class="text value">
+							Three<br>Thousand
+						</div>
+						<div class="label">
+							Bugs Fixed
+						</div>
+					</div>
+				</div>
+				<div class="column">
+					<div class="green inverted statistic">
+						<div class="value">
+							<i class="code icon"></i> 63
+						</div>
+						<div class="label">
+							Projects Completed
+						</div>
+					</div>
+				</div>
+				<div class="column">
+					<div class="yellow inverted statistic">
+						<div class="value">
+							<img src="{% static 'img/joe.jpg' %}" class="ui circular inline image" alt="joe avatar picture">
+							12
+						</div>
+						<div class="label">
+							Team Members
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui container ma5">
+		<h3 class="sans ft10 tac ma5">How Does it Work?</h3>
+		<div class="ui three small attached steps">
+			<div class="step">
+				<i class="bug icon"></i>
+				<div class="content">
+					<div class="title">Submit Bugs</div>
+					<div class="description">Creates tickets for your bugs and feature requests.</div>
+				</div>
+			</div>
+			<div class="inverted step">
+				<i class="thumbs up icon"></i>
+				<div class="content">
+					<div class="title">Up-vote Features</div>
+					<div class="description">Vote for bugs and features to see them worked on next!</div>
+				</div>
+			</div>
+			<div class="step">
+				<i class="credit card icon"></i>
+				<div class="content">
+					<div class="title">Rank Higher</div>
+					<div class="description">Supporting a feature increases its position in the queue.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="how-it-works">
+
+	</div>
+
+
+	<div id="pricing">
+		{#		<div class="ui attached segment">#}
+		{#			<p>Choose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping options</p>#}
+		{#		</div>#}
+		{#		<h3>Honest prices, no hidden fees.</h3>#}
 	</div>
 
 {% endblock %}

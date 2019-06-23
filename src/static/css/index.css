@@ -49,3 +49,30 @@
 .callout button {
     margin: 40px auto !important;
 }
+
+/*
+=================================================
+    Statistics - Segment
+=================================================
+*/
+
+#statistics {
+    background-color: var(--black);
+    color: white;
+    text-align: center;
+    padding: 50px 10px;
+    margin-bottom: 100px;
+}
+
+
+/*
+=================================================
+    Pricing - Segment
+=================================================
+*/
+
+#pricing {
+    min-height: 20vh;
+}
+
+
