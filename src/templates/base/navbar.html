@@ -1,11 +1,78 @@
+{% load static  %}
 <nav>
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Bugs</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">Charts</a></li>
-        <li><a href="#">Activity Feed</a></li>
-        <li><a href="#">Help &amp; Support</a></li>
-        <li><a href="#">Login / Signup</a></li>
-    </ul>
+	<div class="ui container">
+
+		<!-- mobile nav-bar-->
+		<div id="nav-bar-small" class="ui secondary inverted menu">
+			<a class="toc item">
+				<i class="sidebar icon"></i>
+			</a>
+			<a id="logo-title" class="ui item" href="{% url 'index' %}">
+				<span id="logo-title-first" >Issue</span>
+				<span id="logo-title-last">Tracker</span>
+			</a>
+			<div class="right menu">
+				{% if not user.is_authenticated %}
+					<a class="item header" href="#">Login</a>
+					<a class="item header" href="#">Sign up</a>
+				{% else %}
+					<a class="item header" href="#">Logout</a>
+				{% endif %}
+			</div>
+		</div>
+
+		<!-- desktop nav-bar -->
+		<div id="nav-bar-large" class="ui secondary inverted menu">
+			<div class="item">
+				<a href="{% url 'index' %}">
+					<img height="50" width="50" src="{% static 'img/logo.png' %}" alt="bug logo">
+				</a>
+			</div>
+			{% if not user.is_authenticated %}
+				<a class="ui item" href="{% url 'index' %}">
+					<span id="logo-title-first" >Issue</span>
+					<span id="logo-title-last">Tracker</span>
+				</a>
+				<a class="item" href="#">Pricing</a>
+				<a class="item" href="#">How it Works?</a>
+			{% else %}
+				<a class="item" href="#">Bugs</a>
+				<a class="item" href="#">Features</a>
+				<a class="item" href="#">Charts</a>
+				<a class="item" href="#">Activity Feed<span class="empty circular ui red label"></span></a>
+			{% endif %}
+
+			<div class="right menu">
+				{% if user.is_authenticated %}
+					<a class="item cart-popup" href="#" data-content="View Cart">
+						<i class="shop icon"></i>
+						<div id="cart-feed-count" class="ui label green">0</div>
+					</a>
+				{% endif %}
+				<div class="ui dropdown item">
+					Help &amp; Support
+					<i class="dropdown icon"></i>
+					<div class="menu inverted">
+						<a class="item">FAQ's</a>
+						<a class="item">Contact</a>
+					</div>
+				</div>
+				{% if user.is_authenticated %}
+					<a class="item header" href="#">Logout</a>
+				{% else %}
+					<div class="ui buttons">
+						<div class="nav-bar-button">
+							<button class="ui grey button">Login</button>
+						</div>
+						<div class="item">
+							<div id="nav-bar-or" class="or"></div>
+						</div>
+						<div class="nav-bar-button">
+							<button id="nav-bar-sign-up-button" class="ui green button">Sign up</button>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 </nav>

@@ -1,0 +1,23 @@
+{% load static %}
+<div class="ui vertical inverted sidebar menu left" style="">
+	<a id="logo-title-mobile" class="ui item" href="{% url 'index' %}">
+		<span id="logo-title-first" >Issue</span>
+		<span id="logo-title-last">Tracker</span>
+	</a>
+	{% if not user.is_authenticated %}
+		<a class="item" href="#">Pricing</a>
+		<a class="item" href="#">How it works?</a>
+	{% else %}
+		<a class="item" href="#">Bugs</a>
+		<a class="item" href="#">Features</a>
+		<a class="item" href="#">Charts</a>
+		<a class="item" href="#">Activity Feed<span class="empty circular ui red label"></span></a>
+		<a class="item" href="#">
+			Cart
+			<i class="shop icon"></i>
+			<div id="cart-feed-count" class="ui label green">0</div>
+		</a>
+		<a class="item" href="#">FAQ's</a>
+	{% endif %}
+	<a class="item" href="#">Contact</a>
+</div>

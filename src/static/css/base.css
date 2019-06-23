@@ -1,0 +1,101 @@
+body {height: 2000px !important;}
+
+/*
+=================================================
+   Variables
+=================================================
+*/
+
+:root {
+    --black: #212121;
+}
+
+
+/*
+=================================================
+   Fonts
+=================================================
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans&family=Montserratdisplay=swap');
+
+/* Font Reset */
+body, button, .item {
+    font-family: 'Fira Sans', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Monserrat', sans-serif !important;
+}
+
+/*
+=================================================
+    Nav-bar
+=================================================
+*/
+
+/* nav-bar adjustments*/
+nav {
+    background-color: var(--black);
+    width: 100vw;
+    margin: -1px;
+}
+
+/* menu items */
+#logo-title-first {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+#logo-title-last {
+    font-size: 20px;
+    font-style: italic;
+}
+
+.nav-bar-button {
+    margin-top: 20px;
+}
+
+#nav-bar-or::before {
+    line-height: 25px !important;
+}
+
+#nav-bar-sign-up-button {
+    min-width: 90px !important;
+}
+
+#nav-bar-large {
+    margin-left: -30px;
+}
+
+#nav-bar-small {
+    display: none !important;
+}
+
+/*
+=================================================
+    Nav-bar Media Queries
+=================================================
+*/
+
+/* hide large nav, show small nav*/
+@media screen and (max-width: 800px) {
+    #nav-bar-large {
+        display: none !important;
+    }
+
+    #nav-bar-small {
+        display: flex !important;
+    }
+
+    #logo-title-mobile {
+        padding-top: 30px;
+    }
+}
+
+/* hide logo title*/
+@media screen and (max-width: 400px) {
+    #logo-title * {
+        font-size: 1em;
+    }
+}

@@ -12,25 +12,32 @@
 
 	<!-- styles -->
 	<link rel="shortcut icon" type="image/png" href="{% static 'img/bug-icon.png' %}" sizes="128x128">
+	<link rel="stylesheet" href="https://unpkg.com/beardcss/dist/beard.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
 	<link rel="stylesheet" href="{% static 'css/base.css' %}" />
 </head>
-<body>
+<body class="pushable">
 
-	<!-- header -->
-    <header>
-        {% include './navbar.html' %}
-    </header>
+	<!-- nav-bar-mobile -->
+	{% include './nav-sidebar.html' %}
 
-	<!-- main content -->
-	<main>
-		{% block content %}{% endblock %}
-	</main>
+	<div class="pusher">
+		<!-- header -->
+		<header>
+			<div class="ui menu">{% include './navbar.html' %}</div>
+			<div class="ui fixed menu transition hidden">{% include './navbar.html' %}</div>
+		</header>
 
-	<!-- footer -->
-	<footer>
-		{% include './footer.html' %}
-	</footer>
+		<!-- main content -->
+		<main>
+			{% block content %}{% endblock %}
+		</main>
+
+		<!-- footer -->
+		<footer>
+			{% include './footer.html' %}
+		</footer>
+	</div>
 
 	<!-- scripts -->
 	<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
