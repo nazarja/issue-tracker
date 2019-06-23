@@ -1,0 +1,51 @@
+
+/*
+=================================================
+    Callout Segment
+=================================================
+*/
+
+
+.callout  {
+    min-height: 70vh;
+    padding: 30px 5px 30px 5px;
+    background:  linear-gradient(90deg, rgba(81,191,144,.95) 50%, rgba(65,162,200,.95) 100%), url('/static/img/callout.jpg')  no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+
+.callout {
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.callout h1 {
+    font-family: 'Fira Sans', sans-serif !important;
+    font-weight: bold;
+}
+
+.callout h2 {
+    color: white !important;
+    font-weight: normal;
+}
+
+.callout h1 span {
+    font-size: 5.5vmax;
+    font-weight: bold;
+}
+
+.callout #h1-second  {
+    color: white !important;
+    font-style: italic;
+    font-weight: normal;
+    opacity: 0.8;
+}
+
+.callout button {
+    margin: 40px auto !important;
+}

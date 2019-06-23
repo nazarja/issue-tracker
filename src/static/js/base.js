@@ -9,7 +9,7 @@ function init() {
 
 
 	// sticky menu
-    $('h1').visibility({
+    $('.masthead').visibility({
         once: false,
         onBottomPassed: function() {
             $('.fixed.menu').transition('fade in');
