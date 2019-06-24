@@ -7,6 +7,10 @@
 	{% if not user.is_authenticated and request.path == '/' %}
 		<a class="item" href="#pricing">Pricing</a>
 		<a class="item" href="#how-it-works">How it works?</a>
+		<a class="item" href="#">FAQ's</a>
+		<a class="item" href="#">Contact</a>
+		<a class="item header" href="{% url 'account_login' %}">Login</a>
+		<a class="item header" href="{% url 'account_signup' %}">Sign up</a>
 	{% else %}
 		<a class="item" href="#">Bugs</a>
 		<a class="item" href="#">Features</a>
@@ -17,7 +21,11 @@
 			<i class="shop icon"></i>
 			<div id="cart-feed-count" class="ui label green">0</div>
 		</a>
+		<span class="item tcsuccess">Help &amp; Support <i class="angle down icon"></i></span>
 		<a class="item" href="#">FAQ's</a>
+		<a class="item" href="#">Contact</a>
+		<a class="item" href="{% url 'account_set_password' %}">Change Password</a>
+		<a class="item tcdanger" href="{% url 'account_logout' %}">Logout</a>
 	{% endif %}
-	<a class="item" href="#">Contact</a>
+
 </div>

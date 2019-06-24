@@ -105,6 +105,13 @@ nav {
     display: none !important;
 }
 
+
+/*
+=================================================
+    Misc.
+=================================================
+*/
+
 /* Scroll To Top Button */
 #to-top-btn {
     position: fixed;
@@ -114,6 +121,24 @@ nav {
     transition: 0.5s ease-in-out;
 }
 
+
+/* nav-bar avatar*/
+#username-large, #username-small,
+span.avatar-label.ui.black.label {
+    margin: auto 0 !important;
+    margin-left: -5px !important;
+}
+
+
+.ui.black.label, .ui.black.labels .label {
+    background-color: var(--black) !important;
+}
+
+.ui.label>img.avatar-label-image {
+    height: 25px !important;
+    border-radius: 50%;
+    padding-right: 5px;
+}
 
 /*
 =================================================
@@ -136,6 +161,12 @@ footer {
 =================================================
 */
 
+@media screen and (max-width: 1000px) {
+    #username-large {
+        display: none;
+    }
+}
+
 /* hide large nav, show small nav*/
 @media screen and (max-width: 800px) {
     #nav-bar-large {
@@ -152,9 +183,13 @@ footer {
 }
 
 /* hide logo title*/
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     #logo-title * {
-        font-size: 1em;
+        font-size: .9em;
+    }
+
+    #username-small {
+        display: none;
     }
 }
 

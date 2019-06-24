@@ -43,7 +43,7 @@ smoothScroll();
 const toTopBtn = document.querySelector('#to-top-btn');
 window.addEventListener('scroll', () => {
     if (window.innerWidth > 800) {
-        if (window.scrollY > window.innerHeight ? toTopBtn.style.right = "30px" : toTopBtn.style.right = "-50px");
+        if (window.scrollY > 500 ? toTopBtn.style.right = "30px" : toTopBtn.style.right = "-50px");
     }
     else {
         toTopBtn.style.right = "-50px";

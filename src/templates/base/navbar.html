@@ -1,4 +1,5 @@
 {% load static  %}
+{% load socialaccount %}
 <nav>
 	<div class="ui container">
 
@@ -13,10 +14,16 @@
 			</a>
 			<div class="right menu">
 				{% if not user.is_authenticated %}
-					<a class="item header" href="#">Login</a>
-					<a class="item header" href="#">Sign up</a>
+					<a class="item header" href="{% url 'account_login' %}">Login</a>
+					<a class="item header" href="{% url 'account_signup' %}">Sign up</a>
 				{% else %}
-					<a class="item header" href="#">Logout</a>
+					<div id="username-small" class="item">
+						<span class="avatar-label ui black label">
+							<img class="avatar-label-image avatar image" src="{% static 'img/avatars/sean.png' %}" alt="avatar">
+							Hi, {{ user.username|title }}
+						</span>
+					</div>
+					<a class="item header" href="{% url 'account_logout' %}">Logout</a>
 				{% endif %}
 			</div>
 		</div>
@@ -55,20 +62,28 @@
 					<div class="menu inverted">
 						<a class="item">FAQ's</a>
 						<a class="item">Contact</a>
+						<a class="item" href="{% url 'account_set_password' %}">Change Password</a>
 					</div>
 				</div>
 				{% if user.is_authenticated %}
-					<a class="item header" href="#">Logout</a>
+					<div id="username-large" class="item">
+						<span class="avatar-label ui black label">
+							<img class="avatar-label-image avatar image" src="{% static 'img/avatars/sean.png' %}" alt="avatar">
+							Hi, {{ user.username|title }}
+						</span>
+					</div>
+
+					<a class="item header" href="{% url 'account_logout' %}">Logout</a>
 				{% else %}
 					<div class="ui buttons">
 						<div class="nav-bar-button">
-							<button class="ui standard inverted button">Login</button>
+							<a class="ui standard inverted button" href="{% url 'account_login' %}">Login</a>
 						</div>
 						<div class="item">
 							<div id="nav-bar-or" class="or"></div>
 						</div>
 						<div class="nav-bar-button">
-							<button id="nav-bar-sign-up-button" class="ui green inverted button">Sign up</button>
+							<a id="nav-bar-sign-up-button" class="ui green inverted button" href="{% url 'account_signup' %}">Sign up</a>
 						</div>
 					</div>
 				{% endif %}
