@@ -7,24 +7,53 @@
 
 :root {
     --black: #212121;
+    --white: #fefefe;
+    --green: #00ba51;
+    --red: #df2a2b;
+    --grey: #dfe0e1;
+    --blue: #4ac6fd;
+    --yellow: #ffe340;
 }
 
 
 /*
 =================================================
-   Fonts
+   @font-face Fonts
 =================================================
 */
 
-@import url('https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans&family=Montserratdisplay=swap');
+@font-face {
+    src: url('../fonts/FiraSans-Regular.ttf');
+    font-family: 'Fira Sans';
+}
+
+@font-face {
+src: url('../fonts/FiraMono-Regular.ttf');
+font-family: 'Fira Mono';
+}
+
+@font-face {
+src: url('../fonts/JosefinSans-Bold.ttf');
+font-family: 'JoseFin Sans';
+}
+
+@font-face {
+    src: url('../fonts/WorkSans-ExtraLight.ttf');
+    font-family: 'Work Sans';
+}
+
+@font-face {
+    src: url('../fonts/Montserrat-SemiBold.ttf');
+    font-family: 'Montserrat';
+}
 
 /* Fonts Reset */
 body, button, .item {
     font-family: 'Fira Sans', sans-serif !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Monserrat', sans-serif !important;
+h1, h2, h3 {
+    font-family: 'Work Sans', sans-serif !important;
 }
 
 /*
@@ -75,6 +104,22 @@ nav {
 #nav-bar-small {
     display: none !important;
 }
+
+
+/*
+=================================================
+    Footer
+=================================================
+*/
+
+footer {
+    margin-top: 50px;
+}
+
+#footer-container {
+    padding: 80px 0 40px 0;
+}
+
 
 /*
 =================================================

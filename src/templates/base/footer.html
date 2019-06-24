@@ -1,1 +1,58 @@
-<div></div>
+<div id="footer-container" class="ui inverted vertical footer segment">
+	<div class="ui container">
+		<div class="ui stackable inverted divided equal height stackable grid">
+
+			<!-- quick links -->
+			<div class="three wide column">
+				<h4 class="ui inverted header">Quick Links</h4>
+				<div class="ui inverted link list">
+					<a href="#" class="item">Home</a>
+					<a href="#" class="item">FAQ's</a>
+					<a href="#" class="item">Contact Us</a>
+					{% if not user.is_authenticated %}
+						<a href="#" class="item">Login</a>
+					{% else %}
+						<a href="#" class="item">Logout</a>
+					{% endif %}
+				</div>
+			</div>
+			<div class="three wide column">
+				<h4 class="ui inverted header">Services</h4>
+				<div class="ui inverted link list">
+					<a href="#" class="item">Squash those Bugs</a>
+					<a href="#" class="item">Get Feature Realised</a>
+					<a href="#" class="item">Current Charts Lists</a>
+					<a href="#" class="item">Secure Stripe Payments</a>
+				</div>
+			</div>
+
+			<!-- social links -->
+			<div class="seven wide column">
+				<h4 class="ui inverted header">
+					<a class="ui item tcg40 :tcg10" href="{% url 'index' %}">
+						<span id="logo-title-first" >Issue</span>
+						<span id="logo-title-last">Tracker</span>
+					</a>
+				</h4>
+				<p>We're available on Social Media too, get it touch and see what we're up to!</p>
+				<a href="https://github.com/nazarja" target="_blank"  class="ui github grey button mt1 mb1">
+				  <i class="github icon"></i>
+				  Github
+				</a>
+				<a href="https://www.seanmurphy.eu" target="_blank"  class="ui green button mt1 mb1">
+					<i class="code icon"></i>
+					seanmurphy.eu
+				</a>
+				<a href="https://www.linkedin.com/in/sean-murphy-dev" target="_blank" class="ui linkedin button mt1 mb1">
+					<i class="linkedin icon"></i>
+					LinkedIn
+				</a>
+			</div>
+		</div>
+
+		<!-- footer credits -->
+		<div class="mt4">
+			<p>Made with <i class="code icon"></i> and <i class="coffee icon"></i> by _ <a href="" target="_blank">Sean Murphy</a> _ &copy; 2019</p>
+		</div>
+	</div>
+</div>

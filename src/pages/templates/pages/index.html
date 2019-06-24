@@ -6,6 +6,7 @@
 
 {% block content %}
 
+	<!-- Callout -->
 	<div class="callout">
 		<div class="ui container">
 			<h1 class="ui huge header masthead"><span id="h1-first">Issue</span><span id="h1-second">Tracker</span></h1>
@@ -17,6 +18,7 @@
 		</div>
 	</div>
 
+	<!-- Statistics -->
 	<div id="statistics">
 		<div class="ui container">
 			<div class="ui four column grid stackable inverted centered statistics">
@@ -53,7 +55,7 @@
 				<div class="column">
 					<div class="yellow inverted statistic">
 						<div class="value">
-							<img src="{% static 'img/joe.jpg' %}" class="ui circular inline image" alt="joe avatar picture">
+							<img src="{% static 'img/avatars/sean.png' %}" class="ui circular inline image" alt="joe avatar picture">
 							12
 						</div>
 						<div class="label">
@@ -65,13 +67,14 @@
 		</div>
 	</div>
 
-	<div class="ui container ma5">
-		<h3 class="sans ft10 tac ma5">How Does it Work?</h3>
+	<!-- How does it work -->
+	<div id="how-it-works" class="ui container ma5">
+		<h3 class="sans ft10 tac ma5">How Does it Work ?</h3>
 		<div class="ui three small attached steps">
 			<div class="step">
 				<i class="bug icon"></i>
 				<div class="content">
-					<div class="title">Submit Bugs</div>
+					<div class="title">Submit Issues</div>
 					<div class="description">Creates tickets for your bugs and feature requests.</div>
 				</div>
 			</div>
@@ -90,19 +93,18 @@
 				</div>
 			</div>
 		</div>
+		<div class="ui attached segment pt4 pb4 pl2 pr2">
+			<p>Choose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping options</p>
+		</div>
 	</div>
 
 
-	<div id="how-it-works">
+	<div id="">
 
 	</div>
 
 
 	<div id="pricing">
-		{#		<div class="ui attached segment">#}
-		{#			<p>Choose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping options</p>#}
-		{#		</div>#}
-		{#		<h3>Honest prices, no hidden fees.</h3>#}
 	</div>
 
 {% endblock %}

@@ -21,6 +21,8 @@ function init() {
 }
 init();
 
+
+// smooth scroll function for anchor links
 function smoothScroll() {
     $('a[href*="#"]').on('click', function(e) {
         e.preventDefault();

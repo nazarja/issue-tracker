@@ -25,7 +25,7 @@
 		<div id="nav-bar-large" class="ui secondary inverted menu">
 			<div class="item">
 				<a href="{% url 'index' %}">
-					<img height="50" width="50" src="{% static 'img/logo.png' %}" alt="bug logo">
+					<img height="50" width="50" src="{% static 'img/logos/logo.png' %}" alt="bug logo">
 				</a>
 			</div>
 			{% if not user.is_authenticated and request.path == '/' %}
