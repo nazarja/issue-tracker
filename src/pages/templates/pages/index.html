@@ -1,7 +1,8 @@
 {% extends '../base/base.html' %}
 {% load static %}
 {% block title %}Issue Tracker{% endblock %}
-{% block css %}<link rel="stylesheet" href="{% static 'css/index.css' %}"/>{% endblock %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/index.css' %}"/>{% endblock %}
 
 
 {% block content %}
@@ -69,24 +70,24 @@
 
 	<!-- How does it work -->
 	<div id="how-it-works" class="ui container ma5">
-		<h3 class="sans ft10 tac ma5">How Does it Work ?</h3>
+		<h3 class="ui ft10 tac ma5">How Does it Work ?</h3>
 		<div class="ui three small attached steps">
 			<div class="step">
-				<i class="bug icon"></i>
+				<i class="bug tcdanger icon"></i>
 				<div class="content">
 					<div class="title">Submit Issues</div>
 					<div class="description">Creates tickets for your bugs and feature requests.</div>
 				</div>
 			</div>
 			<div class="inverted step">
-				<i class="thumbs up icon"></i>
+				<i class="thumbs up tcwarning icon"></i>
 				<div class="content">
 					<div class="title">Up-vote Features</div>
 					<div class="description">Vote for bugs and features to see them worked on next!</div>
 				</div>
 			</div>
 			<div class="step">
-				<i class="credit card icon"></i>
+				<i class="credit card tcsuccess icon"></i>
 				<div class="content">
 					<div class="title">Rank Higher</div>
 					<div class="description">Supporting a feature increases its position in the queue.</div>
@@ -94,17 +95,76 @@
 			</div>
 		</div>
 		<div class="ui attached segment pt4 pb4 pl2 pr2">
-			<p>Choose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping optionsChoose your shipping options</p>
+			<h4>Our Promise to You</h4>
+			<p>Our highly experienced staff will spend at least <strong>50%</strong> of their time working on the highest paid ranking feature.</p>
+			<h4>What do I do next?</h4>
+			<p>If you haven't already, <strong>register</strong> for a free account and get involved in a <strong>community</strong> of like minded people.</p>
+			<h4>Got a bug in your code?</h4>
+			<p>Got a bug you need <strong>squashed?</strong> Submit a ticket, give it a priority, description and see other users comments, suggestions and watch th <strong>up-votes</strong> roll in.</p>
+			<h4>Have an idea for a project feature?</h4>
+			<p>You can submit a ticket for a feature for <strong>free</strong>, the highest paid ranking <strong>features</strong> will be worked on asap! </p>
 		</div>
 	</div>
 
 
-	<div id="">
-
+	<!-- pricing tables -->
+	<div id="pricing" class="ui container">
+		<h3 class="ui horizontal divider sans ft10 tac mt8 mb5">Honest prices, no hidden fees.</h3>
+		<div class="ui three column grid relaxed stackable">
+			<div class="column">
+				<div class="ui segments">
+					<div class="ui top attached segment inverted standard">
+						<a class="ui red ribbon label">Basic</a>
+						<span class="ui header">Submit Bugs &amp; Features</span>
+					</div>
+					<div class="ui attached segment tac">
+						<p class="ui header pv2">Absolutely Free</p>
+						<p class="ui header pv2"><span class="euro">&euro;</span><span class="tcdanger ft13">0</span></p>
+					</div>
+					<div class="ui attached segment tac basic">
+						<p class="tcg40">No charge ever, always free to submit tickets.</p>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="ui segments">
+					<div class="ui top attached segment inverted standard">
+						<a class="ui yellow ribbon label">Hot Deal</a>
+						<span class="ui header">Up-vote Features</span>
+					</div>
+					<div class="ui attached segment tac">
+						<p class="ui header pv2">Great Value Deal</p>
+						<p class="ui header pv2"><span class="euro">&euro;</span><span class="tcwarning ft13">5</span></p>
+					</div>
+					<div class="ui attached segment tac">
+						<p class="tcg40">Up-vote your favourite features to rank them up.</p>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="ui segments">
+					<div class="ui top attached segment inverted standard">
+						<a class="ui green ribbon label">Popular</a>
+						<span class="ui header">Top of the Queue</span>
+					</div>
+					<div class="ui attached segment tac">
+						<p class="ui header pv2">Surprisingly Cheap</p>
+						<p class="ui header pv2"><span class="euro">&euro;</span><span class="tcsuccess ft13">50</span></p>
+					</div>
+					<div class="ui attached segment tac">
+						<p class="tcg40">Pay for a feature to jump to the top of the queue.</p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
-
-	<div id="pricing">
+	<!-- prompt to join button -->
+	<div class="ui container tac mt6">
+		<button class="ui right labeled icon inverted green huge button">
+			<i class="right arrow icon"></i>
+			Get Started for Free
+		</button>
 	</div>
 
 {% endblock %}

@@ -71,9 +71,9 @@
 =================================================
 */
 
-#how-it-works h3 {
-    font-family: 'Work Sans', sans-serif;
-}
+/*#how-it-works h3 {*/
+/*    font-family: 'Work Sans', sans-serif;*/
+/*}*/
 
 
 /*
@@ -84,6 +84,14 @@
 
 #pricing {
     min-height: 20vh;
+}
+
+#pricing .euro {
+    vertical-align: top;
+    padding: 3px;
+    position: relative;
+    display: inline-block;
+    top: -17px;
 }
 
 
