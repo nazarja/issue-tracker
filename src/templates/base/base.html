@@ -24,7 +24,7 @@
 
 	<div class="pusher">
 		<!-- header -->
-		<header>
+		<header id="header">
 			<div class="ui menu">{% include './navbar.html' %}</div>
 			<div class="ui fixed menu transition hidden">{% include './navbar.html' %}</div>
 		</header>
@@ -33,6 +33,9 @@
 		<main>
 			{% block content %}{% endblock %}
 		</main>
+
+		<!-- to top button-->
+		{% include './to-top-button.html' %}
 
 		<!-- footer -->
 		<footer>

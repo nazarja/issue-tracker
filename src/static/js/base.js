@@ -39,3 +39,16 @@ function smoothScroll() {
 smoothScroll();
 
 
+// Scroll back to Top Btn logic
+const toTopBtn = document.querySelector('#to-top-btn');
+window.addEventListener('scroll', () => {
+    if (window.innerWidth > 800) {
+        if (window.scrollY > window.innerHeight ? toTopBtn.style.right = "30px" : toTopBtn.style.right = "-50px");
+    }
+    else {
+        toTopBtn.style.right = "-50px";
+    }
+});
+
+
+

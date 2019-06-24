@@ -105,6 +105,15 @@ nav {
     display: none !important;
 }
 
+/* Scroll To Top Button */
+#to-top-btn {
+    position: fixed;
+    z-index: 1000;
+    bottom: 40px;
+    right: -50px;
+    transition: 0.5s ease-in-out;
+}
+
 
 /*
 =================================================
