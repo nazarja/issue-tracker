@@ -93,3 +93,5 @@ Sitemap:
 ---
 
 ## Credits
+
+- Busy Loader: https://tobiasahlin.com/spinkit/

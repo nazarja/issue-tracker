@@ -48,7 +48,7 @@
 				<a class="item" href="{% url 'tickets:bugs' %}">Bugs</a>
 				<a class="item" href="{% url 'tickets:features' %}">Features</a>
 				<a class="item" href="{% url 'charts:charts' %}">Charts</a>
-				<a class="item" href="#">Activity Feed<span class="empty circular ui red label"></span></a>
+				<a class="item" href="{% url 'activity_feed:activity_feed' %}">Activity Feed<span class="empty circular ui red label"></span></a>
 			{% endif %}
 
 			<div class="right menu">

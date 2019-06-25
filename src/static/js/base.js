@@ -1,4 +1,3 @@
-
 // init jquery nav-bar animations
 function init() {
 
@@ -8,13 +7,13 @@ function init() {
     $('.ui.sidebar').sidebar('attach events', '.toc.item');
 
 
-	// sticky menu
+    // sticky menu
     $('.masthead').visibility({
         once: false,
-        onBottomPassed: function() {
+        onBottomPassed: function () {
             $('.fixed.menu').transition('fade in');
         },
-            onBottomPassedReverse: function() {
+        onBottomPassedReverse: function () {
             $('.fixed.menu').transition('fade out');
         }
     });
@@ -22,9 +21,10 @@ function init() {
 init();
 
 
+
 // smooth scroll function for anchor links
 function smoothScroll() {
-    $('a[href*="#"]').on('click', function(e) {
+    $('a[href*="#"]').on('click', function (e) {
         e.preventDefault();
 
         $('html, body').animate(
@@ -39,22 +39,41 @@ function smoothScroll() {
 smoothScroll();
 
 
-// Scroll back to Top Btn logic
-const toTopBtn = document.querySelector('#to-top-btn');
-window.addEventListener('scroll', () => {
-    if (window.innerWidth > 800) {
-        if (window.scrollY > 500 ? toTopBtn.style.right = "30px" : toTopBtn.style.right = "-50px");
-    }
-    else {
-        toTopBtn.style.right = "-50px";
-    }
-});
+
+// scroll back to top button
+function scrollToTop() {
+    window.addEventListener('scroll', () => {
+        const toTopBtn = document.querySelector('#to-top-btn');
+        if (window.innerWidth > 800) {
+            if (window.scrollY > 500 ? toTopBtn.style.right = "30px" : toTopBtn.style.right = "-50px") ;
+        } else {
+            toTopBtn.style.right = "-50px";
+        }
+    });
+}
+scrollToTop();
+
+
+
+// change page / busy loader
+function busyLoader(delay=0) {
+    $("#busy-loader").fadeIn("slow");
+    const animation = () => $("#busy-loader").fadeOut("slow");
+    setTimeout(animation, delay)
+}
+
+
 
 // Go back to last page in history
 function goBackInHistory() {
     $('.go-back-history-btn').on('click', () => window.history.back())
 }
 goBackInHistory();
+
+
+
+
+
 
 
 

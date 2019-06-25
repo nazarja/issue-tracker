@@ -1,4 +1,3 @@
-
 /*
 =================================================
    Variables
@@ -28,23 +27,13 @@
 }
 
 @font-face {
-src: url('../fonts/FiraMono-Regular.ttf');
-font-family: 'Fira Mono';
-}
-
-@font-face {
-src: url('../fonts/JosefinSans-Bold.ttf');
-font-family: 'JoseFin Sans';
-}
-
-@font-face {
     src: url('../fonts/WorkSans-ExtraLight.ttf');
     font-family: 'Work Sans';
 }
 
 @font-face {
-    src: url('../fonts/Montserrat-SemiBold.ttf');
-    font-family: 'Montserrat';
+    src: url('../fonts/Rubik-Bold.ttf');
+    font-family: 'Rubik Bold';
 }
 
 /* Fonts Reset */
@@ -73,15 +62,24 @@ main {
     flex: 1;
 }
 
-/*
-=================================================
-    Header / Nav-bar
-=================================================
-*/
-
 header {
     margin-bottom: -14px;
 }
+
+/* Scroll To Top Button */
+#to-top-btn {
+    position: fixed;
+    z-index: 1000;
+    bottom: 40px;
+    right: -50px;
+    transition: 0.5s ease-in-out;
+}
+
+/*
+=================================================
+    Nav-bar
+=================================================
+*/
 
 nav {
     background-color: var(--black);
@@ -122,23 +120,6 @@ nav {
     display: none !important;
 }
 
-
-/*
-=================================================
-    Misc.
-=================================================
-*/
-
-/* Scroll To Top Button */
-#to-top-btn {
-    position: fixed;
-    z-index: 1000;
-    bottom: 40px;
-    right: -50px;
-    transition: 0.5s ease-in-out;
-}
-
-
 /* nav-bar avatar*/
 #username-large, #username-small,
 span.avatar-label.ui.black.label {
@@ -146,16 +127,16 @@ span.avatar-label.ui.black.label {
     margin-left: -5px !important;
 }
 
-
 .ui.black.label, .ui.black.labels .label {
     background-color: var(--black) !important;
 }
 
-.ui.label>img.avatar-label-image {
+.ui.label > img.avatar-label-image {
     height: 25px !important;
     border-radius: 50%;
     padding-right: 5px;
 }
+
 
 /*
 =================================================
@@ -169,6 +150,70 @@ footer {
 
 #footer-container {
     padding: 80px 0 40px 0;
+}
+
+
+/*
+=================================================
+    Busy Loader
+=================================================
+*/
+
+#busy-loader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--black);
+    display: none;
+    z-index: 1000 !important;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin-top: calc(50vh - 20px);
+    margin-left: calc(50vw - 20px);
+}
+
+.double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+    0%, 100% {
+        -webkit-transform: scale(0.0)
+    }
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes sk-bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
 }
 
 

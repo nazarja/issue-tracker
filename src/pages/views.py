@@ -8,6 +8,6 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            pass  # put redirect so cant be on the index page
+            return redirect('/activity-feed/')
         return render(request, self.template_name, self.context)
 
