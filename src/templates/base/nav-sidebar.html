@@ -1,6 +1,6 @@
 {% load static %}
 <div class="ui vertical inverted sidebar menu left" style="">
-	<a id="logo-title-mobile" class="ui item" href="{% url 'index' %}">
+	<a id="logo-title-mobile" class="ui item" href="{% url 'pages:index' %}">
 		<span id="logo-title-first" >Issue</span>
 		<span id="logo-title-last">Tracker</span>
 	</a>
@@ -24,8 +24,8 @@
 			<div id="cart-feed-count" class="ui label green">0</div>
 		</a>
 		<span class="item">Help &amp; Support <i class="angle down icon"></i></span>
-		<a class="item" href="#">FAQ's</a>
-		<a class="item" href="#">Contact</a>
+		<a class="item" href="{% url 'pages:faq' %}">FAQ's</a>
+		<a class="item" href="{% url 'pages:contact' %}">Contact</a>
 		<a class="item" href="{% url 'account_set_password' %}">Change Password</a>
 		<a class="item" href="{% url 'account_set_password' %}">Change Avatar Picture</a>
 		<a class="item" href="{% url 'account_logout' %}">Logout</a>
