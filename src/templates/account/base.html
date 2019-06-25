@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block head_title %}{% endblock %}
+{% block extra_head %}{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/account.css' %}" />{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block extra_body %}
+	{% if messages %}
+		<div>
+			<strong>Messages:</strong>
+			<ul>
+				{% for message in messages %}
+					<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+{% endblock %}

@@ -1,8 +1,7 @@
 {% extends '../base/base.html' %}
 {% load static %}
-{% block title %}Issue Tracker{% endblock %}
-{% block css %}
-	<link rel="stylesheet" href="{% static 'css/index.css' %}"/>{% endblock %}
+{% block head_title %}Issue Tracker{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/index.css' %}"/>{% endblock %}
 
 
 {% block content %}
@@ -12,10 +11,10 @@
 		<div class="ui container">
 			<h1 class="ui huge header masthead"><span id="h1-first">Issue</span><span id="h1-second">Tracker</span></h1>
 			<h2 class="ui header">Submit your <strong>Bugs</strong> and <strong>Feature</strong> Requests.</h2>
-			<button class="ui right labeled icon black huge button">
+			<a id="sign-up-btn" class="ui right labeled icon black huge button" href="{% url 'account_signup' %}">
 				<i class="right arrow icon"></i>
 				Get Started for Free
-			</button>
+			</a>
 		</div>
 	</div>
 
@@ -161,10 +160,10 @@
 
 	<!-- prompt to join button -->
 	<div class="ui container tac mt6">
-		<button class="ui right labeled icon inverted green huge button">
+		<a class="ui right labeled icon inverted green huge button" href="{% url 'account_signup' %}">
 			<i class="right arrow icon"></i>
 			Get Started for Free
-		</button>
+		</a>
 	</div>
 
 {% endblock %}

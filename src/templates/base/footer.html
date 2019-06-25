@@ -6,13 +6,13 @@
 			<div class="three wide column">
 				<h4 class="ui inverted header">Quick Links</h4>
 				<div class="ui inverted link list">
-					<a href="#" class="item">Home</a>
+					<a href="{% url 'index' %}" class="item">Home</a>
 					<a href="#" class="item">FAQ's</a>
 					<a href="#" class="item">Contact Us</a>
 					{% if not user.is_authenticated %}
-						<a href="#" class="item">Login</a>
+						<a href="{% url 'account_login' %}" class="item">Login</a>
 					{% else %}
-						<a href="#" class="item">Logout</a>
+						<a href="{% url 'account_logout' %}" class="item">Logout</a>
 					{% endif %}
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 
 		<!-- footer credits -->
 		<div class="mt4">
-			<p>Made with <i class="code icon"></i> and <i class="coffee icon"></i> by _ <a href="" target="_blank">Sean Murphy</a> _ &copy; 2019</p>
+			<p>Made with <i class="code icon"></i> and <i class="coffee icon"></i> by _ <a href="https://seanmurphy.eu" target="_blank">Sean Murphy</a> _ &copy; 2019</p>
 		</div>
 	</div>
 </div>

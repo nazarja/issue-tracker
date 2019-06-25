@@ -34,8 +34,6 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# Accounts
-src/accounts/templates
 
 
 

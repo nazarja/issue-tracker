@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
 
     # django apps
-    'accounts',
     'activity_feed',
     'cart',
     'charts',
@@ -49,16 +48,19 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-ACCOUNT_AUTHENTICATION_METHODS = 'username_email'
+
+# django allauth configuration
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 SOCIAL_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = 'IssueTracker Support'
-ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SESSION_REMEMBER = False
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_REDIRECT_URL = 'index'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,7 +72,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'project.urls'
+
 
 TEMPLATES = [
     {
@@ -87,6 +91,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'project.wsgi.application'
 

@@ -1,0 +1,80 @@
+/*
+=================================================
+    Django AllAuth Styles
+=================================================
+*/
+
+#callout  {
+    width: 100vw;
+    padding: 30px 5px 30px 5px;
+    background:  linear-gradient(90deg, rgba(81,191,144,.95) 50%, rgba(65,162,200,.95) 100%);
+    position: relative;
+    color: white;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#horizontal-divider {
+    display: none;
+}
+
+/* Sign up form */
+#signup_form input, .login input {
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    tap-highlight-color: rgba(255,255,255,0);
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
+    font-size: 1em;
+    background: #fff;
+    border: 1px solid rgba(34,36,38,.15);
+    color: rgba(0,0,0,.87);
+    border-radius: .28571429rem;
+    -webkit-box-shadow: 0 0 0 0 transparent inset;
+    box-shadow: 0 0 0 0 transparent inset;
+    -webkit-transition: color .1s ease,border-color .1s ease;
+    transition: color .1s ease,border-color .1s ease;
+    position: relative;
+    width: 90%;
+}
+
+#signup_form input:focus, .login input:focus {
+    border-color: #4ac6fd;
+}
+
+#signup_form label, .login label {
+    display: block;
+    margin: 0 0 .28571429rem 0;
+    color: rgba(0,0,0,.87);
+    font-size: .92857143em;
+    text-align: left;
+    padding-left: 5%;
+    position: relative;
+}
+
+#signup_form button[type="submit"], .login button[type="submit"] {
+    margin-top: 30px;
+}
+
+.errorlist {
+    color: crimson;
+    text-align: left;
+    padding-left: 5%;
+    font-size: 0.9em;
+    padding: 2% 5% 1%;
+}
+
+
+@media screen and (max-width: 768px) {
+    #vertical-divider {
+        display: none;
+    }
+
+    #horizontal-divider {
+        display: block;
+        width: 100%;
+        position: relative;
+    }
+}

@@ -50,5 +50,11 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Go back to last page in history
+function goBackInHistory() {
+    $('.go-back-history-btn').on('click', () => window.history.back())
+}
+goBackInHistory();
+
 
 

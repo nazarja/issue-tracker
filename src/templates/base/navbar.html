@@ -35,13 +35,15 @@
 					<img height="50" width="50" src="{% static 'img/logos/logo.png' %}" alt="bug logo">
 				</a>
 			</div>
-			{% if not user.is_authenticated and request.path == '/' %}
+			{% if not user.is_authenticated  %}
 				<a class="ui item" href="{% url 'index' %}">
 					<span id="logo-title-first" >Issue</span>
 					<span id="logo-title-last">Tracker</span>
 				</a>
-				<a class="item" href="#pricing">Pricing</a>
-				<a class="item" href="#how-it-works">How it Works?</a>
+				{% if request.path == '/' %}
+					<a class="item" href="#pricing">Pricing</a>
+					<a class="item" href="#how-it-works">How it Works?</a>
+				{% endif %}
 			{% else %}
 				<a class="item" href="#">Bugs</a>
 				<a class="item" href="#">Features</a>
@@ -62,7 +64,9 @@
 					<div class="menu inverted">
 						<a class="item">FAQ's</a>
 						<a class="item">Contact</a>
-						<a class="item" href="{% url 'account_set_password' %}">Change Password</a>
+						{% if user.is_authenticated  %}
+							<a class="item" href="{% url 'account_set_password' %}">Change Password</a>
+						{% endif %}
 					</div>
 				</div>
 				{% if user.is_authenticated %}

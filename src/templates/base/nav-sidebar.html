@@ -4,9 +4,12 @@
 		<span id="logo-title-first" >Issue</span>
 		<span id="logo-title-last">Tracker</span>
 	</a>
-	{% if not user.is_authenticated and request.path == '/' %}
-		<a class="item" href="#pricing">Pricing</a>
-		<a class="item" href="#how-it-works">How it works?</a>
+
+	{% if not user.is_authenticated  %}
+		{% if request.path == '/' %}
+			<a class="item" href="#pricing">Pricing</a>
+			<a class="item" href="#how-it-works">How it works?</a>
+		{% endif %}
 		<a class="item" href="#">FAQ's</a>
 		<a class="item" href="#">Contact</a>
 		<a class="item header" href="{% url 'account_login' %}">Login</a>
@@ -18,14 +21,13 @@
 		<a class="item" href="#">Activity Feed<span class="empty circular ui red label"></span></a>
 		<a class="item" href="#">
 			Cart
-			<i class="shop icon"></i>
 			<div id="cart-feed-count" class="ui label green">0</div>
 		</a>
-		<span class="item tcsuccess">Help &amp; Support <i class="angle down icon"></i></span>
+		<span class="item">Help &amp; Support <i class="angle down icon"></i></span>
 		<a class="item" href="#">FAQ's</a>
 		<a class="item" href="#">Contact</a>
 		<a class="item" href="{% url 'account_set_password' %}">Change Password</a>
-		<a class="item tcdanger" href="{% url 'account_logout' %}">Logout</a>
+		<a class="item" href="{% url 'account_logout' %}">Logout</a>
 	{% endif %}
 
 </div>

@@ -46,7 +46,7 @@
     opacity: 0.8;
 }
 
-.callout button {
+.callout #sign-up-btn {
     margin: 40px auto !important;
 }
 
