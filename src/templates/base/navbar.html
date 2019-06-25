@@ -45,9 +45,9 @@
 					<a class="item" href="#how-it-works">How it Works?</a>
 				{% endif %}
 			{% else %}
-				<a class="item" href="#">Bugs</a>
-				<a class="item" href="#">Features</a>
-				<a class="item" href="#">Charts</a>
+				<a class="item" href="{% url 'tickets:bugs' %}">Bugs</a>
+				<a class="item" href="{% url 'tickets:features' %}">Features</a>
+				<a class="item" href="{% url 'charts:charts' %}">Charts</a>
 				<a class="item" href="#">Activity Feed<span class="empty circular ui red label"></span></a>
 			{% endif %}
 
