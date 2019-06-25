@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'charts',
     'checkout',
     'comments',
-    'pages',
     'tickets',
 ]
 
