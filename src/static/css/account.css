@@ -18,8 +18,15 @@
     display: none;
 }
 
+#form-smaller {
+    max-width: 700px !important;
+    margin: auto;
+}
+
 /* Sign up form */
-#signup_form input, .login input {
+#signup_form input, .login input,
+.password_change input, .password_reset input,
+.password_reset_key input, .password_set input {
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
     margin: 0;
     outline: 0;
@@ -40,11 +47,15 @@
     width: 90%;
 }
 
-#signup_form input:focus, .login input:focus {
+#signup_form input:focus, .login input:focus,
+.password_change input:focus, .password_reset input:focus,
+.password_reset_key input:focus, .password_set input:focus {
     border-color: #4ac6fd;
 }
 
-#signup_form label, .login label {
+#signup_form label, .login label,
+.password_change label, .password_reset ,
+.password_reset_key label, .password_set label {
     display: block;
     margin: 0 0 .28571429rem 0;
     color: rgba(0,0,0,.87);
@@ -54,7 +65,9 @@
     position: relative;
 }
 
-#signup_form button[type="submit"], .login button[type="submit"] {
+#signup_form button[type="submit"], .login button[type="submit"],
+.password_change  button[type="submit"], .password_reset input[type="submit"],
+.password_reset_key button[type="submit"],  .password_set input[type="submit"] {
     margin-top: 30px;
 }
 
