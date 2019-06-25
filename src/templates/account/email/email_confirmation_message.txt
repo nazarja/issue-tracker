@@ -1,0 +1,16 @@
+{% load account %}
+{% user_display user as user_display %}
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hey, its IssueTracker Support from {{ site_name }}!
+
+You're receiving this e-mail because user {{ user_display }} has given yours as an e-mail address to connect their account.
+If this wasnt you, please contact our support team.
+
+To confirm your email address,
+
+Please use this activation link to verifiy your account:
+{{ activate_url }}
+{% endblocktrans %}{% endautoescape %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+{% endblocktrans %}
