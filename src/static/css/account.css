@@ -79,6 +79,14 @@
     padding: 2% 5% 1%;
 }
 
+#password-change-modal {
+    text-align: center;
+}
+
+#password-change-modal .header {
+    background-color: var(--green);
+    color: var(--white);
+}
 
 @media screen and (max-width: 768px) {
     #vertical-divider {

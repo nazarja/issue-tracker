@@ -7,10 +7,12 @@
 {% block content %}
 
 	<h1 class="callout">Change Avatar</h1>
-	<div class="ui container">
+	<div class="ui container segment">
 		<div id="avatar-gallery">
 			{% for avatar in  avatars %}
-				<img class="avatar-gallery-item ui" src="{% static 'img/avatars/'|add:avatar %}" data-url="{{ avatar }}" data-content="Choose Avatar" alt="{{ avatar }}">
+				<img
+						class="{% if avatar in request.session.avatar %}avatar-gallery-item-selected{% endif %} avatar-gallery-item avatar-gallery-item ui"
+						src="{% static 'img/avatars/'|add:avatar %}" data-url="{{ avatar }}" data-content="Choose Avatar" alt="{{ avatar }}">
 			{% endfor %}
 		</div>
 	</div>

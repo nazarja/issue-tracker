@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.views.generic import View
 from .models import Profile
 from .models import get_avatars_files
-import json
 
 
 @method_decorator(login_required, name='get')

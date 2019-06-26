@@ -3,8 +3,9 @@ from random import choice
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
-from allauth.account.signals import user_signed_up, user_logged_in
+from allauth.account.signals import user_signed_up, user_logged_in, password_changed, password_reset
 from django.dispatch import receiver
+from django.contrib import messages
 
 
 #   get avatar files
@@ -40,4 +41,8 @@ def save_extended_user_profile(sender, user, **kwargs):
 def after_user_logged_in(sender, request, user, **kwargs):
     profile = Profile.objects.filter(user_id=user.id).first()
     request.session['avatar'] = profile.avatar
+
+@receiver(password_changed)
+def after_successful_password_change(sender, request, user, **kwargs):
+    messages.success(request, 'Your password has successfully been changed!', extra_tags='password-changed')
 
