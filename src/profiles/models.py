@@ -1,11 +1,21 @@
+import os
+from random import choice
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from allauth.account.signals import user_signed_up, user_logged_in
 from django.dispatch import receiver
 
 
+#   get avatar files
+def get_avatars_files():
+    path = settings.BASE_DIR + '/static/img/avatars/'
+    return os.listdir(path)
+
+
+#  get random image from avatars list
 def get_random_avatar_picture():
-    return '/static/img/avatars/molly.png'
+    return '/static/img/avatars/' + choice(get_avatars_files())
 
 
 class Profile(models.Model):
@@ -30,3 +40,4 @@ def save_extended_user_profile(sender, user, **kwargs):
 def after_user_logged_in(sender, request, user, **kwargs):
     profile = Profile.objects.filter(user_id=user.id).first()
     request.session['avatar'] = profile.avatar
+

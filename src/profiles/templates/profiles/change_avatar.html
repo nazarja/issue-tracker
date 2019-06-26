@@ -1,0 +1,41 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% block head_title %}Change Avatar{% endblock %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'profiles/css/change_avatar.css' %}"/>{% endblock %}
+
+{% block content %}
+
+	<h1 class="callout">Change Avatar</h1>
+	<div class="ui container">
+		<div id="avatar-gallery">
+			{% for avatar in  avatars %}
+				<img class="avatar-gallery-item ui" src="{% static 'img/avatars/'|add:avatar %}" data-url="{{ avatar }}" data-content="Choose Avatar" alt="{{ avatar }}">
+			{% endfor %}
+		</div>
+	</div>
+
+	<!-- confirm avatar changed -->
+	<div class="ui tiny modal">
+		<div class="header">
+			Avatar Changed
+		</div>
+		<div class="image content">
+			<div class="ui small image">
+				<img id="avatar-modal" src="{{ request.session.avatar }}" alt="avatar">
+			</div>
+			<div class="description">
+				<div class="ui header">Your Avatar Picture has been Changed!</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
+
+{% block csrf_cookie %}
+	<script type="application/javascript" src="{% static 'js/csrf-token-cookie.js' %}"></script>
+{% endblock %}
+{% block javascript %}
+	<script type="application/javascript" src="{% static 'profiles/js/change_avatar.js' %}"></script>
+{% endblock %}

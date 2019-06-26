@@ -146,6 +146,22 @@ span.avatar-label.ui.black.label {
     border-radius: 50%;
 }
 
+/*
+=================================================
+    Common Assets
+=================================================
+*/
+
+.callout  {
+    width: 100vw;
+    padding: 30px 5px 30px 5px;
+    background:  linear-gradient(90deg, rgba(81,191,144,.95) 50%, rgba(65,162,200,.95) 100%);
+    position: relative;
+    color: white;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
 
 /*
 =================================================

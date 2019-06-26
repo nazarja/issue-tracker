@@ -1,0 +1,29 @@
+
+/*
+=================================================
+    Avatar Gallery
+=================================================
+*/
+
+#avatar-gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.avatar-gallery-item {
+    max-width: 10%;
+    height: auto;
+    min-width: 110px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 2%;
+    box-sizing: border-box;
+}
+
+.avatar-gallery-item:hover,
+.avatar-gallery-item-selected {
+    border: 15px solid rgba(81, 194, 151, 0.8);
+}
