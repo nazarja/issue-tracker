@@ -19,7 +19,7 @@
 				{% else %}
 					<div id="username-small" class="item">
 						<span class="avatar-label ui black label">
-							<img class="avatar-label-image avatar image" src="{% static 'img/avatars/sean.png' %}" alt="avatar">
+							<img class="avatar-label-image avatar image" src="{{ request.session.avatar }}" alt="avatar">
 							Hi, {{ user.username|title }}
 						</span>
 					</div>
@@ -73,7 +73,7 @@
 				{% if user.is_authenticated %}
 					<div id="username-large" class="item">
 						<span class="avatar-label ui black label">
-							<img class="avatar-label-image avatar image" src="{% static 'img/avatars/sean.png' %}" alt="avatar">
+							<img class="avatar-label-image avatar image" src="{{ request.session.avatar }}" alt="avatar">
 							Hi, {{ user.username|title }}
 						</span>
 					</div>

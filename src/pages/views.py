@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from profiles.models import Profile
 
 
 class IndexView(View):
@@ -7,7 +8,5 @@ class IndexView(View):
     context = {}
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect('/activity-feed/')
         return render(request, self.template_name, self.context)
 

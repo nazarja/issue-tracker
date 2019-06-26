@@ -137,6 +137,15 @@ span.avatar-label.ui.black.label {
     padding-right: 5px;
 }
 
+#side-bar-avatar {
+    float: right;
+    height: 25px;
+    width: 25px;
+    top: -6px;
+    position: relative;
+    border-radius: 50%;
+}
+
 
 /*
 =================================================
