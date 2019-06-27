@@ -31,11 +31,6 @@
     font-family: 'Work Sans';
 }
 
-@font-face {
-    src: url('../fonts/Rubik-Bold.ttf');
-    font-family: 'Rubik Bold';
-}
-
 /* Fonts Reset */
 body, button, .item {
     font-family: 'Fira Sans', sans-serif !important;

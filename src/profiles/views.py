@@ -1,5 +1,3 @@
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import View
@@ -7,7 +5,6 @@ from .models import Profile
 from .models import get_avatars_files
 
 
-@method_decorator(login_required, name='get')
 class ChangeAvatarView(View):
     template_name = 'profiles/change_avatar.html'
     context = {}

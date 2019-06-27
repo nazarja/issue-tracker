@@ -26,7 +26,7 @@ function changeAvatar(event) {
 
 
 function changeAvatarPostRequest(url) {
-    fetch('/profiles/change_avatar/', {
+    fetch('/profiles/change-avatar/', {
         method: 'POST',
         headers: new Headers({
                     'Content-Type': 'application/x-www-form-urlencoded',
