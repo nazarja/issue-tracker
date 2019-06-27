@@ -11,3 +11,6 @@ class IndexView(View):
             return redirect('/activity-feed/')
         return render(request, self.template_name, self.context)
 
+
+
+

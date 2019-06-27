@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'charts',
     'checkout',
     'comments',
+    'contact',
     'pages',
     'profiles',
     'tickets',

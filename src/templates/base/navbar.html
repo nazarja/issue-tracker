@@ -67,7 +67,7 @@
 					<i class="dropdown icon"></i>
 					<div class="menu inverted">
 						<a class="item" href="{% url 'pages:faq' %}">FAQ's</a>
-						<a class="item" href="{% url 'pages:contact' %}">Contact</a>
+						<a class="item" href="{% url 'contact:contact' %}">Contact</a>
 						{% if user.is_authenticated  %}
 							<a class="item" href="{% url 'account_set_password' %}">Change Password</a>
 							<a class="item" href="{% url 'profiles:change_avatar' %}">Change Avatar Picture</a>

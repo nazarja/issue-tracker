@@ -8,6 +8,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('activity-feed/', include('activity_feed.urls')),
     path('charts/', include('charts.urls')),
+    path('contact/', include('contact.urls')),
     path('profiles/', include('profiles.urls')),
     path('tickets/', include('tickets.urls')),
 ]

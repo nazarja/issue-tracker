@@ -5,7 +5,7 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 {% block content %}
 
-	<h1 id="callout">{% trans "Sign Up" %}</h1>
+	<h1 class="callout">{% trans "Sign Up" %}</h1>
 	<div class="ui container tac">
 
 		<div class="ui placeholder segment">
@@ -15,7 +15,7 @@
 						<span id="logo-title-first" class="ft8">Issue</span>
 						<span id="logo-title-last" class="ft8">Tracker</span>
 					</div>
-					<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+					<form class="signup all-auth-form" id="signup_form" method="post" action="{% url 'account_signup' %}">
 						{% csrf_token %}
 						{{ form.as_p }}
 						{% if redirect_field_value %}

@@ -11,7 +11,7 @@
 			<a class="item" href="#how-it-works">How it works?</a>
 		{% endif %}
 		<a class="item" href="{% url 'pages:faq' %}">FAQ's</a>
-		<a class="item" href="{% url 'pages:contact' %}">Contact</a>
+		<a class="item" href="{% url 'contact:contact' %}">Contact</a>
 		<a class="item header" href="{% url 'account_login' %}">Login</a>
 		<a class="item header" href="{% url 'account_signup' %}">Sign up</a>
 	{% else %}
@@ -23,7 +23,7 @@
 		<a class="item" href="{% url 'charts:charts' %}">Charts</a>
 		<span class="item">Help &amp; Support <i class="angle down icon"></i></span>
 		<a class="item" href="{% url 'pages:faq' %}">FAQ's</a>
-		<a class="item" href="{% url 'pages:contact' %}">Contact</a>
+		<a class="item" href="{% url 'contact:contact' %}">Contact</a>
 		<a class="item" href="{% url 'account_set_password' %}">Change Password</a>
 		<a class="item" href="{% url 'profiles:change_avatar' %}">Change Avatar Picture</a>
 		<a class="item" href="{% url 'account_logout' %}">Logout</a>
