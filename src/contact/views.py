@@ -2,6 +2,7 @@ from django.shortcuts import reverse
 from django.views.generic import CreateView
 from django.http import JsonResponse
 from .forms import ContactForm
+from django.conf import settings
 
 
 class ContactCreateView(CreateView):
@@ -13,14 +14,20 @@ class ContactCreateView(CreateView):
         if self.request.user.is_authenticated:
             initial['name'] = self.request.user.username
             initial['email'] = self.request.user.email
+        else:
+            initial['name'] = ''
         return initial
 
     def form_valid(self, form):
-        print('VALID')
-        super().form_valid(form)
+        if self.request.user.is_authenticated:
+            form.instance.user = self.request.user
+            super(ContactCreateView, self).form_valid(form)
+        else:
+            super().form_valid(form)
         response = {
-            'text': 'Your form has been successfully sent. Thank you.',
-        }
+                'text': 'Your form has been successfully sent. Thank you.',
+                'isAuth': True if self.request.user.is_authenticated else False
+            }
         return JsonResponse(response)
 
     def form_invalid(self, form):

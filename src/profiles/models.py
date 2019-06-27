@@ -2,7 +2,7 @@ import os
 from random import choice
 from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 from allauth.account.signals import user_signed_up, user_logged_in, password_changed
 from django.dispatch import receiver
 from django.contrib import messages
@@ -20,7 +20,7 @@ def get_random_avatar_picture():
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
     avatar = models.CharField(max_length=260, default=get_random_avatar_picture())
 
     def __str__(self):

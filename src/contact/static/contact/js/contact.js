@@ -1,14 +1,21 @@
 
+// selectors
 const form = document.querySelector('#contact-form');
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
+const name = document.querySelector('#id_name');
+const email = document.querySelector('#id_email');
+const subject = document.querySelector('#id_subject');
+const message = document.querySelector('#id_message');
+form.onsubmit = (event) => postContactForm(event);
 
-    let obj = {
-        name: document.querySelector('#id_name').value,
-        email: document.querySelector('#id_email').value,
-        subject: document.querySelector('#id_subject').value,
-        message: document.querySelector('#id_message').value,
-    };
+// dont allow editing username/email if user is not anon
+if (name.value.length) {
+    name.setAttribute('readonly', 'true');
+    email.setAttribute('readonly', 'true');
+}
+
+// post form
+function postContactForm(event) {
+    event.preventDefault();
 
     fetch('/contact/', {
         method: 'POST',
@@ -17,23 +24,36 @@ form.addEventListener('submit', (event) => {
                     'X-CSRFToken': csrftoken,
                     'X-Requested-With': 'XMLHttpRequest',
                 }),
-        body: `name=${obj.name}&email=${obj.email}&subject=${obj.subject}&message=${obj.subject}`,
+        body: `name=${name.value}&email=${email.value}&subject=${subject.value}&message=${message.value}`,
         credentials: 'same-origin',
     })
     .then(res => res.json())
-    .then(data => {
-        document.querySelector('#form-response-text').innerHTML = data.text;
-        if (document.querySelector('.ui.tiny.modal')) {
-            $('.ui.tiny.modal')
-                .modal({
-                    dimmerSettings: {opacity: .3},
-                })
-                .modal('show')
-                .delay(2000)
-                .queue(function () {
-                    $(this).modal('hide').dequeue();
-                });
-        }
-    })
+    .then(data => onSuccessFormSubmit(data))
     .catch(err => console.log(err))
-});
+}
+
+// fetch callback
+function onSuccessFormSubmit(data) {
+
+    // clear fields
+    if (!data.isAuth) {
+        name.value = '';
+        email.value = '';
+    }
+    subject.value = '';
+    message.value = '';
+
+    // show modal
+    document.querySelector('#form-response-text').innerHTML = data.text;
+    if (document.querySelector('.ui.tiny.modal')) {
+        $('.ui.tiny.modal')
+            .modal({
+                dimmerSettings: {opacity: .3},
+            })
+            .modal('show')
+            .delay(2000)
+            .queue(function () {
+                $(this).modal('hide').dequeue();
+            });
+    }
+}
