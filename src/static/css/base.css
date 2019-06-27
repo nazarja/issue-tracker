@@ -270,12 +270,12 @@ footer {
 }
 
 /* hide logo title*/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     #logo-title * {
-        font-size: .9em;
+        font-size: 1em;
     }
 
-    #username-small {
+    #username-small, #logout-small {
         display: none;
     }
 }

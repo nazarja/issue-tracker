@@ -17,13 +17,17 @@
 					<a class="item header" href="{% url 'account_login' %}">Login</a>
 					<a class="item header" href="{% url 'account_signup' %}">Sign up</a>
 				{% else %}
+					<a class="item cart-popup" href="#" data-content="View Cart">
+						<i class="shop icon"></i>
+						<div id="cart-feed-count" class="ui label green">0</div>
+					</a>
 					<div id="username-small" class="item">
 						<span class="avatar-label ui black label">
 							<img id="avatar-1" class="avatar-label-image avatar image" src="{{ request.session.avatar }}" alt="avatar">
 							Hi, {{ user.username|title }}
 						</span>
 					</div>
-					<a class="item header" href="{% url 'account_logout' %}">Logout</a>
+					<a id="logout-small" class="item header" href="{% url 'account_logout' %}">Logout</a>
 				{% endif %}
 			</div>
 		</div>
