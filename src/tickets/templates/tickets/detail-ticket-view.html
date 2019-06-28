@@ -1,16 +1,10 @@
 {% extends '../base/base.html' %}
 {% load static %}
-{% block head_title %}Bugs{% endblock %}
+{% block head_title %}{{ title }}{% endblock %}
 {% block css %}<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
 {% block content %}
-	<h1 class="callout">Bugs</h1>
+	<h1 class="callout">{{ title }}</h1>
 	<div class="ui container">
-	<ul>
-	{% for bug in object_list %}
-		<li>{{ bug.title }} - {{ bug.updated_on }}</li>
-	{% empty %}
-		<li>No bugs yet.</li>
-	{% endfor %}
-</ul>
+		<h2>{{ object.title }}</h2>
 	</div>
 {% endblock %}

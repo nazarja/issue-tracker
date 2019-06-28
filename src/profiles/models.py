@@ -18,13 +18,12 @@ def get_random_avatar_picture():
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, default=1, related_name='profile', on_delete=models.CASCADE)
     avatar = models.CharField(max_length=260, default=get_random_avatar_picture())
     credits = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username
-
 
 #  after user logs in, set the profile session data
 @receiver(user_logged_in)
@@ -51,14 +50,3 @@ def post_delete_user(sender, instance, *args, **kwargs):
 @receiver(password_changed)
 def post_password_change(sender, request, user, **kwargs):
     messages.success(request, 'Your password has successfully been changed!')
-
-
-#  after user signs up create their profile
-# @receiver(user_signed_up)
-# def post_user_signed_up(sender, request, user, **kwargs):
-#     Profile.objects.create(user=user)
-#
-# #  after user signs up save their profile
-# @receiver(user_signed_up)
-# def save_extended_user_profile(sender, user, **kwargs):
-#     user.profile.save()

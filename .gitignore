@@ -8,6 +8,7 @@ venv/
 #  IDE / Text Editors
 .idea
 .vscode
+dev/
 
 
 ### Django ###
