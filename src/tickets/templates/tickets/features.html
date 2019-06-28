@@ -2,7 +2,13 @@
 {% load static %}
 {% block head_title %}Features{% endblock %}
 {% block css %}<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
-
 {% block content %}
-	<h1>features</h1>
+	<h1 class="callout">Features</h1>
+	<div class="ui container">
+		{% for feature in object_list %}
+			<li>{{ feature.title }} - {{ feature.updated_on }}</li>
+		{% empty %}
+			<li>No features yet.</li>
+		{% endfor %}
+	</div>
 {% endblock %}

@@ -11,5 +11,9 @@ class Contact(models.Model):
     message = models.CharField(max_length=2000, blank=False)
     sent_on = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        verbose_name = 'Contact Form'
+        verbose_name_plural = 'Contact Forms'
+
     def __str__(self):
         return f'{self.name} - {self.subject}'
