@@ -1,11 +1,16 @@
 /*
 =================================================
-    Django AllAuth Styles
+    Site-wide Forms Styles
 =================================================
 */
 
+.all-forms-container {
+    padding: 5% !important;
+}
+
 /* Sign up form */
-.all-auth-form input {
+.all-auth-form input,
+.all-forms input, .all-forms textarea {
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
     margin: 0;
     outline: 0;
@@ -26,11 +31,13 @@
     width: 90%;
 }
 
-.all-auth-form input:focus {
+.all-auth-form input:focus,
+.all-forms input:focus, .all-forms textarea:focus {
     border-color: #4ac6fd;
 }
 
-.all-auth-form label {
+.all-auth-form label,
+.all-forms label, .all-forms textarea label  {
     display: block;
     margin: 0 0 .28571429rem 0;
     color: rgba(0,0,0,.87);
@@ -40,8 +47,14 @@
     position: relative;
 }
 
-.all-auth-form input[type="submit"] {
+.all-auth-form input[type="submit"],
+.all-forms input[type="submit"] {
     margin-top: 30px;
+}
+
+
+.all-forms textarea {
+    width: 90%;
 }
 
 .errorlist {
