@@ -1,8 +1,90 @@
 {% extends '../base/base.html' %}
 {% load static %}
-{% block head_title %}FAQ{% endblock %}
-{% block css %}<link rel="stylesheet" href="{% static 'pages/css/faq.css' %}"/>{% endblock %}
-
+{% block head_title %}FAQ's{% endblock %}
+{% block css %} <link rel="stylesheet" href="{% static 'pages/css/faq.css' %}"/>{% endblock %}
 {% block content %}
-	<h1>faq</h1>
+
+	<h1 class="callout">FAQ's</h1>
+	<div class="ui container">
+		<h2 class="mt2 mb3 tac">Your Frequently Asked Questions, Answered.</h2>
+
+		<div class="ui styled fluid accordion">
+			<div class="active title">
+				<i class="dropdown icon"></i>
+				Bugs
+			</div>
+			<div class="active content">
+				<p>Description</p>
+			</div>
+
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Features
+			</div>
+			<div class="content">
+				<p>Description</p>
+			</div>
+
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Charts
+			</div>
+			<div class="content">
+				<p>Description</p>
+			</div>
+
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Activity Feed
+			</div>
+			<div class="content">
+				<p>Description</p>
+			</div>
+
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Contact
+			</div>
+			<div class="content">
+				<p>Description</p>
+			</div>
+
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Cart
+			</div>
+			<div class="content">
+				<p>Description</p>
+			</div>
+
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Stripe / Payment System
+			</div>
+			<div class="content">
+				<p>Description</p>
+			</div>
+
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Account / Avatar
+			</div>
+			<div class="content">
+				<p>Description</p>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+        $('.ui.accordion')
+            .accordion({
+                selector: {
+                    trigger: '.title'
+                }
+            })
+        ;
+	</script>
 {% endblock %}
