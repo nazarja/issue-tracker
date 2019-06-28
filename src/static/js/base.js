@@ -1,3 +1,11 @@
+
+/*
+=======================================================
+    JavaScript Functions common to all pages
+=======================================================
+*/
+
+
 // init jquery nav-bar animations
 function init() {
 

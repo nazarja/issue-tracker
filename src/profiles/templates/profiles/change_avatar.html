@@ -1,12 +1,12 @@
 {% extends '../base/base.html' %}
 {% load static %}
 {% block head_title %}Change Avatar{% endblock %}
-{% block css %}
-	<link rel="stylesheet" href="{% static 'profiles/css/change_avatar.css' %}"/>{% endblock %}
-
+{% block css %}<link rel="stylesheet" href="{% static 'profiles/css/change_avatar.css' %}"/>{% endblock %}
 {% block content %}
 
 	<h1 class="callout">Change Avatar</h1>
+
+	<!-- Avatar Choice Gallery-->
 	<div class="ui container segment">
 		<div id="avatar-gallery">
 			{% for avatar in  avatars %}
@@ -31,8 +31,6 @@
 			</div>
 		</div>
 	</div>
-
-
 {% endblock %}
 
 {% block csrf_cookie %}

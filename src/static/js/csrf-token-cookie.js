@@ -1,6 +1,11 @@
 
-// get csrf token from cookie for safe post requests
-// code is from django official documentation
+/*
+=======================================================
+ Official Django Documentation CSRF Cookie Function
+=======================================================
+*/
+
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -17,4 +22,5 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// variable to use for fetch / ajax requests
 var csrftoken = getCookie('csrftoken');

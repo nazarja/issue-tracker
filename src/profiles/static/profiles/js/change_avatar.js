@@ -1,11 +1,18 @@
 
+/*
+=======================================================
+    Change Avatar Post Request - DOM Actions
+=======================================================
+*/
+
+
 // select avatar and add click event listener to each image
 const avatars = document.querySelectorAll('.avatar-gallery-item');
 avatars.forEach(avatar => avatar.onclick = () => changeAvatar(event));
 $('.avatar-gallery-item').popup();
 
 
-
+// DOM Actions
 function changeAvatar(event) {
 
     // remove selected class
@@ -24,7 +31,7 @@ function changeAvatar(event) {
 }
 
 
-
+// POST Request to DB - Show Modal
 function changeAvatarPostRequest(url) {
     fetch('/profiles/change-avatar/', {
         method: 'POST',

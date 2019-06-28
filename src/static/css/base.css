@@ -1,3 +1,4 @@
+
 /*
 =================================================
    Variables
@@ -20,6 +21,7 @@
    @font-face Fonts
 =================================================
 */
+
 
 @font-face {
     src: url('../fonts/FiraSans-Regular.ttf');
@@ -47,6 +49,7 @@ h1, h2, h3 {
 =================================================
 */
 
+
 .pusher {
     display: flex;
     flex-direction: column;
@@ -61,7 +64,6 @@ header {
     margin-bottom: -14px;
 }
 
-/* Scroll To Top Button */
 #to-top-btn {
     position: fixed;
     z-index: 1000;
@@ -70,11 +72,13 @@ header {
     transition: 0.5s ease-in-out;
 }
 
+
 /*
 =================================================
     Nav-bar
 =================================================
 */
+
 
 nav {
     background-color: var(--black);
@@ -115,7 +119,14 @@ nav {
     display: none !important;
 }
 
-/* nav-bar avatar*/
+
+/*
+=================================================
+    Nav-bar Avatar
+=================================================
+*/
+
+
 #username-large, #username-small,
 span.avatar-label.ui.black.label {
     margin: auto 0 !important;
@@ -141,11 +152,13 @@ span.avatar-label.ui.black.label {
     border-radius: 50%;
 }
 
+
 /*
 =================================================
     Common Assets
 =================================================
 */
+
 
 .callout  {
     width: 100vw;
@@ -160,24 +173,10 @@ span.avatar-label.ui.black.label {
 
 /*
 =================================================
-    Footer
-=================================================
-*/
-
-footer {
-    margin-top: 100px;
-}
-
-#footer-container {
-    padding: 80px 0 40px 0;
-}
-
-
-/*
-=================================================
     Busy Loader
 =================================================
 */
+
 
 #busy-loader {
     width: 100%;
@@ -234,6 +233,22 @@ footer {
         transform: scale(1.0);
         -webkit-transform: scale(1.0);
     }
+}
+
+
+/*
+=================================================
+    Footer
+=================================================
+*/
+
+
+footer {
+    margin-top: 100px;
+}
+
+#footer-container {
+    padding: 80px 0 40px 0;
 }
 
 

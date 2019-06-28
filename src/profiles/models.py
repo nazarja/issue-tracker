@@ -2,7 +2,7 @@ import os
 from random import choice
 from django.db import models
 from django.conf import settings
-from allauth.account.signals import user_signed_up, user_logged_in, password_changed
+from allauth.account.signals import user_logged_in, password_changed
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.contrib import messages
@@ -50,14 +50,3 @@ def post_delete_user(sender, instance, *args, **kwargs):
 @receiver(password_changed)
 def post_password_change(sender, request, user, **kwargs):
     messages.success(request, 'Your password has successfully been changed!')
-
-
-#  after user signs up create their profile
-# @receiver(user_signed_up)
-# def post_user_signed_up(sender, request, user, **kwargs):
-#     Profile.objects.create(user=user)
-#
-# #  after user signs up save their profile
-# @receiver(user_signed_up)
-# def save_extended_user_profile(sender, user, **kwargs):
-#     user.profile.save()
