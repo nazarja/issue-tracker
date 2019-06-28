@@ -7,7 +7,7 @@ class ContactFormAdmin(admin.ModelAdmin):
 
     class Meta:
         fields = ('user', 'name', 'message', 'subject', 'message', 'sent_on')
-        verbose_name = ' Contact Form'
+        verbose_name = 'Contact Form'
         verbose_name_plural = 'Contact Forms'
 
 

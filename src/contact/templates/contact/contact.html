@@ -5,14 +5,40 @@
 {% block content %}
 
 	<h1 class="callout">Contact Form</h1>
-	<div class="ui container segment all-forms-container">
-		<h2>Got something to ask us? Let us know below...</h2>
-		<form id="contact-form" class="all-forms" method="POST" action="{% url 'contact:contact' %}">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<input class="ui button submit green" type="submit" value="Send Form">
-		</form>
+	<div class="ui container segment all-forms-container ui grid stackable">
+		<div class="ten wide column">
+		<h2 class="pb2">Got something to ask us? Let us know below...</h2>
+			<form id="contact-form" class="all-forms" method="POST" action="{% url 'contact:contact' %}">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input class="ui button submit green" type="submit" value="Send Form">
+			</form>
+		</div>
+
+		<!-- -->
+		<aside class="six wide column">
+			<h4 class="ui horizontal divider header mb3">
+			  <i class="map icon"></i>
+			  Find us on Google Maps ...
+			</h4>
+			<img class="ui fluid image rounded" src="{% static 'img/images/map.png' %}" alt="map image of dublin">
+
+			<h4 class="ui horizontal divider header mv3">
+			  <i class="address card icon"></i>
+			  Contact Details
+			</h4>
+			<div>
+				<p><span class="ui label"><i class="map marker icon"></i>Address</span> <span class="bold">23 Olympia Way</span></p>
+				<p><span class="ui label"><i class="map marker icon"></i>Phone </span> <span class="bold">01-1234567</span></p>
+				<p><span class="ui label"><i class="terminal icon"></i>Online</span> <a href="https://seanmurphy.eu" rel="noopener" target="_blank">https://seanmurphy.eu</a></p>
+				<p><span class="ui label"><i class="github icon"></i>Github</span> <a href="" rel="noopener" target="_blank">https://github.com/nazarja</a></p>
+				<p><span class="ui label"><i class="linkedin icon"></i>Linkedin</span> <a href="https://www.linkedin.com/in/sean-murphy-dev" rel="noopener" target="_blank">https://github.com/nazarja</a</p>
+			</div>
+
+		</aside>
 	</div>
+
+	<!-- submit info modal -->
 	<div id="form-response-modal" class="ui tiny modal">
 		<div class="header">
 			Form Sent

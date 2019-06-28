@@ -45,11 +45,26 @@
 }
 
 .errorlist {
-    color: crimson;
     text-align: left;
-    padding-left: 5%;
     font-size: 0.9em;
-    padding: 2% 5% 1%;
+    position: relative;
+    vertical-align: baseline;
+    margin: 0 .14285714em;
+    background-color: #e8e8e8;
+    background-image: none;
+    padding: .5833em .833em;
+    color: rgba(0, 0, 0, .6);
+    text-transform: none;
+    font-weight: 700;
+    border: 0 solid transparent;
+    border-radius: .28571429rem;
+    -webkit-transition: background .1s ease;
+    transition: background .1s ease;
+    margin-top: 1em;
+    margin-bottom: 1.2em;
+    max-width: 90%;
+    margin-left: 5%;
+    line-height: 1.5em;
 }
 
 #form-small {

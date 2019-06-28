@@ -8,9 +8,11 @@
 .callout  {
     min-height: 70vh;
     padding: 30px 5px 30px 5px;
-    background:  linear-gradient(90deg, rgba(81,191,144,.95) 50%, rgba(65,162,200,.95) 100%), url('/static/img/backgrounds/callout.jpg')  no-repeat center;
+    background:  linear-gradient(90deg, rgba(81,191,144,.95) 50%, rgba(65,162,200,.95) 100%), url('/static/img/images/callout.jpg')  no-repeat center;
     background-size: cover;
     position: relative;
+    text-align: left;
+    margin-bottom: 0;
 }
 
 .callout {

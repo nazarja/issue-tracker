@@ -25,13 +25,6 @@ class Profile(models.Model):
         return self.user.username
 
 
-#  after user signs up create their profile
-@receiver(user_signed_up)
-def post_user_signed_up(sender, request, user, **kwargs):
-    Profile.objects.create(user=user)
-    user.profile.save()
-
-
 #  after user logs in, set the profile session data
 @receiver(user_logged_in)
 def post_user_logged_in(sender, request, user, **kwargs):
@@ -57,3 +50,14 @@ def post_delete_user(sender, instance, *args, **kwargs):
 @receiver(password_changed)
 def post_password_change(sender, request, user, **kwargs):
     messages.success(request, 'Your password has successfully been changed!')
+
+
+#  after user signs up create their profile
+# @receiver(user_signed_up)
+# def post_user_signed_up(sender, request, user, **kwargs):
+#     Profile.objects.create(user=user)
+#
+# #  after user signs up save their profile
+# @receiver(user_signed_up)
+# def save_extended_user_profile(sender, user, **kwargs):
+#     user.profile.save()

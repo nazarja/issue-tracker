@@ -3,6 +3,22 @@ from django.views.generic import CreateView
 from django.http import JsonResponse
 from .forms import ContactForm
 from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import get_template
+
+
+def send_email(name, email, subject):
+    send_mail(
+        'Contact Form Submission',
+        get_template('contact/email/contact-form-reply.html')
+        .render(
+            {
+                "name": name,
+                "subject": subject,
+            }
+        ),
+        settings.EMAIL_MAIN, [email], fail_silently=True
+    )
 
 
 class ContactCreateView(CreateView):
@@ -24,10 +40,13 @@ class ContactCreateView(CreateView):
             super(ContactCreateView, self).form_valid(form)
         else:
             super().form_valid(form)
+
+        send_email(form.cleaned_data['name'], form.cleaned_data['email'], form.cleaned_data['subject'])
+
         response = {
-                'text': 'Your form has been successfully sent. Thank you.',
-                'isAuth': True if self.request.user.is_authenticated else False
-            }
+            'text': 'Your form has been successfully sent. Thank you.',
+            'isAuth': True if self.request.user.is_authenticated else False
+        }
         return JsonResponse(response)
 
     def form_invalid(self, form):
