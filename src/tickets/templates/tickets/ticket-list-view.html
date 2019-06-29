@@ -7,22 +7,25 @@
 	<div class="ui container">
 		<a href="{% url 'tickets:ticket-create-view' %}" class="ui button green mb2">Create New {{ issue|title }}</a>
 		<div></div>
-		<label for ="order_by">Order By:</label>
-		<select id="order_by">
-			<option selected value="created_on">Date Created</option>
-			<option selected value="updated_on">Date Updated</option>
-			<option selected value="most_voted">Most Voted</option>
+		<label for ="ticket-order-by">Order By:</label>
+		<select id="ticket-order-by" data-issue="{{ issue }}">
+			<option selected value="-created_on">Date Created</option>
+			<option value="-updated_on">Date Updated</option>
+			<option value="-votes">Most Voted</option>
 			{% if 'feature' in request.path %}
-				<option selected value="highest_paid">Highest Paid</option>
+				<option value="-earned">Highest Paid</option>
 			{% endif %}
 		</select>
 
-		<ul>
+		<div id="ticket-list-container">
 			{% for object in object_list %}
 				{% include 'tickets/partials/ticket-list-item.html' %}
 			{% empty %}
 				<li>No {{ issue|title }}'s yet.</li>
 			{% endfor %}
-		</ul>
+		</div>
 	</div>
+{% endblock %}
+{% block javascript %}
+	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
 {% endblock %}

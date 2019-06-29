@@ -4,10 +4,10 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 
 
-class TicketSerializer(serializers.ModelSerializer):
+class TicketListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
-        # fields = '__all__'
+        fields = '__all__'
 
 
 class TicketDeleteSerializer(serializers.ModelSerializer):

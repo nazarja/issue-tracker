@@ -20,6 +20,7 @@ ISSUE_CHOICES = (
 
 class Ticket(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, editable=False, on_delete=models.CASCADE)
+    avatar = models.CharField(max_length=100, blank=True, null=True, default='/static/img/avatars/steve.jpg')
     active = models.BooleanField(default=True)
     title = models.CharField(max_length=200, blank=False, null=True)
     description = models.CharField(max_length=2000, blank=False, null=True)
@@ -36,6 +37,7 @@ class Ticket(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         self.cost = 5 if self.issue == 'feature' else 0
+        self.avatar = self.user.profile.avatar
         super(Ticket, self).save(*args, **kwargs)
 
     def __str__(self):
