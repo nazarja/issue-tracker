@@ -6,6 +6,7 @@ from allauth.account.signals import user_signed_up, user_logged_in, password_cha
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.contrib import messages
+from tickets.models import Ticket
 
 
 def get_avatars_files():
@@ -20,7 +21,6 @@ def get_random_avatar_picture():
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, default=1, related_name='profile', on_delete=models.CASCADE)
     avatar = models.CharField(max_length=260, default=get_random_avatar_picture())
-    credits = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username

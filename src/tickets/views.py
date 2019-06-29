@@ -25,8 +25,8 @@ class TicketDetailView(DetailView):
     extra_context = {'issue': 'issue details'}
 
     def get_object(self, queryset=Ticket):
-        slug = self.kwargs.get('slug')
-        return get_object_or_404(Ticket, slug=slug)
+        _id = self.kwargs.get('id')
+        return get_object_or_404(Ticket, id=_id)
 
 
 class TicketCreateView(CreateView):
@@ -46,8 +46,8 @@ class TicketUpdateView(UpdateView):
     extra_context = {'issue': 'update ticket'}
 
     def get_object(self, queryset=Ticket):
-        slug = self.kwargs.get('slug')
-        return get_object_or_404(Ticket, slug=slug)
+        _id = self.kwargs.get('id')
+        return get_object_or_404(Ticket, id=_id)
 
     def form_valid(self, form):
         return super().form_valid(form)

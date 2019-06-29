@@ -1,0 +1,20 @@
+<div class="ui basic modal">
+	<div class="ui icon header">
+		<i class="ticket icon"></i>
+		Delete Ticket
+	</div>
+	<div class="content">
+		<p class="tac">This action cannot be undone, Are you sure you want to delete this ticket?</p>
+	</div>
+	<div class="actions">
+		<div class="ui grey basic cancel inverted button">
+			<i class="remove icon"></i>
+			No, go back.
+		</div>
+		<div id="ticket-delete-confirm-btn" class="ui red ok inverted button" data-id="{{ object.id }}" data-issue="{{ object.issue }}">
+			<i class="checkmark icon"></i>
+			Yes, Im sure.
+		</div>
+	</div>
+</div>
+

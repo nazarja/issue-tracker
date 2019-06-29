@@ -1,0 +1,7 @@
+{% if object.status == 'need help' %}
+	<a class="ui tag red label">Needs Help</a>
+{% elif object.status == 'in progress' %}
+	<a class="ui yellow tag label">In Progress</a>
+{% else %}
+	<a class="ui green tag label">Resolved</a>
+{% endif  %}

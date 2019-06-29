@@ -15,7 +15,11 @@
 		</form>
 
 		{% if request.user == object.user and  'update' in request.path %}
-			<a href="{% url 'tickets:ticket-delete-view' slug=object.slug %}" class="ui button submit green">Edit Issue</a>
+			<button id="ticket-delete-btn" class="ui button submit red">Delete Issue</button>
 		{% endif %}
 	</div>
+	{% include 'tickets/partials/ticket-delete-item.html' %}
+{% endblock %}
+{% block javascript %}
+	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
 {% endblock %}

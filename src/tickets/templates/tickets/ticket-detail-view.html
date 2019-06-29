@@ -8,8 +8,13 @@
 		<h2>{{ object.title }}</h2>
 
 		{% if request.user == object.user %}
-			<a href="{% url 'tickets:ticket-update-view' slug=object.slug %}" class="ui button submit green">Edit Issue</a>
-			<a href="{% url 'tickets:ticket-delete-view' slug=object.slug %}" class="ui button submit green">Edit Issue</a>
+			<a href="{% url 'tickets:ticket-update-view' id=object.id slug=object.slug %}" class="ui button submit green">Edit Issue</a>
+			<button id="ticket-delete-btn" class="ui button submit red">Delete Issue</button>
 		{% endif %}
 	</div>
+	{% include 'tickets/partials/ticket-delete-item.html' %}
+	{% include 'tickets/partials/ticket-error-occurred.html' %}
+{% endblock %}
+{% block javascript %}
+	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
 {% endblock %}

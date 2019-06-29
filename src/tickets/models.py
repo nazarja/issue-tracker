@@ -23,14 +23,15 @@ class Ticket(models.Model):
     active = models.BooleanField(default=True)
     title = models.CharField(max_length=200, blank=False, null=True)
     description = models.CharField(max_length=2000, blank=False, null=True)
-    status = models.CharField(max_length=100, default='needs votes', choices=STATUS_CHOICES)
+    status = models.CharField(max_length=100, default='need help', choices=STATUS_CHOICES)
     votes = models.IntegerField(default=0)
     view_count = models.IntegerField(default=0)
     created_on = models.DateTimeField(default=timezone.now)
     updated_on = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(null=True, blank=True)
     cost = models.IntegerField(default=0, null=True, blank=True)
+    earned = models.IntegerField(default=0, null=True, blank=True)
     issue = models.CharField(max_length=100, blank=False, null=True, choices=ISSUE_CHOICES)
+    slug = models.SlugField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -41,7 +42,7 @@ class Ticket(models.Model):
         return smart_text(f'{self.issue}: {self.title}')
 
     def get_absolute_url(self):
-        return reverse("tickets:ticket-detail-view", kwargs={"slug": self.slug})
+        return reverse("tickets:ticket-detail-view", kwargs={'id': self.id, 'slug': self.slug})
 
 
 
