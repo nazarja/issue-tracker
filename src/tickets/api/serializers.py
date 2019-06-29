@@ -1,13 +1,16 @@
 from rest_framework import serializers
 from tickets.models import Ticket
-from rest_framework.renderers import JSONRenderer
-from rest_framework.response import Response
 
 
 class TicketListSerializer(serializers.ModelSerializer):
+    avatar = serializers.SerializerMethodField()
+
     class Meta:
         model = Ticket
-        fields = '__all__'
+        fields = ('user', 'avatar', 'title', 'description', 'status', 'votes', 'created_on', 'updated_on', 'cost', 'earned', 'issue', 'slug',)
+
+    def get_avatar(self, obj):
+        return obj.user.profile.avatar
 
 
 class TicketDeleteSerializer(serializers.ModelSerializer):

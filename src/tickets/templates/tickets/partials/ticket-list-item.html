@@ -1,6 +1,8 @@
 <div class="mv1">
 	<img src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
-	<a href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title }}</a>
-	<span>{{ object.title }} - {{ object.updated_on }} - {{ object.slug }}</span>
+	<a href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title }}</a><br/>
+	<span>{{ object.title }}</span><br/>
+	C: <span class="time-since">{{ object.created_on|date:"r" }}</span><br/>
+	U: <span class="time-since">{{ object.updated_on|date:"r" }}</span><br/>
 	{% include 'tickets/partials/ticket-item-status.html' %}
 </div>

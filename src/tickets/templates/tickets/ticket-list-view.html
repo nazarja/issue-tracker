@@ -1,16 +1,21 @@
 {% extends '../base/base.html' %}
 {% load static %}
 {% block head_title %}{{ issue|title }}s{% endblock %}
-{% block css %}<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
 {% block content %}
+
 	<h1 class="callout">{{ issue|title }}s</h1>
+
 	<div class="ui container">
 		<a href="{% url 'tickets:ticket-create-view' %}" class="ui button green mb2">Create New {{ issue|title }}</a>
+
 		<div></div>
-		<label for ="ticket-order-by">Order By:</label>
+
+		<label for="ticket-order-by">Order By:</label>
 		<select id="ticket-order-by" data-issue="{{ issue }}">
-			<option selected value="-created_on">Date Created</option>
-			<option value="-updated_on">Date Updated</option>
+			<option selected value="-updated_on">Recently Updated</option>
+			<option value="created_on">Date Created</option>
 			<option value="-votes">Most Voted</option>
 			{% if 'feature' in request.path %}
 				<option value="-earned">Highest Paid</option>
@@ -25,7 +30,8 @@
 			{% endfor %}
 		</div>
 	</div>
+
 {% endblock %}
 {% block javascript %}
-	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
+	<script src="{% static 'tickets/js/ticket-api.js' %}"></script>
 {% endblock %}

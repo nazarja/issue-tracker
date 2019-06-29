@@ -82,6 +82,15 @@ function ticketDeleteAction() {
 */
 
 
+function timeSince() {
+    const time = document.querySelectorAll('.time-since');
+    time.forEach(item =>
+        item.innerHTML =  moment(new Date(item.innerHTML)).fromNow()
+    );
+}
+timeSince();
+
+
 function createTicketList(data) {
     const container = document.querySelector('#ticket-list-container');
     container.innerHTML = '';
@@ -90,16 +99,20 @@ function createTicketList(data) {
         let status = item.status === 'need help' ?
                     '<a class="ui tag red label">Needs Help</a>' : item.status === 'in progress' ?
                     '<a class="ui yellow tag label">In Progress</a>' :  '<a class="ui green tag label">Resolved</a>';
-
+        console.log(item.updated_on)
+        console.log(moment(item.created_on).fromNow())
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="mv1">
             <img src="${item.avatar}" height="40" width="40" alt="avatar">
-            <a href="tickets/api/${item.id}/${item.slug}/ticket-detail-view">${item.title}</a>
-            <span>${item.title}- ${item.slug} - ${item.updated_on}</span>
+            <a href="tickets/api/${item.id}/${item.slug}/ticket-detail-view">${item.title}</a><br/>
+            <span>${item.title}</span><br/>
+            C: <span>${moment(item.updated_on).fromNow()}</span><br/>
+            U: <span>${moment(item.created_on).fromNow()}</span><br/>
             ${status}
         </div>
         `;
         container.append(div);
     });
 }
+

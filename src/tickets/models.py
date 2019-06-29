@@ -1,10 +1,9 @@
 from django.db import models
 from django.conf import settings
-from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.encoding import smart_text
 from django.urls import reverse
-
+from datetime import datetime
 
 STATUS_CHOICES = (
     ('need help', 'need help'),
@@ -26,8 +25,7 @@ class Ticket(models.Model):
     description = models.CharField(max_length=2000, blank=False, null=True)
     status = models.CharField(max_length=100, default='need help', choices=STATUS_CHOICES)
     votes = models.IntegerField(default=0)
-    view_count = models.IntegerField(default=0)
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(default=datetime.now)
     updated_on = models.DateTimeField(auto_now=True)
     cost = models.IntegerField(default=0, null=True, blank=True)
     earned = models.IntegerField(default=0, null=True, blank=True)
@@ -44,8 +42,10 @@ class Ticket(models.Model):
         return smart_text(f'{self.issue}: {self.title}')
 
     def get_absolute_url(self):
-        return reverse("tickets:ticket-detail-view", kwargs={'id': self.id, 'slug': self.slug})
+        if self.issue == 'bug':
+            return reverse('tickets:bugs')
+        else:
+            return reverse('tickets:bugs')
 
-
-
-
+    # could return to newly created / edited ticket url instead ???
+    # return reverse("tickets:ticket-detail-view", kwargs={'id': self.id, 'slug': self.slug})
