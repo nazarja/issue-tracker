@@ -1,14 +1,9 @@
 from django.contrib import admin
-from .models import Bug, Feature
+from .models import Ticket
 
 
-class BugAdmin(admin.ModelAdmin):
-    readonly_fields = ('user', 'slug', 'votes', 'view_count', 'updated_on',)
+class TicketAdmin(admin.ModelAdmin):
+    readonly_fields = ('user', 'slug', 'cost',  'votes', 'view_count', 'updated_on',)
 
 
-class FeatureAdmin(admin.ModelAdmin):
-    readonly_fields = ('user', 'slug', 'votes', 'view_count', 'updated_on',)
-
-
-admin.site.register(Bug, BugAdmin)
-admin.site.register(Feature, FeatureAdmin)
+admin.site.register(Ticket, TicketAdmin)

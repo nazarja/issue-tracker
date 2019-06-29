@@ -1,0 +1,17 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% block head_title %}{{ issue|title }}{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
+{% block content %}
+	<h1 class="callout">{{ issue|title }}</h1>
+	<div class="ui container">
+		<a href="{% url 'tickets:ticket-create-view' %}" class="ui button green mb2">Create New {{ issue|title }}</a>
+		<ul>
+			{% for obj in object_list %}
+				{% include './partials/ticket-list-item.html' %}
+			{% empty %}
+				<li>No {{ issue|title }}'s yet.</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

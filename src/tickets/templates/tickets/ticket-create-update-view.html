@@ -1,0 +1,21 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% block head_title %}{{ issue|title }}{% endblock %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+	<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>
+{% endblock %}
+{% block content %}
+	<h1 class="callout">{{ issue|title }}</h1>
+	<div class="ui container">
+		<form class="all-forms" method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button class="ui button submit green">Submit Form</button>
+		</form>
+
+		{% if request.user == object.user and  'update' in request.path %}
+			<a href="{% url 'tickets:ticket-delete-view' slug=object.slug %}" class="ui button submit green">Edit Issue</a>
+		{% endif %}
+	</div>
+{% endblock %}

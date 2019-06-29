@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.encoding import smart_text
+from django.urls import reverse
 
 
 STATUS_CHOICES = (
@@ -11,8 +12,13 @@ STATUS_CHOICES = (
     ('resolved', 'resolved'),
 )
 
+ISSUE_CHOICES = (
+    ('bug', 'bug'),
+    ('feature', 'feature')
+)
 
-class AbstractTicket(models.Model):
+
+class Ticket(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, editable=False, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
     title = models.CharField(max_length=200, blank=False, null=True)
@@ -23,31 +29,20 @@ class AbstractTicket(models.Model):
     created_on = models.DateTimeField(default=timezone.now)
     updated_on = models.DateTimeField(auto_now=True)
     slug = models.SlugField(null=True, blank=True)
-
-    class Meta:
-        abstract = True
-
-
-class Bug(AbstractTicket):
-    vote_cost = models.IntegerField(default=0)
+    cost = models.IntegerField(default=0, null=True, blank=True)
+    issue = models.CharField(max_length=100, blank=False, null=True, choices=ISSUE_CHOICES)
 
     def save(self, *args, **kwargs):
-        if not self.slug and self.title:
-            self.slug = slugify(self.title)
-        super(Bug, self).save(*args, **kwargs)
+        self.slug = slugify(self.title)
+        self.cost = 5 if self.issue == 'feature' else 0
+        super(Ticket, self).save(*args, **kwargs)
 
     def __str__(self):
-        return smart_text(self.title)
+        return smart_text(f'{self.issue}: {self.title}')
+
+    def get_absolute_url(self):
+        return reverse("tickets:ticket-detail-view", kwargs={"slug": self.slug})
 
 
-class Feature(AbstractTicket):
-    vote_cost = models.IntegerField(default=5)
 
-    def save(self, *args, **kwargs):
-        if not self.slug and self.title:
-            self.slug = slugify(self.title)
-        super(Feature, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return smart_text(self.title)
 

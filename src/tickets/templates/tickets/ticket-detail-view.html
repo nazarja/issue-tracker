@@ -1,0 +1,15 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% block head_title %}{{ issue|title }}{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
+{% block content %}
+	<h1 class="callout">{{ issue|title }}</h1>
+	<div class="ui container">
+		<h2>{{ object.title }}</h2>
+
+		{% if request.user == object.user %}
+			<a href="{% url 'tickets:ticket-update-view' slug=object.slug %}" class="ui button submit green">Edit Issue</a>
+			<a href="{% url 'tickets:ticket-delete-view' slug=object.slug %}" class="ui button submit green">Edit Issue</a>
+		{% endif %}
+	</div>
+{% endblock %}

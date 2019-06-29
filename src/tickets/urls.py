@@ -1,17 +1,14 @@
 from django.urls import path
-from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
-from .views import TicketListView, TicketDetailView, TicketCreateView, TicketUpdateView, TicketDeleteView
+from .views import TicketListView, TicketDetailView, TicketCreateView, TicketUpdateView
 
 app_name = 'tickets'
 
 urlpatterns = [
-    # bugs
     path('bugs/', login_required(TicketListView.as_view()), name='bugs'),
-    path('bugs/<slug:slug>/details/', login_required(TicketDetailView.as_view()), name='bugs-details'),
-    path('bugs/create', login_required(TicketCreateView.as_view()), name='bugs-create'),
-    # features
     path('features/', login_required(TicketListView.as_view()), name='features'),
-    path('features/<slug:slug>/details/', login_required(TicketDetailView.as_view()), name='features-details'),
-    path('features/create/', login_required(TicketCreateView.as_view()), name='features-create'),
+    path('<slug:slug>/details/', login_required(TicketDetailView.as_view()), name='ticket-detail-view'),
+    path('create/', login_required(TicketCreateView.as_view()), name='ticket-create-view'),
+    path('<slug:slug>/update/', login_required(TicketUpdateView.as_view()), name='ticket-update-view'),
+    # path('<slug:slug>/delete/', login_required(TicketDeleteView.as_view()), name='ticket-delete-view'),
 ]

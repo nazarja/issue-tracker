@@ -1,0 +1,9 @@
+<div class="mv1">
+	<img src="{{ obj.user.profile.avatar }}" height="40" width="40" alt="avatar">
+
+
+	<a href="{% url 'tickets:ticket-detail-view' slug=obj.slug %}">{{ obj.title }}</a>
+
+
+	<span>{{ obj.title }} - {{ obj.updated_on }} - {{ obj.slug }}</span>
+</div>
