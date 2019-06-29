@@ -11,11 +11,11 @@
 		<form class="all-forms" method="POST">
 			{% csrf_token %}
 			{{ form.as_p }}
-			<button class="ui button submit green">Submit Form</button>
+			<button class="ui button submit green">Submit Ticket</button>
 		</form>
 
 		{% if request.user == object.user and  'update' in request.path %}
-			<button id="ticket-delete-btn" class="ui button submit red">Delete Issue</button>
+			<button id="ticket-delete-btn" class="ui button submit red">Delete Ticket</button>
 		{% endif %}
 	</div>
 	{% include 'tickets/partials/ticket-delete-item.html' %}

@@ -1,18 +1,37 @@
 
-
 /*
 =========================================================
     DOM ELEMENT LISTENERS
 =========================================================
 */
 
-if (document.querySelector('#ticket-order-by')) {
-    document.querySelector('#ticket-order-by').onchange = (event) => {
-        ticketListAction({
-            order: event.target.value,
-            issue: event.target.dataset.issue
-        });
-    }
+
+// check if tickets segment on page
+if (document.querySelector('#ticket-segment')) {
+    const searchInputButton = document.querySelector('#ticket-search-btn');
+    const ticketSearchInput = document.querySelector('#ticket-search-input');
+    const ticketFilterButton= document.querySelector('#ticket-order-by');
+    const ticketOrderDefault = document.querySelector('#ticket-order-by-default');
+
+    let queryString = {
+            query: '',
+            issue: 'bug',
+            order: '-updated_on'
+        };
+
+    [searchInputButton, ticketFilterButton].forEach(item =>  item.onclick = (event) => {
+        event.preventDefault();
+
+        if (event.target.classList.contains('item'))
+            ticketOrderDefault.setAttribute('data-order', event.target.dataset.order);
+
+        queryString.query = ticketSearchInput.value;
+        queryString.issue = event.currentTarget.dataset.issue;
+        queryString.order = ticketOrderDefault.dataset.order;
+
+        ticketListAction(queryString);
+    });
+
 }
 
 // check if delete button is on the page
@@ -31,10 +50,10 @@ if (document.querySelector('#ticket-delete-btn')) {
 =========================================================
 */
 
-function ticketListAction(data) {
-
-        const endpoint = `/tickets/api/list/?issue=${data.issue}&order=${data.order}`;
-        console.log(endpoint)
+function ticketListAction(queryString) {
+        let endpoint = `/tickets/api/list/?issue=${queryString.issue}&order=${queryString.order}`;
+        endpoint = queryString.query === false ? endpoint : endpoint + `&q=${queryString.query}`;
+        console.log(endpoint);
         fetch(endpoint, {
             method: 'GET',
             headers: new Headers({
@@ -44,7 +63,7 @@ function ticketListAction(data) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            console.log(data);
             createTicketList(data);
         })
         .catch(err => console.log(err));
@@ -99,13 +118,12 @@ function createTicketList(data) {
         let status = item.status === 'need help' ?
                     '<a class="ui tag red label">Needs Help</a>' : item.status === 'in progress' ?
                     '<a class="ui yellow tag label">In Progress</a>' :  '<a class="ui green tag label">Resolved</a>';
-        console.log(item.updated_on)
-        console.log(moment(item.created_on).fromNow())
+
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="mv1">
             <img src="${item.avatar}" height="40" width="40" alt="avatar">
-            <a href="tickets/api/${item.id}/${item.slug}/ticket-detail-view">${item.title}</a><br/>
+            <a href="${item.id}/${item.slug}/ticket-detail-view">${item.title}</a><br/>
             <span>${item.title}</span><br/>
             C: <span>${moment(item.updated_on).fromNow()}</span><br/>
             U: <span>${moment(item.created_on).fromNow()}</span><br/>

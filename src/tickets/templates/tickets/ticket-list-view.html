@@ -6,29 +6,64 @@
 {% block content %}
 
 	<h1 class="callout">{{ issue|title }}s</h1>
-
 	<div class="ui container">
-		<a href="{% url 'tickets:ticket-create-view' %}" class="ui button green mb2">Create New {{ issue|title }}</a>
 
-		<div></div>
+		<!-- top menu -->
+		<div id="ticket-segment" class="ui top attached menu">
 
-		<label for="ticket-order-by">Order By:</label>
-		<select id="ticket-order-by" data-issue="{{ issue }}">
-			<option selected value="-updated_on">Recently Updated</option>
-			<option value="created_on">Date Created</option>
-			<option value="-votes">Most Voted</option>
-			{% if 'feature' in request.path %}
-				<option value="-earned">Highest Paid</option>
-			{% endif %}
-		</select>
 
-		<div id="ticket-list-container">
+			<!-- right menu-->
+			<div class="right item">
+
+				<!-- search box -->
+				<div class="ui action input">
+					<input id="ticket-search-input" class="prompt" type="text" placeholder="Search {{ issue }}'s ..." pattern=".{4,}" required>
+					<div id="ticket-search-btn" class="ui button" data-issue="{{ issue }}">Go</div>
+				</div>
+			</div>
+
+			<!-- filter menu -->
+			<div class="item">
+				<div class="ui floating labeled icon dropdown button">
+					<i class="filter icon"></i>
+					<span class="text" id="ticket-order-by-default" data-order="-updated_on">Filter</span>
+					<div class="menu" id="ticket-order-by" data-issue="{{ issue }}">
+						<div class="item" data-order="-updated_on">
+							Recently Updated
+						</div>
+						<div class="item" data-order="-created_on">
+							Date Created
+						</div>
+						<div class="item" data-order="-votes">
+							Most Voted
+						</div>
+						{% if 'feature' in request.path %}
+							<div class="item" data-value="-earned">
+								Most Voted
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<!-- New Ticket Button-->
+			<div class="item">
+				<a href="{% url 'tickets:ticket-create-view' %}" class="ui button">Create New {{ issue|title }}</a>
+			</div>
+		</div>
+
+		<!-- bottom attached segment -->
+		<div class="ui bottom attached segment">
+		  <div id="ticket-list-container">
 			{% for object in object_list %}
 				{% include 'tickets/partials/ticket-list-item.html' %}
 			{% empty %}
 				<li>No {{ issue|title }}'s yet.</li>
 			{% endfor %}
 		</div>
+		</div>
+
+
 	</div>
 
 {% endblock %}
