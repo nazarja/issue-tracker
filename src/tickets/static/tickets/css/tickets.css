@@ -1,0 +1,48 @@
+
+/*
+=======================================
+    Tickets Styles
+=======================================
+*/
+
+.ui.placeholder .header .line:after {
+    width: 0;
+}
+
+#ticket-empty-container .ui.placeholder  {
+    display: none;
+    animation: none !important;
+}
+
+#ticket-empty-container h2 {
+    background: white !important;
+}
+
+
+#ticket img.ui.image {
+    display: inline-block !important;
+}
+
+.ticket-label {
+    margin-top: 7px !important;
+    margin-right: 15px !important;
+    float: right;
+}
+
+#ticket .segment {
+    background-color: #efefef;
+    padding: 6px;
+}
+
+#ticket .font-light {
+    font-family: 'Work Sans', sans-serif;
+}
+
+#ticket .float-right {
+    margin-top: -20px;
+}
+
+#ticket-list-description {
+    margin-top: 5px;
+    margin-bottom: 3px;
+}

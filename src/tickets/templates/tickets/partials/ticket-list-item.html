@@ -1,8 +1,26 @@
-<div class="mv1">
-	<img src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
-	<a href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title }}</a><br/>
-	<span>{{ object.title }}</span><br/>
-	C: <span class="time-since">{{ object.created_on|date:"r" }}</span><br/>
-	U: <span class="time-since">{{ object.updated_on|date:"r" }}</span><br/>
-	{% include 'tickets/partials/ticket-item-status.html' %}
+
+<div id="ticket" class="mv1 cards">
+	<div class="ui segment top attached">
+		<div class="inline">
+			<img class="ui circular image mh2" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
+			<span class="mh1 code">{{ issue|title }} #{{ object.id }}</span>
+			<span class="mh1"><a class="fw6" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title|title }}</a></span>
+			{% include 'tickets/partials/ticket-item-status.html' %}
+		</div>
+	</div>
+	<div class="ui segment bottom attached">
+		<p id="ticket-list-description" class="mh2">{{ object.description|capfirst }}</p>
+		<div class="inline">
+			<span class="mh2 font-light">
+				<span>Submitted by:</span> <span>{{ object.user.username|title }}</span></span>
+				<span class="font-light">Last updated: <span class="time-since">{{ object.updated_on|date:"r" }}</span>
+			</span>
+		</div>
+		<div class="fr float-right">
+			<span class="pr1"><i class="thumbs up outline icon"></i> {{ object.votes }} votes </span>
+			{% if 'feature' in request.path %}
+				<span class="pr1"><i class="money bill alternate outline icon"></i> {{ object.earned }} Earned </span>
+			{% endif %}
+		</div>
+	</div>
 </div>

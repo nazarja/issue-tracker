@@ -184,7 +184,8 @@ span.avatar-label.ui.black.label {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: var(--black);
+    background-color: rgba(0,0,0,0.45);
+    background:  linear-gradient(90deg, rgba(81,191,144,.55) 50%, rgba(65,162,200,.55) 100%);
     display: none;
     z-index: 1000 !important;
 }
@@ -193,7 +194,7 @@ span.avatar-label.ui.black.label {
     width: 40px;
     height: 40px;
     position: relative;
-    margin-top: calc(50vh - 20px);
+    margin-top: calc(45vh - 20px);
     margin-left: calc(50vw - 20px);
 }
 

@@ -10,8 +10,9 @@
 
 		<!-- top menu -->
 		<div id="ticket-segment" class="ui top attached menu">
-
-
+			<div class="item">
+				<i class="icon bug"></i>
+			</div>
 			<!-- right menu-->
 			<div class="right item">
 
@@ -35,11 +36,20 @@
 							Date Created
 						</div>
 						<div class="item" data-order="-votes">
-							Most Voted
+							Most Popular
+						</div>
+						<div class="item" data-order="need help">
+							Needs Help
+						</div>
+						<div class="item" data-order="in progress">
+							In Progress
+						</div>
+						<div class="item" data-order="resolved">
+							Resolved
 						</div>
 						{% if 'feature' in request.path %}
-							<div class="item" data-value="-earned">
-								Most Voted
+							<div class="item" data-order="-earned">
+								Highest Earned
 							</div>
 						{% endif %}
 					</div>
@@ -48,24 +58,25 @@
 
 			<!-- New Ticket Button-->
 			<div class="item">
-				<a href="{% url 'tickets:ticket-create-view' %}" class="ui button">Create New {{ issue|title }}</a>
+				<a href="{% url 'tickets:ticket-create-view' %}" class="ui button grey">Create New {{ issue|title }}</a>
 			</div>
 		</div>
 
-		<!-- bottom attached segment -->
-		<div class="ui bottom attached segment">
-		  <div id="ticket-list-container">
-			{% for object in object_list %}
-				{% include 'tickets/partials/ticket-list-item.html' %}
-			{% empty %}
-				<li>No {{ issue|title }}'s yet.</li>
-			{% endfor %}
-		</div>
-		</div>
+			<!-- bottom attached segment -->
+		<div class="ui bottom attached segment relative very padded">
 
+			<!-- loading animation -->
+			{% include 'tickets/partials/ticket-empty-content.html' %}
 
+			<div id="ticket-list-container">
+				{% for object in object_list %}
+					{% include 'tickets/partials/ticket-list-item.html' %}
+				{% empty %}
+					<li>No {{ issue|title }}'s yet.</li>
+				{% endfor %}
+			</div>
+		</div>
 	</div>
-
 {% endblock %}
 {% block javascript %}
 	<script src="{% static 'tickets/js/ticket-api.js' %}"></script>

@@ -51,9 +51,10 @@ if (document.querySelector('#ticket-delete-btn')) {
 */
 
 function ticketListAction(queryString) {
+
         let endpoint = `/tickets/api/list/?issue=${queryString.issue}&order=${queryString.order}`;
         endpoint = queryString.query === false ? endpoint : endpoint + `&q=${queryString.query}`;
-        console.log(endpoint);
+
         fetch(endpoint, {
             method: 'GET',
             headers: new Headers({
@@ -112,25 +113,45 @@ timeSince();
 
 function createTicketList(data) {
     const container = document.querySelector('#ticket-list-container');
+    const emptyContainer = document.querySelector('.ui.placeholder');
+
     container.innerHTML = '';
+
+    !data.length ? emptyContainer.style.display = 'block' : emptyContainer.style.display = 'none';
 
     data.map(item => {
         let status = item.status === 'need help' ?
-                    '<a class="ui tag red label">Needs Help</a>' : item.status === 'in progress' ?
-                    '<a class="ui yellow tag label">In Progress</a>' :  '<a class="ui green tag label">Resolved</a>';
+                    '<a class="ui tag red label ticket-label">Needs Help</a>' : item.status === 'in progress' ?
+                    '<a class="ui yellow tag label ticket-label">In Progress</a>' :  '<a class="ui green tag label ticket-label">Resolved</a>';
+
+        let feature = item.issue === 'feature' ? `<span class="pr1"><i class="money bill alternate outline icon"></i> ${item.earned} Earned </span>` : '';
+
+
 
         const div = document.createElement('div');
-        div.innerHTML = `
-        <div class="mv1">
-            <img src="${item.avatar}" height="40" width="40" alt="avatar">
-            <a href="${item.id}/${item.slug}/ticket-detail-view">${item.title}</a><br/>
-            <span>${item.title}</span><br/>
-            C: <span>${moment(item.updated_on).fromNow()}</span><br/>
-            U: <span>${moment(item.created_on).fromNow()}</span><br/>
-            ${status}
-        </div>
-        `;
+        div.innerHTML = `<div id="ticket" class="mv1 cards">
+            <div class="ui segment top attached">
+                <div class="inline">gi
+                    <img class="ui circular image mh2" src="${item.avatar}" height="40" width="40" alt="avatar">
+                    <span class="mh1 code">${item.issue} #${item.id}</span>
+                    <span class="mh1"><a class="fw6" href="tickets/${item.id}/${item.slug}/ticket-detail-view/">${item.title}</a></span>
+                    ${status}
+                </div>
+            </div>
+            <div class="ui segment bottom attached">
+                <p id="ticket-list-description" class="mh2">${item.description}</p>
+                <div class="inline">
+                    <span class="mh2 font-light">
+                        <span>Submitted by:</span> <span>${item.username}</span></span>
+                        <span class="font-light">Last updated: <span class="time-since">${moment(item.updated_on).fromNow()}</span>
+                    </span>
+                </div>
+                <div class="fr float-right">
+                    <span class="pr1"><i class="thumbs up outline icon"></i> ${item.votes} votes </span>
+                    ${feature} 
+                </div>
+            </div>
+        </div>`;
         container.append(div);
     });
 }
-

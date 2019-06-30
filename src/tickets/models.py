@@ -19,9 +19,10 @@ ISSUE_CHOICES = (
 
 class Ticket(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, editable=False, on_delete=models.CASCADE)
+    username = models.CharField(max_length=100, blank=False, null=True)
     avatar = models.CharField(max_length=100, blank=True, null=True, default='/static/img/avatars/steve.jpg')
     active = models.BooleanField(default=True)
-    title = models.CharField(max_length=200, blank=False, null=True)
+    title = models.CharField(max_length=100, blank=False, null=True)
     description = models.CharField(max_length=2000, blank=False, null=True)
     status = models.CharField(max_length=100, default='need help', choices=STATUS_CHOICES)
     votes = models.IntegerField(default=0)
@@ -36,6 +37,7 @@ class Ticket(models.Model):
         self.slug = slugify(self.title)
         self.cost = 5 if self.issue == 'feature' else 0
         self.avatar = self.user.profile.avatar
+        self.username = self.user.username
         super(Ticket, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -45,7 +47,7 @@ class Ticket(models.Model):
         if self.issue == 'bug':
             return reverse('tickets:bugs')
         else:
-            return reverse('tickets:bugs')
+            return reverse('tickets:features')
 
     # could return to newly created / edited ticket url instead ???
     # return reverse("tickets:ticket-detail-view", kwargs={'id': self.id, 'slug': self.slug})

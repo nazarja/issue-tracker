@@ -1,0 +1,13 @@
+<!-- tickets empty filler-->
+<div id="ticket-empty-container">
+	<div class="ui fluid placeholder m4">
+		<h2 class="pa2 ma0 tac">Whoops, nothing came up ... try a different search?</h2>
+		{% for i in i|rjust:4 %}
+			<div class="image header">
+				<div class="line"></div>
+				<div class="line"></div>
+				<div class="line"></div>
+			</div>
+		{% endfor %}
+	</div>
+</div>

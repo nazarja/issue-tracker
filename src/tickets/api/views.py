@@ -13,11 +13,26 @@ class TicketListAPIView(ListAPIView):
         issue = self.request.query_params.get('issue', 'bug')
         order = self.request.query_params.get('order', '-updated_on')
 
+        # filter choices
+        if order in ['need help', 'in progress', 'resolved']:
+            status = order
+
+            # filter choices and query together
+            if query is not None:
+                return Ticket.objects.filter(
+                    Q(title__icontains=query, issue=issue, status=status) | Q(description__icontains=query, issue=issue, status=status)
+                ).order_by('-updated_on')
+
+            # return only filtered choices
+            return Ticket.objects.filter(issue=issue, status=status).order_by('-updated_on')
+
+        # if a query is passed
         if query is not None:
             return Ticket.objects.filter(
-                Q(title__iexact=query, issue=issue) | Q(description__icontains=query, issue=issue)
+                Q(title__icontains=query, issue=issue) | Q(description__icontains=query, issue=issue)
             ).order_by(order)
 
+        # no query - no choices - generic order by
         return Ticket.objects.filter(issue=issue).order_by(order)
 
 
