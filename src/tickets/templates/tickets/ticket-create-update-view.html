@@ -7,19 +7,30 @@
 {% endblock %}
 {% block content %}
 	<h1 class="callout">{{ issue|title }}</h1>
+
+	<!-- dynamic ticket preview partial -->
 	<div class="ui container">
+		{% include 'tickets/partials/ticket-preview-item.html' %}
+	</div>
+
+	<h3 class="ui container horizontal divider header">
+	  <i class="wpforms icon"></i>
+	  Preview
+	</h3>
+
+	<div class="ui container tac middle aligned segment raised padded ma2 pt3">
 		<form class="all-forms" method="POST">
 			{% csrf_token %}
 			{{ form.as_p }}
-			<button class="ui button submit green">Submit Ticket</button>
+			<button class="ui button submit green">{{ button_text|title }} Ticket</button>
+			{% if request.user == object.user and  'update' in request.path %}
+				<button id="ticket-delete-btn" class="ui button submit red">Delete Ticket</button>
+			{% endif %}
 		</form>
-
-		{% if request.user == object.user and  'update' in request.path %}
-			<button id="ticket-delete-btn" class="ui button submit red">Delete Ticket</button>
-		{% endif %}
 	</div>
 	{% include 'tickets/partials/ticket-delete-item.html' %}
 {% endblock %}
 {% block javascript %}
 	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
+	<script src="{%  static 'tickets/js/ticket-preview.js' %}"></script>
 {% endblock %}

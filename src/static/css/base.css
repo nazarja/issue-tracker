@@ -170,6 +170,10 @@ span.avatar-label.ui.black.label {
     margin-bottom: 50px;
 }
 
+.no-click {
+    pointer-events: none !important;
+}
+
 
 /*
 =================================================

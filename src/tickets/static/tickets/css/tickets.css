@@ -5,9 +5,6 @@
 =======================================
 */
 
-.ui.placeholder .header .line:after {
-    width: 0;
-}
 
 #ticket-empty-container .ui.placeholder  {
     display: none;
@@ -18,15 +15,19 @@
     background: white !important;
 }
 
+#ticket-list-description {
+    margin-top: 5px;
+    margin-bottom: 3px;
+    max-width: 70%;
+    min-height: 20px;
+}
+
+#ticket #title {
+    text-transform: capitalize;
+}
 
 #ticket img.ui.image {
     display: inline-block !important;
-}
-
-.ticket-label {
-    margin-top: 7px !important;
-    margin-right: 15px !important;
-    float: right;
 }
 
 #ticket .segment {
@@ -42,7 +43,16 @@
     margin-top: -20px;
 }
 
-#ticket-list-description {
-    margin-top: 5px;
-    margin-bottom: 3px;
+.ticket-label {
+    margin-top: 7px !important;
+    margin-right: 15px !important;
+    float: right;
+}
+
+.all-forms button {
+    margin: 30px 10px 20px !important
+}
+
+.ui.placeholder .header .line:after {
+    width: 0;
 }

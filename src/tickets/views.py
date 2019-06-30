@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Ticket
 from .forms import TicketForm
+from datetime import datetime
 
 
 def bug_or_feature(self):
@@ -17,6 +18,7 @@ class TicketListView(ListView):
     def get_queryset(self):
         issue = bug_or_feature(self)
         self.extra_context['issue'] = issue
+        self.extra_context['count'] = Ticket.objects.filter(issue=issue).order_by('-updated_on').count()
         return Ticket.objects.filter(issue=issue).order_by('-updated_on')
 
 
@@ -33,17 +35,18 @@ class TicketCreateView(CreateView):
     model = Ticket
     form_class = TicketForm
     template_name = 'tickets/ticket-create-update-view.html'
-    extra_context = {'issue': 'create new ticket'}
+    extra_context = {'issue': 'create new ticket', 'button_text': 'create', 'time': datetime.now()}
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.issue = bug_or_feature(self)
         return super(TicketCreateView, self).form_valid(form)
 
 
 class TicketUpdateView(UpdateView):
     form_class = TicketForm
     template_name = 'tickets/ticket-create-update-view.html'
-    extra_context = {'issue': 'update ticket'}
+    extra_context = {'issue': 'update ticket', 'button_text': 'update'}
 
     def get_object(self, queryset=Ticket):
         _id = self.kwargs.get('id')

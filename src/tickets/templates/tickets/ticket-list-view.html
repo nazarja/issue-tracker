@@ -58,7 +58,7 @@
 
 			<!-- New Ticket Button-->
 			<div class="item">
-				<a href="{% url 'tickets:ticket-create-view' %}" class="ui button grey">Create New {{ issue|title }}</a>
+					<a href="{% url 'tickets:ticket-create-view' issue=issue %}" class="ui button grey">Create New {{ issue|title }}</a>
 			</div>
 		</div>
 
@@ -74,6 +74,22 @@
 				{% empty %}
 					<li>No {{ issue|title }}'s yet.</li>
 				{% endfor %}
+			</div>
+		</div>
+
+		<div class="relative mt2">
+			<div class="ui buttons ui right floated">
+				<button id="previous-page" class="ui labeled icon button">
+					<i class="left chevron icon"></i>
+					Back
+				</button>
+				<button id="current-page" class="ui button disabled">
+					1
+				</button>
+				<button id="next-page" class="ui right labeled icon {% if count <= 5 %} disabled {% endif %}  button">
+					Forward
+					<i class="right chevron icon"></i>
+				</button>
 			</div>
 		</div>
 	</div>

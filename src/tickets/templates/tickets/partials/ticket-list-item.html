@@ -4,12 +4,12 @@
 		<div class="inline">
 			<img class="ui circular image mh2" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
 			<span class="mh1 code">{{ issue|title }} #{{ object.id }}</span>
-			<span class="mh1"><a class="fw6" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title|title }}</a></span>
 			{% include 'tickets/partials/ticket-item-status.html' %}
 		</div>
 	</div>
 	<div class="ui segment bottom attached">
-		<p id="ticket-list-description" class="mh2">{{ object.description|capfirst }}</p>
+		<span class="mv1 mh2"><a class="fw6" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title }}</a></span>
+		<p id="ticket-list-description" class="mh2">{{ object.description }}</p>
 		<div class="inline">
 			<span class="mh2 font-light">
 				<span>Submitted by:</span> <span>{{ object.user.username|title }}</span></span>

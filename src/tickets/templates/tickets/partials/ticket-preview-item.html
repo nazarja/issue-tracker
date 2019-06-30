@@ -1,0 +1,54 @@
+{% if 'update' in request.path  %}
+	<div id="ticket" class="mv1 cards">
+		<div class="ui segment top attached">
+			<div class="inline">
+				<img class="ui circular image mh2" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
+				<span class="mh1 code"><span id="issue">{{ object.issue|title }}</span> #{{ object.id }}</span>
+				{% include 'tickets/partials/ticket-item-status.html' %}
+			</div>
+		</div>
+		<div class="ui segment bottom attached">
+			<span class="mv1 mh2"><a class="fw6 no-click" href=""><span id="title">{{ object.title|title }}</span></a></span>
+			<p id="ticket-list-description" class="mh2"><span id="description">{{ object.description|capfirst }}</span></p>
+			<div class="inline">
+				<span class="mh2 font-light">
+					<span>Submitted by:</span> <span>{{ object.user.username|title }}</span></span>
+					<span class="font-light">Last updated: <span class="time-since">{{ object.updated_on|date:"r" }}</span>
+				</span>
+			</div>
+			<div class="fr float-right">
+				<span class="pr1"><i class="thumbs up outline icon"></i> {{ object.votes }} Votes </span>
+				{% if object.issue == 'feature' %}
+					<span class="pr1"><i class="money bill alternate outline icon"></i> {{ object.earned }} Earned </span>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% else %}
+	<div id="ticket" class="mv1 cards ticket-preview">
+		<div class="ui segment top attached">
+			<div class="inline">
+				<img class="ui circular image mh2" src="{{ request.session.avatar }}" height="40" width="40" alt="avatar">
+				<span class="mh1 code"><span id="issue">{% if 'feature' in request.path %}Feature{% else %}Bug{% endif %}</span> #0</span>
+				{% include 'tickets/partials/ticket-item-status.html' %}
+			</div>
+		</div>
+		<div class="ui segment bottom attached">
+			<span class="mv1 mh2"><a class="fw6 no-click" href=""><span id="title">Title</span></a></span>
+			<p id="ticket-list-description" class="mh2"><span id="description">Description</span></p>
+			<div class="inline">
+				<span class="mh2 font-light">
+					<span>Submitted by:</span> <span>{{ request.user.username|title }}</span>
+					<span class="font-light">Last updated: <span>0 minutes ago</span></span>
+				</span>
+			</div>
+			<div class="fr float-right">
+				<span class="pr1"><i class="thumbs up outline icon"></i>0 Votes </span>
+				{% if issue == 'feature' %}
+					<span class="pr1"><i class="money bill alternate outline icon"></i>0 Earned </span>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
