@@ -16,15 +16,27 @@
 		{% endif %}
 	</div>
 
-	<div id="comments" class="ui container mt3">
+	<div id="comments" class="ui container mv3">
 		<h3 class="ui container horizontal divider header">
 		  <i class="comment icon"></i> Comments
 		</h3>
 
-		<div id="comment-reply-form">
+		<!-- comments -->
+		<div>
+			<a href="#comment-reply-form" class="mv1">Leave a comment</a>
+
+			<!-- comments container -->
+			{% include 'comments/comment.html' %}
+		</div>
+
+		<!-- reply form -->
+		<div id="comment-reply-form" class="mv3">
+			<h3 class="ui container horizontal divider header">
+				<i class="paper plane icon"></i> Leave a Reply:
+			</h3>
 			<form class="all-forms">
-				<label class="pl0 fwsemibold" for="comment-reply">Leave a Reply:</label>
-				<textarea class="mv1" id="comment-reply"></textarea>
+				<label class="pl0 fwsemibold" for="comment-reply">Have your say ...</label>
+				<textarea class="mv1" id="comment-reply" rows="10"></textarea>
 				<button id="comment-reply-form" class="ui button submit black">Post Comment</button>
 			</form>
 		</div>
@@ -36,4 +48,5 @@
 {% endblock %}
 {% block javascript %}
 	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
+	<script src="{%  static 'comments/js/comment-api.js' %}"></script>
 {% endblock %}

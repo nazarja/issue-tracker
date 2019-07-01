@@ -59,6 +59,11 @@
 
 .all-forms textarea {
     width: 90%;
+    resize: vertical;
+}
+
+#comment-reply-form textarea {
+    width: 100%;
 }
 
 .errorlist {

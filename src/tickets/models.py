@@ -23,7 +23,7 @@ class Ticket(models.Model):
     avatar = models.CharField(max_length=100, blank=True, null=True, default='/static/img/avatars/tim.png')
     active = models.BooleanField(default=True)
     title = models.CharField(max_length=100, blank=False, null=True)
-    description = models.CharField(max_length=2000, blank=False, null=True)
+    description = models.CharField(max_length=1000, blank=False, null=True)
     status = models.CharField(max_length=100, default='need help', choices=STATUS_CHOICES)
     votes = models.IntegerField(default=0)
     created_on = models.DateTimeField(default=datetime.now)

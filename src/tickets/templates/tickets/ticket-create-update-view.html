@@ -17,6 +17,10 @@
 	  <i class="wpforms icon"></i> Preview
 	</h3>
 
+	<div id="chars-left-metadata" class="fwnormal tal mb1 ui container">
+		<div class="title-chars-left dib">Title chars left: <span class="fwsemibold">100</span></div>
+		<div class="description-chars-left dib pl1">Description chars left: <span class="fwsemibold">2000</span></div>
+	</div>
 	<div class="ui container tac middle aligned segment raised padded ma2 pt3">
 		<form class="all-forms" method="POST">
 			{% csrf_token %}
@@ -31,5 +35,5 @@
 {% endblock %}
 {% block javascript %}
 	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
-	<script src="{%  static 'tickets/js/ticket-preview.js' %}"></script>
+	<script src="{%  static 'tickets/js/ticket-details-preview.js' %}"></script>
 {% endblock %}
