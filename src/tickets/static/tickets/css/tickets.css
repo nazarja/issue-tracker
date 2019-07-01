@@ -1,58 +1,151 @@
-
 /*
 =======================================
-    Tickets Styles
+    Tickets Container
 =======================================
 */
 
+
+#ticket {
+    background-color: #efefef;
+}
+
+#ticket-search-container {
+    max-height: 36px;
+}
+
+#ticket-menu-container > div {
+    /*display: inline-block;*/
+}
+
+
+/*
+=======================================
+    Tickets Menu
+=======================================
+*/
+
+#icon-bug {
+    left: 25px;
+}
+
+#ticket-bottom-segment {
+    padding: 42px !important;
+}
+
+.responsive-padding  {
+    padding-right: 42px  !important;
+}
+
+
+/*
+=======================================
+    Ticket Items
+=======================================
+*/
+
+
+#ticket-create-new-btn {
+    min-width: 170px;
+}
+
+#ticket.ui.card {
+    width: 100% !important;
+}
+
+#ticket .ui.avatar.image {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
+#ticket .description {
+    /*width: 85%;*/
+}
+
+
+/*
+=======================================
+    Tickets Empty Containers
+=======================================
+*/
+
+
+#ticket-empty-container h2 {
+    background: white !important;
+}
 
 #ticket-empty-container .ui.placeholder  {
     display: none;
     animation: none !important;
 }
 
-#ticket-empty-container h2 {
-    background: white !important;
+/*
+=======================================
+    Ticket Media Queries
+=======================================
+*/
+
+
+@media screen and (max-width: 800px) {
+    #ticket-bottom-segment,
+    .responsive-padding {
+        padding: 16px !important;
+    }
+
+    .responsive-padding  {
+        padding: 16px !important;
+        display: block !important;
+    }
+
+    .item.responsive-padding > div {
+        margin: 0 5px 0 0 !important;
+        display: inline-block;
+        float: right;
+    }
+
+    #icon-bug {
+        display: none;
+    }
+
+    #ticket .description {
+        padding-left: 2px !important;
+    }
+
+    #ticket #author-container {
+        display: block;
+        float: none;
+        margin-top: 50px;
+    }
+
+    #ticket #author-username {
+        display: block;
+        margin: 10px 5px -10px;
+    }
 }
 
-#ticket-list-description {
-    margin-top: 5px;
-    margin-bottom: 3px;
-    max-width: 70%;
-    min-height: 20px;
+@media screen and (max-width: 600px) {
+    #extra-content-left,
+    #extra-content-right {
+        display: block;
+        float: none;
+    }
+
+    #extra-content-left {
+        margin-bottom: 5px;
+    }
 }
 
-#ticket #title {
-    text-transform: capitalize;
+@media screen and (max-width: 400px) {
+
+    .item.responsive-padding > div {
+        width: 100%;
+        display: block !important;
+    }
+
+    #ticket-create-new-btn a {
+        width: 100%;
+        margin-top: 10px;
+    }
 }
 
-#ticket img.ui.image {
-    display: inline-block !important;
-}
-
-#ticket .segment {
-    background-color: #efefef;
-    padding: 6px;
-}
-
-#ticket .font-light {
-    font-family: 'Work Sans', sans-serif;
-}
-
-#ticket .float-right {
-    margin-top: -20px;
-}
-
-.ticket-label {
-    margin-top: 7px !important;
-    margin-right: 15px !important;
-    float: right;
-}
-
-.all-forms button {
-    margin: 30px 10px 20px !important
-}
-
-.ui.placeholder .header .line:after {
-    width: 0;
-}

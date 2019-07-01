@@ -1,25 +1,32 @@
-
-<div id="ticket" class="mv1 cards">
-	<div class="ui segment top attached">
-		<div class="inline">
-			<img class="ui circular image mh2" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
-			<span class="mh1 code">{{ issue|title }} #{{ object.id }}</span>
+<div id="ticket" class="ui card">
+	<div class="content">
+		<div class="left floated">
 			{% include 'tickets/partials/ticket-item-status.html' %}
+			<span class="category pl1 tcg70">{{ issue|title }} </span>
+		</div>
+		<div id="author-container" class="author right floated">
+			<img class="ui avatar image" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
+			<span id="author-username">{{ object.user.username|title }}</span>
+		</div>
+		<div class="meta">
+
+		</div>
+		<div class="description pl1 pt1">
+			<a class="header" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title|title }}</a>
 		</div>
 	</div>
-	<div class="ui segment bottom attached">
-		<span class="mv1 mh2"><a class="fw6" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title }}</a></span>
-		<p id="ticket-list-description" class="mh2">{{ object.description }}</p>
-		<div class="inline">
-			<span class="mh2 font-light">
-				<span>Submitted by:</span> <span>{{ object.user.username|title }}</span></span>
-				<span class="font-light">Last updated: <span class="time-since">{{ object.updated_on|date:"r" }}</span>
-			</span>
+	<div class="extra content">
+		<div id="extra-content-left" class="left floated">
+			<div class="meta">
+				<span class="code tcb"> #{{ object.id }}</span>
+				<span class="pl1">last updated: </span>
+				<span class="time time-since">{{ object.created_on|date:"r" }}</span>
+			</div>
 		</div>
-		<div class="fr float-right">
-			<span class="pr1"><i class="thumbs up outline icon"></i> {{ object.votes }} votes </span>
-			{% if 'feature' in request.path %}
-				<span class="pr1"><i class="money bill alternate outline icon"></i> {{ object.earned }} Earned </span>
+		<div id="extra-content-right" class="right floated">
+			<span class="pr1"><i class="thumbs up outline icon blue"></i> {{ object.votes }} votes</span>
+			{% if object.issue == 'feature' %}
+				<span class="pr1"><i class="money bill alternate outline icon green"></i> {{ object.earned }} earned</span>
 			{% endif %}
 		</div>
 	</div>

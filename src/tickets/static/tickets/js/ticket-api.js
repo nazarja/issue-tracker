@@ -15,15 +15,14 @@ if ((document.querySelector('#current-page'))) {
     const ticketSearchInput = document.querySelector('#ticket-search-input');
     const ticketFilterButton= document.querySelector('#ticket-order-by');
     const ticketOrderDefault = document.querySelector('#ticket-order-by-default');
-
-    // immediately disable previous button
+    const ticketIssueType = document.querySelector('h1');
     previousPage.setAttribute('disabled', 'true');
 
     // global querystring
     queryString = {
         page: 1,
         query: '',
-        issue: 'bug',
+        issue: ticketIssueType.dataset.issue,
         order: '-updated_on'
     };
 
@@ -35,7 +34,6 @@ if ((document.querySelector('#current-page'))) {
                 ticketOrderDefault.setAttribute('data-order', event.target.dataset.order);
                 queryString.page = 1;
                 queryString.query = ticketSearchInput.value;
-                queryString.issue = event.currentTarget.dataset.issue;
                 queryString.order = ticketOrderDefault.dataset.order;
                 ticketListAction(queryString);
         });
@@ -151,7 +149,7 @@ function createTicketList(data) {
                 </div>
             </div>
             <div class="ui segment bottom attached">
-                <span class="mv2 mh2"><a class="fw6" href="tickets/${item.id}/${item.slug}/ticket-detail-view/">${item.title}</a></span>
+                <span class="mv2 mh2"><a class="fw6" href="/tickets/${item.id}/${item.slug}/details/">${item.title}</a></span>
                 <p id="ticket-list-description" class="mh2">${item.description}</p>
                 <div class="inline">
                     <span class="mh2 font-light">
@@ -184,5 +182,14 @@ function setPagination(next, previous) {
     previous == null ? previousPage.setAttribute('disabled', 'true') :  previousPage.removeAttribute('disabled');
     currentPage.innerHTML = queryString.page;
 }
+
+
+function timeSince() {
+    const time = document.querySelectorAll('.time-since');
+    time.forEach(item =>
+        item.innerHTML =  moment(new Date(item.innerHTML)).fromNow()
+    );
+}
+timeSince();
 
 

@@ -1,9 +1,7 @@
-<span id="ticket-label-container">
 {% if object.status == 'resolved' %}
-	<span class="ui green tag label ticket-label">Resolved</span>
+	<div class="ui green horizontal label">Resolved</div>
 {% elif object.status == 'in progress' %}
-	<span class="ui yellow tag label ticket-label">In Progress</span>
+	<div class="ui yellow horizontal label">In Progress</div>
 {% else %}
-	<span class="ui tag red label ticket-label">Needs Help</span>
+	<div class="ui red horizontal label">Need Help</div>
 {% endif  %}
-</span>

@@ -5,12 +5,12 @@
 	<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
 {% block content %}
 
-	<h1 class="callout">{{ issue|title }}s</h1>
+	<h1 class="callout" data-issue="{{ issue }}">{{ issue|title }}s</h1>
 	<div class="ui container">
 
-		<!-- top menu -->
-		<div id="ticket-segment" class="ui top attached menu">
-			<div class="item">
+	<!-- top menu -->
+		<div id="ticket-segment" class="ui top attached menu borderless stackable pv1">
+			<div id="icon-bug" class="item">
 				<i class="icon bug"></i>
 			</div>
 			<!-- right menu-->
@@ -24,46 +24,30 @@
 			</div>
 
 			<!-- filter menu -->
-			<div class="item">
+			<div class="item responsive-padding">
 				<div class="ui floating labeled icon dropdown button">
 					<i class="filter icon"></i>
 					<span class="text" id="ticket-order-by-default" data-order="-updated_on">Filter</span>
 					<div class="menu" id="ticket-order-by" data-issue="{{ issue }}">
-						<div class="item" data-order="-updated_on">
-							Recently Updated
-						</div>
-						<div class="item" data-order="-created_on">
-							Date Created
-						</div>
-						<div class="item" data-order="-votes">
-							Most Popular
-						</div>
-						<div class="item" data-order="need help">
-							Needs Help
-						</div>
-						<div class="item" data-order="in progress">
-							In Progress
-						</div>
-						<div class="item" data-order="resolved">
-							Resolved
-						</div>
+						<div class="item" data-order="-updated_on">Recently Updated</div>
+						<div class="item" data-order="-created_on">Date Created</div>
+						<div class="item" data-order="-votes">Most Popular</div>
+						<div class="item" data-order="need help">Needs Help</div>
+						<div class="item" data-order="in progress">In Progress</div>
+						<div class="item" data-order="resolved">Resolved</div>
 						{% if 'feature' in request.path %}
-							<div class="item" data-order="-earned">
-								Highest Earned
-							</div>
+							<div class="item" data-order="-earned">Highest Earned</div>
 						{% endif %}
 					</div>
 				</div>
-			</div>
-
-			<!-- New Ticket Button-->
-			<div class="item">
+				<div id="ticket-create-new-btn" class="ml1" >
 					<a href="{% url 'tickets:ticket-create-view' issue=issue %}" class="ui button grey">Create New {{ issue|title }}</a>
+				</div>
 			</div>
 		</div>
 
-			<!-- bottom attached segment -->
-		<div class="ui bottom attached segment relative very padded">
+		<!-- bottom attached segment -->
+		<div id="ticket-bottom-segment" class="ui bottom attached segment">
 
 			<!-- loading animation -->
 			{% include 'tickets/partials/ticket-empty-content.html' %}
@@ -77,16 +61,15 @@
 			</div>
 		</div>
 
-		<div class="relative mt2">
-			<div class="ui buttons ui right floated">
+		<!-- pagination buttons-->
+		<div class="mt3">
+			<div class="ui buttons right floated">
 				<button id="previous-page" class="ui labeled icon button">
 					<i class="left chevron icon"></i>
 					Back
 				</button>
-				<button id="current-page" class="ui button disabled">
-					1
-				</button>
-				<button id="next-page" class="ui right labeled icon {% if count <= 5 %} disabled {% endif %}  button">
+				<button id="current-page" class="ui button disabled">1</button>
+				<button id="next-page" class="ui right labeled icon button">
 					Forward
 					<i class="right chevron icon"></i>
 				</button>
