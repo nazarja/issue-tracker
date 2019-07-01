@@ -48,6 +48,7 @@
 
 		<!-- bottom attached segment -->
 		<div id="ticket-bottom-segment" class="ui bottom attached segment">
+			<div><a id="reset-all-values" class="fr tar">reset all</a></div>
 
 			<!-- loading animation -->
 			{% include 'tickets/partials/ticket-empty-content.html' %}
@@ -69,7 +70,7 @@
 					Back
 				</button>
 				<button id="current-page" class="ui button disabled">1</button>
-				<button id="next-page" class="ui right labeled icon button">
+				<button id="next-page" class="ui right labeled icon button" data-count="{{ count }}">
 					Forward
 					<i class="right chevron icon"></i>
 				</button>

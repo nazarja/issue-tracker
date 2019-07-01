@@ -11,7 +11,7 @@ def bug_or_feature(self):
 
 class TicketListView(ListView):
     template_name = 'tickets/ticket-list-view.html'
-    paginate_by = 10
+    paginate_by = 8
     extra_context = {}
     allow_empty = True
 

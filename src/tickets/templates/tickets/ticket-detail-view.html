@@ -11,8 +11,8 @@
 		{% include 'tickets/partials/ticket-details-preview-item.html' %}
 
 		{% if request.user == object.user %}
-			<a href="{% url 'tickets:ticket-update-view' id=object.id slug=object.slug %}" class="ui button submit green">Edit Issue</a>
-			<button id="ticket-delete-btn" class="ui button submit red">Delete Issue</button>
+			<a href="{% url 'tickets:ticket-update-view' id=object.id slug=object.slug %}" class="ui button tiny submit green">Edit Issue</a>
+			<button id="ticket-delete-btn" class="ui button tiny submit red">Delete Issue</button>
 		{% endif %}
 	</div>
 
@@ -27,6 +27,19 @@
 
 			<!-- comments container -->
 			{% include 'comments/comment.html' %}
+			<div>
+			{% for comment in comment_list %}
+				{% include 'comments/comment.html' %}
+			{% endfor %}
+			<!-- empty -->
+				<div id="no-comments" class="ui placeholder segment">
+					<div class="ui icon header">
+						<i class="frown icon"></i>
+						We don't have any Comments for this Ticket
+					</div>
+					<a href="#comment-reply-form" class="ui primary small button">Be the First</a>
+				</div>
+			</div>
 		</div>
 
 		<!-- reply form -->

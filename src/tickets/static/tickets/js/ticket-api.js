@@ -15,7 +15,13 @@ if ((document.querySelector('#current-page'))) {
     const ticketSearchInput = document.querySelector('#ticket-search-input');
     const ticketFilterButton= document.querySelector('#ticket-order-by');
     const ticketOrderDefault = document.querySelector('#ticket-order-by-default');
+    const resetAllButton = document.querySelector('#reset-all-values');
+    const toTopClick = document.querySelector('#to-top-btn');
     const ticketIssueType = document.querySelector('h1');
+
+    // set pagination button on first load
+    if (parseInt(nextPage.dataset.count) <= 8)
+        nextPage.setAttribute('disabled', 'true');
     previousPage.setAttribute('disabled', 'true');
 
     // global querystring
@@ -43,8 +49,20 @@ if ((document.querySelector('#current-page'))) {
         .forEach(item => item.onclick = (event) => {
             if (event.target.id === 'next-page') queryString.page += 1;
             else queryString.page -= 1;
-            ticketListAction(queryString);
+            toTopClick.click();
+            busyLoader(1000);
+            setTimeout(() => ticketListAction(queryString), 1000);
         });
+
+    resetAllButton.onclick = () => {
+        queryString.page = 1;
+        queryString.query = '';
+        queryString.order = '-updated_on';
+        ticketSearchInput.value = '';
+        ticketOrderDefault.dataset.order = '-updated_on';
+        ticketOrderDefault.innerHTML = 'Filter';
+        ticketListAction(queryString);
+    };
 }
 
 
@@ -67,7 +85,7 @@ if (document.querySelector('#ticket-delete-btn')) {
 
 function ticketListAction(queryString) {
 
-    let endpoint = `/tickets/api/list/?issue=${queryString.issue}&order=${queryString.order}&page=${queryString.page}`;
+    let endpoint = `/tickets/api/list/?issue=${queryString.issue}&order=${queryString.order}&page=${queryString.page < 1 ? 1 : queryString.page}`;
     endpoint = queryString.query === false ? endpoint : endpoint + `&q=${queryString.query}`;
 
     fetch(endpoint, {
@@ -83,6 +101,7 @@ function ticketListAction(queryString) {
         console.log(data)
     })
     .catch(err => console.log(err));
+
 }
 
 
@@ -154,7 +173,7 @@ function createTicketList(data) {
                     <div class="meta">
             
                     </div>
-                    <div class="description pl1 pt1">
+                    <div class="description pt1">
                         <a class="header" href="/tickets/${item.id}/${item.slug}/details/">${item.title}</a>
                     </div>
                 </div>

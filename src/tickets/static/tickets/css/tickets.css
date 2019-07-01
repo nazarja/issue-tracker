@@ -32,6 +32,11 @@
     padding-right: 42px  !important;
 }
 
+#reset-all-values {
+    top: -21px;
+    position: relative;
+    cursor: pointer;
+}
 
 /*
 =======================================
@@ -103,9 +108,6 @@
     margin-top: -5px;
 }
 
-#chars-left-metadata {
-    /*padding-left: 5%;*/
-}
 
 /*
 =======================================
@@ -147,6 +149,11 @@
 
     #ticket #author-username {
         display: block;
+    }
+
+
+    #reset-all-values {
+        top: -6px;
     }
 }
 

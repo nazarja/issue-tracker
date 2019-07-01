@@ -188,8 +188,7 @@ span.avatar-label.ui.black.label {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.45);
-    background:  linear-gradient(90deg, rgba(81,191,144,.55) 50%, rgba(65,162,200,.55) 100%);
+    background:  linear-gradient(90deg, rgba(81,191,144,.8) 50%, rgba(65,162,200,.8) 100%);
     display: none;
     z-index: 1000 !important;
 }

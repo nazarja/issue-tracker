@@ -39,7 +39,7 @@ function smoothScroll() {
             {
                 scrollTop: $($(this).attr('href')).offset().top - 100,
             },
-            500,
+            800,
             'linear'
         );
     });
@@ -65,7 +65,7 @@ scrollToTop();
 
 // change page / busy loader
 function busyLoader(delay=0) {
-    $("#busy-loader").fadeIn("slow");
+    $("#busy-loader").fadeIn("fast");
     const animation = () => $("#busy-loader").fadeOut("slow");
     setTimeout(animation, delay)
 }
