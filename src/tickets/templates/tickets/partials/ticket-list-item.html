@@ -5,11 +5,8 @@
 			<span class="category pl1 tcg70">{{ issue|title }} </span>
 		</div>
 		<div id="author-container" class="author right floated">
-			<img class="ui avatar image" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
 			<span id="author-username">{{ object.user.username|title }}</span>
-		</div>
-		<div class="meta">
-
+			<img class="ui avatar image" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
 		</div>
 		<div class="description pl1 pt1">
 			<a class="header" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title|title }}</a>

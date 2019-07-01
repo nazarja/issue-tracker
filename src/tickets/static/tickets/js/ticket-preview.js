@@ -12,13 +12,13 @@ document.querySelector('#id_status').onchange = (event) => {
     const ticketLabelContainer = document.querySelector('#ticket-label-container');
     switch(status) {
         case 'need help':
-            ticketLabelContainer.innerHTML = `<span class="ui tag red label ticket-label">Needs Help</span>`;
+            ticketLabelContainer.innerHTML = `<div class="ui red horizontal label">Need Help</div>`;
             break;
         case 'in progress':
-            ticketLabelContainer.innerHTML = `<span class="ui yellow tag label ticket-label">In Progress</span>`;
+            ticketLabelContainer.innerHTML = `<div class="ui yellow horizontal label">In Progress</div>`;
             break;
         default:
-            ticketLabelContainer.innerHTML =`<span class="ui green tag label ticket-label">Resolved</span>`;
+            ticketLabelContainer.innerHTML =`<div class="ui green horizontal label">Resolved</div>`;
     }
 };
 

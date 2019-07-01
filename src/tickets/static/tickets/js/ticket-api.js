@@ -131,38 +131,48 @@ function createTicketList(data) {
 
         // determine status
         let status = item.status === 'need help' ?
-                    '<a class="ui tag red label ticket-label">Needs Help</a>' : item.status === 'in progress' ?
-                    '<a class="ui yellow tag label ticket-label">In Progress</a>' :  '<a class="ui green tag label ticket-label">Resolved</a>';
+                    '<div class="ui red horizontal label">Need Help</div>' : item.status === 'in progress' ?
+                    '<div class="ui yellow horizontal label">In Progress</div>' :  '<div class="ui green horizontal label">Resolved</div>';
 
         // determine if feature
-        let feature = item.issue === 'feature' ? `<span class="pr1"><i class="money bill alternate outline icon"></i> ${item.earned} Earned </span>` : '';
+        let feature = item.issue === 'feature' ? `<span class="pr1"><i class="money bill alternate outline icon green"></i> ${item.earned} earned</span>` : '';
 
 
         // create element - map over results and create html
         const div = document.createElement('div');
-        div.innerHTML = `<div id="ticket" class="mv1 cards">
-            <div class="ui segment top attached">
-                <div class="inline">
-                    <img class="ui circular image mh2" src="${item.avatar}" height="40" width="40" alt="avatar">
-                    <span class="mh1 code">${item.issue.charAt(0).toUpperCase() + item.issue.slice(1)} #${item.id}</span>
-                    ${status}
+        div.innerHTML = `
+             <div id="ticket" class="ui card">
+                <div class="content">
+                    <div class="left floated">
+                        ${status}
+                        <span class="category pl1 tcg70">${item.issue.charAt(0).toUpperCase() + item.issue.slice(1)} </span>
+                    </div>
+                    <div id="author-container" class="author right floated">
+                        <img class="ui avatar image" src="${item.avatar}" height="40" width="40" alt="avatar">
+                        <span id="author-username">${item.username}</span>
+                    </div>
+                    <div class="meta">
+            
+                    </div>
+                    <div class="description pl1 pt1">
+                        <a class="header" href="/tickets/${item.id}/${item.slug}/details/">${item.title}</a>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div id="extra-content-left" class="left floated">
+                        <div class="meta">
+                            <span class="code tcb"> #${item.id}</span>
+                            <span class="pl1">last updated: </span>
+                            <span class="time time-since">${moment(item.updated_on).fromNow()}</span>
+                        </div>
+                    </div>
+                    <div id="extra-content-right" class="right floated">
+                        <span class="pr1"><i class="thumbs up outline icon blue"></i> ${item.votes} votes</span>
+                        ${feature}
+                    </div>
                 </div>
             </div>
-            <div class="ui segment bottom attached">
-                <span class="mv2 mh2"><a class="fw6" href="/tickets/${item.id}/${item.slug}/details/">${item.title}</a></span>
-                <p id="ticket-list-description" class="mh2">${item.description}</p>
-                <div class="inline">
-                    <span class="mh2 font-light">
-                        <span>Submitted by:</span> <span>${item.username}</span></span>
-                        <span class="font-light">Last updated: <span class="time-since">${moment(item.updated_on).fromNow()}</span>
-                    </span>
-                </div>
-                <div class="fr float-right">
-                    <span class="pr1"><i class="thumbs up outline icon"></i> ${item.votes} votes </span>
-                    ${feature} 
-                </div>
-            </div>
-        </div>`;
+        `;
 
         // append results to dom
         container.append(div);

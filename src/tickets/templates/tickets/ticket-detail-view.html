@@ -1,17 +1,36 @@
 {% extends '../base/base.html' %}
 {% load static %}
 {% block head_title %}{{ issue|title }}{% endblock %}
-{% block css %}<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
 {% block content %}
 	<h1 class="callout">{{ issue|title }}</h1>
 	<div class="ui container">
-		<h2>{{ object.title }}</h2>
+		{% include 'tickets/partials/ticket-details-preview-item.html' %}
 
 		{% if request.user == object.user %}
 			<a href="{% url 'tickets:ticket-update-view' id=object.id slug=object.slug %}" class="ui button submit green">Edit Issue</a>
 			<button id="ticket-delete-btn" class="ui button submit red">Delete Issue</button>
 		{% endif %}
 	</div>
+
+	<div id="comments" class="ui container mt3">
+		<h3 class="ui container horizontal divider header">
+		  <i class="comment icon"></i> Comments
+		</h3>
+
+		<div id="comment-reply-form">
+			<form class="all-forms">
+				<label class="pl0 fwsemibold" for="comment-reply">Leave a Reply:</label>
+				<textarea class="mv1" id="comment-reply"></textarea>
+				<button id="comment-reply-form" class="ui button submit black">Post Comment</button>
+			</form>
+		</div>
+	</div>
+
+	<!-- include errors / delete modal -->
 	{% include 'tickets/partials/ticket-delete-item.html' %}
 	{% include 'tickets/partials/ticket-error-occurred.html' %}
 {% endblock %}

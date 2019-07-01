@@ -1,0 +1,82 @@
+{% if 'update' in request.path or 'details' in request.path %}
+	<div id="ticket-details" class="mv1 card">
+		<div class="ui segment top attached">
+			<div id="author-container-details" class="author fr">
+				<span id="author-username">{{ object.user.username|title }}</span>
+				<img class="ui avatar image" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
+			</div>
+			<div id="ticket-label-container">{% include 'tickets/partials/ticket-item-status.html' %}</div>
+			<div class="pt1">
+				<span class="code tcb pr1"> #{{ object.id }}</span>
+				<span class="category tcg70">{{ object.issue|title }} </span>
+			</div>
+			<div class="meta pt1">
+				<i>Created on:  </i>
+				<i class="time">{{ object.created_on }}</i>
+			</div>
+		</div>
+		<div class="ui segment bottom attached pa2">
+			<div class="description">
+				<a id="title" class="header no-click fwsemibold" href="#">{{ object.title|title }}</a>
+			</div>
+			<div class="description mv1">
+				<p id="description" class="header">{{ object.description|capfirst }}</p>
+			</div>
+			<div class="extra content">
+				<div id="extra-content-left" class="left floated fl">
+					<div class="meta tcg70">
+						<i>last updated: </i>
+						<i class="time time-since">{{ object.created_on|date:"r" }}</i>
+					</div>
+				</div>
+				<div id="extra-content-right" class="right floated fr">
+					<span class="pr1"><i class="thumbs up outline icon blue"></i> {{ object.votes }} votes</span>
+					{% if object.issue == 'feature' %}
+						<span class="pr1"><i class="money bill alternate outline icon green"></i> {{ object.earned }} earned</span>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% else %}
+	<div id="ticket-details" class="mv1 card">
+		<div class="ui segment top attached">
+			<div id="author-container-details" class="author fr">
+				<span id="author-username">{{ request.user.username }}</span>
+				<img class="ui avatar image" src="{{ request.session.avatar }}" height="40" width="40" alt="avatar">
+			</div>
+			<div id="ticket-label-container">{% include 'tickets/partials/ticket-item-status.html' %}</div>
+			<div class="pt1">
+				<span class="code tcb pr1"> #000</span>
+				<span class="category tcg70">{% if 'feature' in request.path %}Feature{% else %}Bug{% endif %}</span>
+			</div>
+			<div class="meta pt1">
+				<i>Created on:  </i>
+				<i class="time"> {% now "jS F Y H:i" %} </i>
+			</div>
+		</div>
+		<div class="ui segment bottom attached pa2">
+			<div class="description">
+				<a id="title" class="header no-click fwsemibold" href="#">Title</a>
+			</div>
+			<div class="description mv1">
+				<p id="description" class="header">Description</p>
+			</div>
+			<div class="extra content">
+				<div id="extra-content-left" class="left floated fl">
+					<div class="meta tcg70">
+						<i>last updated: </i>
+						<i class="time"> never</i>
+					</div>
+				</div>
+				<div id="extra-content-right" class="right floated fr">
+					<span class="pr1"><i class="thumbs up outline icon blue"></i> 0 votes</span>
+					{% if object.issue == 'feature' %}
+						<span class="pr1"><i class="money bill alternate outline icon green"></i> 0 earned</span>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}
+

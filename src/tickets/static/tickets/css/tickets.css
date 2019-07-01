@@ -13,10 +13,6 @@
     max-height: 36px;
 }
 
-#ticket-menu-container > div {
-    /*display: inline-block;*/
-}
-
 
 /*
 =======================================
@@ -57,12 +53,12 @@
     height: 40px !important;
     margin-right: 10px;
     margin-top: -5px;
+    margin-left: 5px;
 }
 
-#ticket .description {
-    /*width: 85%;*/
+#right-floated {
+    min-width: 150px;
 }
-
 
 /*
 =======================================
@@ -79,6 +75,35 @@
     display: none;
     animation: none !important;
 }
+
+
+
+/*
+=======================================
+    Ticket Details
+=======================================
+*/
+
+#ticket-details > div {
+    min-height: 120px;
+}
+
+#author-username {
+    margin: 10px;
+}
+
+#author-container-details {
+    margin-top: 10px;
+}
+
+#author-container-details img.ui.avatar.image {
+    width: 80px !important;
+    height: 80px !important;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
+
 
 /*
 =======================================
@@ -115,16 +140,17 @@
     #ticket #author-container {
         display: block;
         float: none;
-        margin-top: 50px;
+        margin-top: 35px;
     }
 
     #ticket #author-username {
         display: block;
-        margin: 10px 5px -10px;
     }
 }
 
 @media screen and (max-width: 600px) {
+
+    /*  bugs / features */
     #extra-content-left,
     #extra-content-right {
         display: block;
@@ -133,6 +159,30 @@
 
     #extra-content-left {
         margin-bottom: 5px;
+    }
+
+    /* details / preview */
+    #author-username {
+        margin: 10px;
+    }
+
+    #author-container-details {
+        margin-top: 10px;
+        float: none;
+        display: block;
+    }
+
+    #author-container-details img.ui.avatar.image {
+        width: 40px !important;
+        height: 40px !important;
+        margin-right: 10px;
+        margin-top: -5px;
+    }
+
+    #ticket-details #extra-content-right,
+    #ticket-details #extra-content-left {
+        float: none !important;
+        display: block;
     }
 }
 
