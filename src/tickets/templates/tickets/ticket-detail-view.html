@@ -17,28 +17,24 @@
 	</div>
 
 	<div id="comments" class="ui container mv3">
-		<h3 class="ui container horizontal divider header">
-		  <i class="comment icon"></i> Comments
+		<h3 id="number-of-comments" class="ui container horizontal divider header">
+		  <i class="comment icon"></i> Comments 0
 		</h3>
 
 		<!-- comments -->
-		<div>
+		<div id="comments">
 			<a href="#comment-reply-form" class="mv1">Leave a comment</a>
 
 			<!-- comments container -->
-			{% include 'comments/comment.html' %}
-			<div>
-			{% for comment in comment_list %}
-				{% include 'comments/comment.html' %}
-			{% endfor %}
+			<div id="comments-container" class="ui comments"></div>
+
 			<!-- empty -->
-				<div id="no-comments" class="ui placeholder segment">
-					<div class="ui icon header">
-						<i class="frown icon"></i>
-						We don't have any Comments for this Ticket
-					</div>
-					<a href="#comment-reply-form" class="ui primary small button">Be the First</a>
+			<div id="no-comments" class="ui placeholder pv10 tac segment">
+				<div class="ui icon header">
+					<i class="frown icon"></i>
+					We don't have any Comments for this Ticket
 				</div>
+				<a href="#comment-reply-form" class="ui primary small button">Be the First</a>
 			</div>
 		</div>
 
@@ -47,10 +43,10 @@
 			<h3 class="ui container horizontal divider header">
 				<i class="paper plane icon"></i> Leave a Reply:
 			</h3>
-			<form class="all-forms">
+			<form id="comment-reply-form" class="all-forms">
 				<label class="pl0 fwsemibold" for="comment-reply">Have your say ...</label>
 				<textarea class="mv1" id="comment-reply" rows="10"></textarea>
-				<button id="comment-reply-form" class="ui button submit black">Post Comment</button>
+				<button class="ui button submit black">Post Comment</button>
 			</form>
 		</div>
 	</div>

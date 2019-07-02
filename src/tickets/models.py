@@ -41,7 +41,7 @@ class Ticket(models.Model):
         super(Ticket, self).save(*args, **kwargs)
 
     def __str__(self):
-        return smart_text(f'{self.issue}: {self.title}')
+        return smart_text(f'{self.issue}: no. {self.id} - by {self.username} | {self.title}')
 
     def get_absolute_url(self):
         return reverse(f'tickets:{self.issue}s')

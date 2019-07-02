@@ -115,7 +115,9 @@ function ticketDeleteAction() {
         fetch(`/tickets/api/${_id}/delete/`, {
             method: 'DELETE',
             headers: new Headers({
-                'X-CSRFToken': csrftoken,
+                'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': csrftoken,
+                    'X-Requested-With': 'XMLHttpRequest',
             }),
             credentials: 'same-origin',
         })
