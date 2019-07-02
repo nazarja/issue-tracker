@@ -11,6 +11,7 @@ class CommentListAPIView(ListAPIView):
     serializer_class = CommentListSerializer
     ordering = '-updated_on'
     pagination.PageNumberPagination.page_size = 100
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self, *args, **kwargs):
         ticket = self.kwargs['ticket']
@@ -31,4 +32,6 @@ class CommentUpdateAPIView(UpdateAPIView):
 
 
 class CommentDeleteAPIView(DestroyAPIView):
-    pass
+    lookup_field = 'id'
+    queryset = Comment.objects.all()
+    permission_classes = [IsOwnerOrReadOnly]

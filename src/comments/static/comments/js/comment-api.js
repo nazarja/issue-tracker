@@ -20,12 +20,37 @@ const numberOfComments = document.querySelector('#number-of-comments');
 =========================================================
 */
 
-ticketReplyFormTextArea.onkeypress = () => commentCharacterLeft.innerHTML = 500 - ticketReplyFormTextArea.value.length;
 
-postTicketReply.onsubmit = () => {
-    event.preventDefault();
-    RUDComments('POST', ticketReplyFormTextArea.value, getURL())
-};
+// reply form chars left
+function replyCharactersLeftListener() {
+    ticketReplyFormTextArea.onkeypress = () =>
+        commentCharacterLeft.innerHTML = 500 - ticketReplyFormTextArea.value.length;
+}
+
+
+// listen for new reply
+function newPostListener() {
+    postTicketReply.onsubmit = () => {
+        event.preventDefault();
+        PUDComments('POST', ticketReplyFormTextArea.value, getURL())
+    }
+}
+
+
+// listen for edit or delete actions
+function editDeleteCommentListeners() {
+    const editComment = document.querySelectorAll('.edit');
+    const deleteComment = document.querySelectorAll('.delete');
+
+    editComment.forEach(comment => comment.onclick = (event) => {
+        console.log(event.target.dataset.editid);
+    });
+
+    deleteComment.forEach(comment => comment.onclick = (event) => {
+       getComments('DELETE', event.target.dataset.deleteid);
+    });
+}
+
 
 /*
 =========================================================
@@ -33,25 +58,35 @@ postTicketReply.onsubmit = () => {
 =========================================================
 */
 
+
 // get only
-function getComments() {
-    fetch(`/comments/api/${getURL()}/list/`, {
-        method: 'GET',
+function getComments(method, _id=null) {
+
+    let endpoint;
+    if (method === 'GET') endpoint = `${getURL()}/list/`;
+    else endpoint = `${_id}/delete/`;
+
+    fetch('/comments/api/' + endpoint, {
+        method: method,
         headers: new Headers({
                     'X-CSRFToken': csrftoken,
                 }),
         credentials: 'same-origin',
     })
-    .then(res => res.json())
-    .then(data => createComments(data))
+    .then(res => {
+        if (method === 'GET') return res.json();
+        return res;
+    })
+    .then(data => {
+        if (method === 'GET') createComments(data);
+        if (data.status === 204) removeComment(_id);
+    })
     .catch(err => console.log(err));
 }
-getComments();
 
 
-
-// POST, PUT , DELETE
-function RUDComments(method, text, url) {
+// POST, PUT
+function PUDComments(method, text, url) {
 
     let endpoint = `/comments/api/${url}/`;
     method === 'POST' ?  endpoint += `create/` :
@@ -83,15 +118,44 @@ function RUDComments(method, text, url) {
             default:
                 removeComment(data);
         }
-
     })
     .catch(err => console.log(err));
 }
 
 
-function createComments(data) {
-    numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${data.count}`;
+/*
+=========================================================
+    COMMENTS DOM ACTIONS
+=========================================================
+*/
 
+
+// add new comment
+function prependNewComment(item) {
+    const div = document.createElement('div');
+    div.innerHTML = createCommentHTML(item);
+    commentsContainer.prepend(div);
+    updateNumberOfComments('increase');
+    editDeleteCommentListeners();
+}
+
+
+// update comment text
+function insertUpdatedComment(data) {
+    console.log(data)
+}
+
+
+// remove comments from dom
+function removeComment(_id) {
+    const comment = document.querySelector(`[data-commentid="${_id}"]`);
+    comment.remove();
+    updateNumberOfComments('decrease')
+}
+
+
+// create multiple comments
+function createComments(data) {
     // if no results show empty placeholder
     if (!data.count) {
         emptyContainer.style.display = 'block';
@@ -105,30 +169,42 @@ function createComments(data) {
         div.innerHTML = createCommentHTML(item);
         commentsContainer.append(div);
     });
+
+    // listener for edit / delete actions
+    numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${data.count}`;
+    editDeleteCommentListeners();
 }
 
-
-function prependNewComment(item) {
-    const div = document.createElement('div');
-    div.innerHTML = createCommentHTML(item);
-    commentsContainer.prepend(div);
+// update comments count
+function updateNumberOfComments(direction) {
+    let num = parseInt(numberOfComments.innerHTML.match(/\d+/g)[0]);
+    if (direction === 'increase') {
+         numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num + 1}`;
+    }
+    else {
+        numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num - 1}`;
+    }
 }
 
+/*
+=========================================================
+    COMMENTS HTML CREATION ACTIONS
+=========================================================
+*/
 
-function insertUpdatedComment(data) {
-    console.log(data)
-}
-
-function removeComment(data) {
-    console.log(data)
-}
 
 function createCommentHTML(item) {
-        console.log(item.updated_on);
+
+        // only allow current user to edit or delete comment
+        item.current_user ? item.actions = `
+            <a class="reply edit" data-editid="${item.id}">Edit</a>
+            <a class="reply delete" data-deleteid="${item.id}">Delete</a>`
+            : item.actions = '';
+
         return `
-            <div class="comment mv1" data-commentID="${item.id}">
+            <div class="comment mv1" data-commentid="${item.id}">
                 <a class="avatar">
-                    <img src="${item.avatar}">
+                    <img src="${item.avatar}" alt="avatar image">
                 </a>
                 <div class="content">
                     <a class="author">${item.username}</a>
@@ -138,9 +214,9 @@ function createCommentHTML(item) {
                     <div class="text">
                         <p>${item.text}</p>
                     </div>
+                    
                     <div class="actions">
-                        <a class="reply">Edit</a>
-                        <a class="reply">Delete</a>
+                        ${item.actions}
                     </div>
                 </div>
             </div>
@@ -159,3 +235,11 @@ function getURL() {
     let url = window.location.href;
     return url.match(/tickets\/\d+/g)[0].match(/\d+/g)[0];
 }
+
+
+function init() {
+    getComments('GET');
+    newPostListener();
+    replyCharactersLeftListener();
+}
+init();

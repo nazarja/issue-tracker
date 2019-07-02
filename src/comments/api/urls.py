@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from comments.api.views import CommentListAPIView, CommentCreateAPIView, CommentUpdateAPIView, CommentDeleteAPIView
 
 app_name = 'comments'
