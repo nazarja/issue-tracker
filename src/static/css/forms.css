@@ -67,6 +67,10 @@
      border-color: #ccc;
 }
 
+.comment .inline-form {
+    display: none;
+}
+
 .errorlist {
     text-align: left;
     font-size: 0.9em;

@@ -1,5 +1,5 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
-from .serializers import CommentListSerializer, CommentCreateSerializer
+from .serializers import CommentListSerializer, CommentCreateSerializer, CommentUpdateSerializer
 from rest_framework.response import Response
 from .permissions import IsOwnerOrReadOnly
 from rest_framework import pagination
@@ -28,7 +28,12 @@ class CommentCreateAPIView(CreateAPIView):
 
 
 class CommentUpdateAPIView(UpdateAPIView):
-    pass
+    lookup_field = 'id'
+    queryset = Comment.objects.all()
+    serializer_class = CommentUpdateSerializer
+
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class CommentDeleteAPIView(DestroyAPIView):

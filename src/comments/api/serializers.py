@@ -50,4 +50,10 @@ class CommentCreateSerializer(serializers.ModelSerializer):
         return self.context['request'].user == obj.user
 
 
+class CommentUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('id', 'text')
+
+
 

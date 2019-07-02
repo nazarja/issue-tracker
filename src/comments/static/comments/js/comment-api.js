@@ -32,7 +32,7 @@ function replyCharactersLeftListener() {
 function newPostListener() {
     postTicketReply.onsubmit = () => {
         event.preventDefault();
-        PUDComments('POST', ticketReplyFormTextArea.value, getURL())
+        PPComments('POST', ticketReplyFormTextArea.value, getURL())
     }
 }
 
@@ -42,12 +42,32 @@ function editDeleteCommentListeners() {
     const editComment = document.querySelectorAll('.edit');
     const deleteComment = document.querySelectorAll('.delete');
 
+
+    // inline editing
     editComment.forEach(comment => comment.onclick = (event) => {
-        console.log(event.target.dataset.editid);
+        const _id = event.target.dataset.editid;
+        const actions = event.target.parentElement;
+        const form = document.querySelector(`[data-formid="${_id}"]`);
+        const textarea = form.firstElementChild;
+        const text = form.previousElementSibling;
+
+        form.style.display = 'block';
+        text.style.display = 'none';
+        actions.style.display = 'none';
+
+        form.onsubmit = (event) => {
+            event.preventDefault();
+            form.style.display = 'none';
+            text.innerHTML = textarea.value;
+            text.style.display = 'block';
+            actions.style.display = 'block';
+            PPComments('PUT', textarea.value, _id);
+        }
     });
 
+    // delete comment
     deleteComment.forEach(comment => comment.onclick = (event) => {
-       getComments('DELETE', event.target.dataset.deleteid);
+        GDComments('DELETE', event.target.dataset.deleteid);
     });
 }
 
@@ -60,7 +80,7 @@ function editDeleteCommentListeners() {
 
 
 // get only
-function getComments(method, _id=null) {
+function GDComments(method, _id=null) {
 
     let endpoint;
     if (method === 'GET') endpoint = `${getURL()}/list/`;
@@ -69,8 +89,8 @@ function getComments(method, _id=null) {
     fetch('/comments/api/' + endpoint, {
         method: method,
         headers: new Headers({
-                    'X-CSRFToken': csrftoken,
-                }),
+            'X-CSRFToken': csrftoken,
+        }),
         credentials: 'same-origin',
     })
     .then(res => {
@@ -86,38 +106,32 @@ function getComments(method, _id=null) {
 
 
 // POST, PUT
-function PUDComments(method, text, url) {
+function PPComments(method, text, _id) {
 
-    let endpoint = `/comments/api/${url}/`;
-    method === 'POST' ?  endpoint += `create/` :
-    method === 'PUT' ?  endpoint += `update/`  : endpoint += 'delete/';
-
-    let body = `text=${text}&ticket=${url}`;
-
+    let body;
+    let endpoint;
+    if (method === 'POST') {
+        body = `text=${text}&ticket=${_id}`;
+        endpoint = `/comments/api/${_id}/create/`;
+    }
+    else {
+        body = `text=${text}&id=${_id}`;
+        endpoint = `/comments/api/${_id}/update/`;
+    }
 
     fetch(endpoint, {
         method: method,
         headers: new Headers({
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-CSRFToken': csrftoken,
-                    'X-Requested-With': 'XMLHttpRequest',
-                }),
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrftoken,
+            'X-Requested-With': 'XMLHttpRequest',
+        }),
         body: body,
         credentials: 'same-origin',
     })
     .then(res => res.json())
     .then(data => {
-        console.log(data);
-        switch(method){
-            case 'POST':
-                prependNewComment(data);
-                break;
-            case 'PUT':
-                insertUpdatedComment(data);
-                break;
-            default:
-                removeComment(data);
-        }
+        if (method === 'POST') prependNewComment(data);
     })
     .catch(err => console.log(err));
 }
@@ -137,12 +151,6 @@ function prependNewComment(item) {
     commentsContainer.prepend(div);
     updateNumberOfComments('increase');
     editDeleteCommentListeners();
-}
-
-
-// update comment text
-function insertUpdatedComment(data) {
-    console.log(data)
 }
 
 
@@ -179,7 +187,7 @@ function createComments(data) {
 function updateNumberOfComments(direction) {
     let num = parseInt(numberOfComments.innerHTML.match(/\d+/g)[0]);
     if (direction === 'increase') {
-         numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num + 1}`;
+        numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num + 1}`;
     }
     else {
         numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num - 1}`;
@@ -195,13 +203,13 @@ function updateNumberOfComments(direction) {
 
 function createCommentHTML(item) {
 
-        // only allow current user to edit or delete comment
-        item.current_user ? item.actions = `
-            <a class="reply edit" data-editid="${item.id}">Edit</a>
-            <a class="reply delete" data-deleteid="${item.id}">Delete</a>`
-            : item.actions = '';
+    // only allow current user to edit or delete comment
+    item.current_user ? item.actions = `
+        <a class="reply edit" data-editid="${item.id}">Edit</a>
+        <a class="reply delete" data-deleteid="${item.id}">Delete</a>`
+        : item.actions = '';
 
-        return `
+    return `
             <div class="comment mv1" data-commentid="${item.id}">
                 <a class="avatar">
                     <img src="${item.avatar}" alt="avatar image">
@@ -213,8 +221,11 @@ function createCommentHTML(item) {
                     </div>
                     <div class="text">
                         <p>${item.text}</p>
+                        <form class="inline-form all-forms" data-formid="${item.id}">
+                            <textarea class="inline-editing" maxlength="500">${item.text}</textarea>
+                            <button class="ui button green tiny">update</button>
+                        </form>
                     </div>
-                    
                     <div class="actions">
                         ${item.actions}
                     </div>
@@ -238,7 +249,7 @@ function getURL() {
 
 
 function init() {
-    getComments('GET');
+    GDComments('GET');
     newPostListener();
     replyCharactersLeftListener();
 }
