@@ -1,81 +1,95 @@
 
 /*
 =========================================================
+   GLOBAL VARIABLES
+=========================================================
+*/
+
+
+const postTicketReply = document.querySelector('#comment-reply-form');
+const commentCharacterLeft = document.querySelector('#comment-characters-left');
+const ticketReplyFormTextArea = document.querySelector('#comment-reply-form textarea');
+const commentsContainer = document.querySelector('#comments-container');
+const emptyContainer = document.querySelector('#no-comments');
+const numberOfComments = document.querySelector('#number-of-comments');
+
+
+/*
+=========================================================
     EVENT LISTENERS
 =========================================================
 */
 
-const postTicketReply = document.querySelector('#comment-reply-form');
-const ticketReplyFormTextArea = document.querySelector('#comment-reply-form textarea');
+ticketReplyFormTextArea.onkeypress = () => commentCharacterLeft.innerHTML = 500 - ticketReplyFormTextArea.value.length;
 
 postTicketReply.onsubmit = () => {
     event.preventDefault();
-    console.log(ticketReplyFormTextArea.value);
-    getComments('POST', ticketReplyFormTextArea.value)
+    RUDComments('POST', ticketReplyFormTextArea.value, getURL())
 };
 
-// NOTE SEPERATE FETCH FOR GET (Cannot Have Body)
 /*
 =========================================================
     API CALLS
 =========================================================
 */
 
-// // fetch calls to comments api
-// function getComments(method=false, data=false, url=false) {
-//     let endpoint;
-//     if (!url) url = getURL();
-//     console.log(method, data, url);
-//     switch(method) {
-//         case 'GET':
-//             endpoint = `/comments/api/${url}/list/`;
-//             break;
-//         case 'POST':
-//             endpoint = `/comments/api/${url}/create/`;
-//             break;
-//         case 'PUT':
-//             endpoint = `/comments/api/${url}/update/`;
-//             break;
-//         case 'DELETE':
-//             endpoint = `/comments/api/${url}/delete/`;
-//             break;
-//         default:
-//             return false;
-//     }
-//
-//     fetch(endpoint, {
-//         method: 'POST',
-//         headers: new Headers({
-//                     'Content-Type': 'application/x-www-form-urlencoded',
-//                     'X-CSRFToken': csrftoken,
-//                     'X-Requested-With': 'XMLHttpRequest',
-//                 }),
-//         body: `text=${data}&ticket=${url}`,
-//         credentials: 'same-origin',
-//     })
-//     .then(res => {
-//         try {
-//             return res.json();
-//         }
-//         catch (err) {
-//             console.log(res.text);
-//             console.log(err);
-//         }
-//     })
-//     .then(data => {
-//         console.log(data);
-//         createComments(data);
-//     })
-//     .catch(err => console.log(err));
-// }
-// getComments('GET');
+// get only
+function getComments() {
+    fetch(`/comments/api/${getURL()}/list/`, {
+        method: 'GET',
+        headers: new Headers({
+                    'X-CSRFToken': csrftoken,
+                }),
+        credentials: 'same-origin',
+    })
+    .then(res => res.json())
+    .then(data => createComments(data))
+    .catch(err => console.log(err));
+}
+getComments();
 
+
+
+// POST, PUT , DELETE
+function RUDComments(method, text, url) {
+
+    let endpoint = `/comments/api/${url}/`;
+    method === 'POST' ?  endpoint += `create/` :
+    method === 'PUT' ?  endpoint += `update/`  : endpoint += 'delete/';
+
+    let body = `text=${text}&ticket=${url}`;
+
+
+    fetch(endpoint, {
+        method: method,
+        headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': csrftoken,
+                    'X-Requested-With': 'XMLHttpRequest',
+                }),
+        body: body,
+        credentials: 'same-origin',
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        switch(method){
+            case 'POST':
+                prependNewComment(data);
+                break;
+            case 'PUT':
+                insertUpdatedComment(data);
+                break;
+            default:
+                removeComment(data);
+        }
+
+    })
+    .catch(err => console.log(err));
+}
 
 
 function createComments(data) {
-    const commentsContainer = document.querySelector('#comments-container');
-    const emptyContainer = document.querySelector('#no-comments');
-    const numberOfComments = document.querySelector('#number-of-comments');
     numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${data.count}`;
 
     // if no results show empty placeholder
@@ -94,9 +108,25 @@ function createComments(data) {
 }
 
 
+function prependNewComment(item) {
+    const div = document.createElement('div');
+    div.innerHTML = createCommentHTML(item);
+    commentsContainer.prepend(div);
+}
+
+
+function insertUpdatedComment(data) {
+    console.log(data)
+}
+
+function removeComment(data) {
+    console.log(data)
+}
+
 function createCommentHTML(item) {
-    return  `
-            <div class="comment mv1">
+        console.log(item.updated_on);
+        return `
+            <div class="comment mv1" data-commentID="${item.id}">
                 <a class="avatar">
                     <img src="${item.avatar}">
                 </a>
@@ -109,7 +139,8 @@ function createCommentHTML(item) {
                         <p>${item.text}</p>
                     </div>
                     <div class="actions">
-                        <a class="reply">Reply</a>
+                        <a class="reply">Edit</a>
+                        <a class="reply">Delete</a>
                     </div>
                 </div>
             </div>

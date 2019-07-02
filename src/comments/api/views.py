@@ -1,6 +1,8 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from .serializers import CommentListSerializer, CommentCreateSerializer
+from rest_framework.response import Response
 from .permissions import IsOwnerOrReadOnly
+from rest_framework import pagination
 from comments.models import Comment
 
 
@@ -8,6 +10,7 @@ class CommentListAPIView(ListAPIView):
     lookup_field = 'ticket'
     serializer_class = CommentListSerializer
     ordering = '-updated_on'
+    pagination.PageNumberPagination.page_size = 100
 
     def get_queryset(self, *args, **kwargs):
         ticket = self.kwargs['ticket']

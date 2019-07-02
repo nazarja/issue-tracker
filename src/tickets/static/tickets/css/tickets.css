@@ -108,10 +108,21 @@
     margin-top: -5px;
 }
 
+
+/*
+=======================================
+    Comments
+=======================================
+*/
+
 #no-comments {
     display: none;
 }
 
+#load-more-comments {
+    display: none;
+    margin: auto;
+}
 
 /*
 =======================================

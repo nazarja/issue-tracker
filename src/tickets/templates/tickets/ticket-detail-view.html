@@ -16,17 +16,29 @@
 		{% endif %}
 	</div>
 
-	<div id="comments" class="ui container mv3">
-		<h3 id="number-of-comments" class="ui container horizontal divider header">
-		  <i class="comment icon"></i> Comments 0
-		</h3>
+	<div class="ui container mv3">
+		<!-- reply form -->
+		<div id="comment-reply-form" class="mv3">
+			<h3 id="number-of-comments" class="ui container horizontal divider header">
+			  <i class="comment icon"></i> Comments 0
+			</h3>
+			<form id="comment-reply-form" class="all-forms">
+				<label class="pl0 fwsemibold" for="comment-reply">
+					<i class="paper plane icon"></i> Leave a Reply. <span class="pl2">Characters Left: <span id="comment-characters-left">500</span></span>
+				</label>
+				<textarea class="mv1" id="comment-reply" rows="4" maxlength="500" required></textarea>
+				<button class="ui button submit black">Post Comment</button>
+			</form>
+		</div>
+
+		<div class="ui divider mt2"></div>
 
 		<!-- comments -->
 		<div id="comments">
-			<a href="#comment-reply-form" class="mv1">Leave a comment</a>
 
 			<!-- comments container -->
 			<div id="comments-container" class="ui comments"></div>
+			<button id="load-more-comments" class="ui secondary button">Load older comments ...</button>
 
 			<!-- empty -->
 			<div id="no-comments" class="ui placeholder pv10 tac segment">
@@ -38,16 +50,9 @@
 			</div>
 		</div>
 
-		<!-- reply form -->
-		<div id="comment-reply-form" class="mv3">
-			<h3 class="ui container horizontal divider header">
-				<i class="paper plane icon"></i> Leave a Reply:
-			</h3>
-			<form id="comment-reply-form" class="all-forms">
-				<label class="pl0 fwsemibold" for="comment-reply">Have your say ...</label>
-				<textarea class="mv1" id="comment-reply" rows="10"></textarea>
-				<button class="ui button submit black">Post Comment</button>
-			</form>
+		<a href="#comment-reply-form" class="mv1">Leave a comment</a>
+		<div class="ui container horizontal divider header">
+		  <i class="meh icon"></i> Looks like you've reached the end
 		</div>
 	</div>
 
