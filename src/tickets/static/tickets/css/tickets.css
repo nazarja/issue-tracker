@@ -119,9 +119,21 @@
     display: none;
 }
 
-#load-more-comments {
+.delete-buttons {
     display: none;
-    margin: auto;
+}
+
+.delete-buttons span {
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: relative;
+    top: 7px;
+    cursor: pointer;
+}
+
+.delete-buttons span:hover {
+    color: black;
+    background-color: #e2e2e2;
 }
 
 /*

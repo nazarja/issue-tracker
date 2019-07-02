@@ -67,7 +67,20 @@ function editDeleteCommentListeners() {
 
     // delete comment
     deleteComment.forEach(comment => comment.onclick = (event) => {
-        GDComments('DELETE', event.target.dataset.deleteid);
+        const deleteBtn = event.target;
+        const deleteButtons = deleteBtn.nextElementSibling;
+        deleteButtons.style.display = 'block';
+        deleteBtn.style.color = '#2185d0';
+        deleteBtn.innerText = 'Are you Sure?';
+
+        deleteButtons.firstElementChild.onclick = () =>
+            GDComments('DELETE', event.target.dataset.deleteid);
+
+        deleteButtons.lastElementChild.onclick = () => {
+           deleteButtons.style.display = 'none';
+           deleteBtn.innerText = 'Delete';
+           deleteBtn.style.color = 'rgba(0,0,0,.4)';
+        }
     });
 }
 
@@ -210,12 +223,12 @@ function createCommentHTML(item) {
         : item.actions = '';
 
     return `
-            <div class="comment mv1" data-commentid="${item.id}">
+            <div class="comment mv1 pb1" data-commentid="${item.id}">
                 <a class="avatar">
                     <img src="${item.avatar}" alt="avatar image">
                 </a>
                 <div class="content">
-                    <a class="author">${item.username}</a>
+                    <span class="author">${item.username}</span>
                     <div class="metadata">
                         <div class="date">${moment(item.updated_on).fromNow()}</div>
                     </div>
@@ -228,6 +241,10 @@ function createCommentHTML(item) {
                     </div>
                     <div class="actions">
                         ${item.actions}
+                        <span class="delete-buttons">
+                            <span class="yes">Yes</span>
+                            <span class="no">No, Cancel.</span>
+                        </span> 
                     </div>
                 </div>
             </div>
