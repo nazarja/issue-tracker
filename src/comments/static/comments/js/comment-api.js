@@ -12,6 +12,7 @@ const ticketReplyFormTextArea = document.querySelector('#comment-reply-form text
 const commentsContainer = document.querySelector('#comments-container');
 const emptyContainer = document.querySelector('#no-comments');
 const numberOfComments = document.querySelector('#number-of-comments');
+const endOfComments = document.querySelector('#end-of-comments');
 
 
 /*
@@ -21,18 +22,11 @@ const numberOfComments = document.querySelector('#number-of-comments');
 */
 
 
-// reply form chars left
-function replyCharactersLeftListener() {
-    ticketReplyFormTextArea.onkeypress = () =>
-        commentCharacterLeft.innerHTML = 500 - ticketReplyFormTextArea.value.length;
-}
-
-
 // listen for new reply
 function newPostListener() {
     postTicketReply.onsubmit = () => {
         event.preventDefault();
-        PPComments('POST', ticketReplyFormTextArea.value, getURL())
+        PostPutComments('POST', ticketReplyFormTextArea.value, getURL())
     }
 }
 
@@ -61,7 +55,7 @@ function editDeleteCommentListeners() {
             text.innerHTML = textarea.value;
             text.style.display = 'block';
             actions.style.display = 'block';
-            PPComments('PUT', textarea.value, _id);
+            PostPutPComments('PUT', textarea.value, _id);
         }
     });
 
@@ -74,7 +68,7 @@ function editDeleteCommentListeners() {
         deleteBtn.innerText = 'Are you Sure?';
 
         deleteButtons.firstElementChild.onclick = () =>
-            GDComments('DELETE', event.target.dataset.deleteid);
+            GetDeleteComments('DELETE', event.target.dataset.deleteid);
 
         deleteButtons.lastElementChild.onclick = () => {
            deleteButtons.style.display = 'none';
@@ -85,6 +79,12 @@ function editDeleteCommentListeners() {
 }
 
 
+// reply form chars left
+function replyCharactersLeftListener() {
+    ticketReplyFormTextArea.onkeypress = () =>
+        commentCharacterLeft.innerHTML = (500 - ticketReplyFormTextArea.value.length).toString();
+}
+
 /*
 =========================================================
     API CALLS
@@ -93,7 +93,7 @@ function editDeleteCommentListeners() {
 
 
 // get only
-function GDComments(method, _id=null) {
+function GetDeleteComments(method, _id=null) {
 
     let endpoint;
     if (method === 'GET') endpoint = `${getURL()}/list/`;
@@ -119,7 +119,7 @@ function GDComments(method, _id=null) {
 
 
 // POST, PUT
-function PPComments(method, text, _id) {
+function PostPutComments(method, text, _id) {
 
     let body;
     let endpoint;
@@ -162,8 +162,10 @@ function prependNewComment(item) {
     const div = document.createElement('div');
     div.innerHTML = createCommentHTML(item);
     commentsContainer.prepend(div);
-    updateNumberOfComments('increase');
+
     editDeleteCommentListeners();
+    updateNumberOfComments('increase');
+    isEmptyCommentsContainer();
 }
 
 
@@ -171,18 +173,16 @@ function prependNewComment(item) {
 function removeComment(_id) {
     const comment = document.querySelector(`[data-commentid="${_id}"]`);
     comment.remove();
-    updateNumberOfComments('decrease')
+
+    updateNumberOfComments('decrease');
+    isEmptyCommentsContainer();
 }
 
 
 // create multiple comments
 function createComments(data) {
-    // if no results show empty placeholder
-    if (!data.count) {
-        emptyContainer.style.display = 'block';
-        return false;
-    }
-    emptyContainer.style.display = 'none';
+    isEmptyCommentsContainer();
+    if (!data.count) return false;
 
     // iterate results, create comment html
     data.results.forEach(item => {
@@ -194,18 +194,9 @@ function createComments(data) {
     // listener for edit / delete actions
     numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${data.count}`;
     editDeleteCommentListeners();
+    updateNumberOfComments();
 }
 
-// update comments count
-function updateNumberOfComments(direction) {
-    let num = parseInt(numberOfComments.innerHTML.match(/\d+/g)[0]);
-    if (direction === 'increase') {
-        numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num + 1}`;
-    }
-    else {
-        numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num - 1}`;
-    }
-}
 
 /*
 =========================================================
@@ -251,10 +242,36 @@ function createCommentHTML(item) {
         `;
 }
 
+// update comments count
+function updateNumberOfComments(direction) {
+    let num = parseInt(numberOfComments.innerHTML.match(/\d+/g)[0]);
+
+    if (direction === 'increase') {
+        numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num + 1}`;
+    }
+    else if (direction === 'decrease'){
+        numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num - 1}`;
+    }
+}
+
+// decide to show empty container
+function isEmptyCommentsContainer() {
+    const num = parseInt(numberOfComments.innerHTML.match(/\d+/g)[0]);
+    if (num === 0) {
+        emptyContainer.style.display = 'block';
+        endOfComments.style.display = 'none';
+        console.log(0)
+    }
+    else {
+        emptyContainer.style.display = 'none';
+        endOfComments.style.display = 'block';
+    }
+}
+
 
 /*
 =========================================================
-    MISC FUNCTIONS
+    INIT FUNCTIONS
 =========================================================
 */
 
@@ -266,7 +283,7 @@ function getURL() {
 
 
 function init() {
-    GDComments('GET');
+    GetDeleteComments('GET');
     newPostListener();
     replyCharactersLeftListener();
 }

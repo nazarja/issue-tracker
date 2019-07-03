@@ -51,6 +51,7 @@
 
 #ticket.ui.card {
     width: 100% !important;
+    margin: 14px auto;
 }
 
 #ticket .ui.avatar.image {
@@ -115,7 +116,7 @@
 =======================================
 */
 
-#no-comments {
+#no-comments, #end-of-comments {
     display: none;
 }
 

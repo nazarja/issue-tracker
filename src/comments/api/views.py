@@ -1,16 +1,21 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from .serializers import CommentListSerializer, CommentCreateSerializer, CommentUpdateSerializer
-from rest_framework.response import Response
 from .permissions import IsOwnerOrReadOnly
-from rest_framework import pagination
+from rest_framework.pagination import PageNumberPagination
 from comments.models import Comment
+
+
+class LargeResultsSetPagination(PageNumberPagination):
+    page_size = 100
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 
 class CommentListAPIView(ListAPIView):
     lookup_field = 'ticket'
     serializer_class = CommentListSerializer
     ordering = '-updated_on'
-    pagination.PageNumberPagination.page_size = 100
+    pagination_class = LargeResultsSetPagination
     permission_classes = [IsOwnerOrReadOnly]
 
     def get_queryset(self, *args, **kwargs):
