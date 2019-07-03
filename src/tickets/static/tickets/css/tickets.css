@@ -98,15 +98,15 @@
     margin: 10px;
 }
 
-#author-container-details {
-    margin-top: 10px;
-}
-
 #author-container-details img.ui.avatar.image {
     width: 80px !important;
     height: 80px !important;
     margin-right: 10px;
     margin-top: -5px;
+}
+
+.be-the-first-button {
+    max-width: 120px !important;
 }
 
 
@@ -143,6 +143,26 @@
 =======================================
 */
 
+@media screen and (max-width: 1000px) {
+    #ticket #author-container {
+        display: block;
+        float: none;
+        margin-top: 45px;
+    }
+
+    #ticket #author-username {
+        position: absolute;
+        left: 63px;
+        margin-top: 9px;
+    }
+
+    #ticket .ticket-view-details-button {
+        position: absolute;
+        right: 27px;
+        top: 13px;
+    }
+}
+
 
 @media screen and (max-width: 800px) {
     #ticket-bottom-segment,
@@ -168,17 +188,6 @@
     #ticket .description {
         padding-left: 2px !important;
     }
-
-    #ticket #author-container {
-        display: block;
-        float: none;
-        margin-top: 35px;
-    }
-
-    #ticket #author-username {
-        display: block;
-    }
-
 
     #reset-all-values {
         top: -6px;
@@ -220,6 +229,10 @@
     #ticket-details #extra-content-left {
         float: none !important;
         display: block;
+    }
+
+    #ticket .ticket-category {
+        display: none;
     }
 }
 

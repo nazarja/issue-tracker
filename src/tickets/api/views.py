@@ -1,8 +1,11 @@
 from rest_framework.generics import ListAPIView, DestroyAPIView
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from .serializers import TicketListSerializer, TicketDeleteSerializer
 from .permissions import IsOwnerOrReadOnly
-from tickets.models import Ticket
+from django.http import Http404
 from django.db.models import Q
+from tickets.models import Ticket
 
 
 class TicketListAPIView(ListAPIView):
@@ -41,3 +44,25 @@ class TicketDeleteAPIView(DestroyAPIView):
     queryset = Ticket.objects.all()
     serializer_class = TicketDeleteSerializer
     permission_classes = [IsOwnerOrReadOnly]
+
+
+class TicketVoteAPIView(APIView):
+
+    def get_object(self, _id):
+        try:
+            return Ticket.objects.get(id=_id)
+        except Ticket.DoesNotExist:
+            raise Http404
+
+    def put(self, request, id, format=None):
+        instance = self.get_object(id)
+        user = self.request.user
+
+        if user in instance.vote_profiles.all():
+            return Response({'text': 'already voted for this', 'votes': instance.votes})
+        else:
+            instance.votes += 1
+            instance.vote_profiles.add(user)
+            instance.save()
+            return Response({'text': 'ok', 'votes': instance.votes})
+

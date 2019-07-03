@@ -181,7 +181,7 @@ function removeComment(_id) {
 
 // create multiple comments
 function createComments(data) {
-    isEmptyCommentsContainer();
+     updateNumberOfComments();
     if (!data.count) return false;
 
     // iterate results, create comment html
@@ -245,13 +245,13 @@ function createCommentHTML(item) {
 // update comments count
 function updateNumberOfComments(direction) {
     let num = parseInt(numberOfComments.innerHTML.match(/\d+/g)[0]);
-
     if (direction === 'increase') {
         numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num + 1}`;
     }
     else if (direction === 'decrease'){
         numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num - 1}`;
     }
+    isEmptyCommentsContainer();
 }
 
 // decide to show empty container
@@ -260,7 +260,6 @@ function isEmptyCommentsContainer() {
     if (num === 0) {
         emptyContainer.style.display = 'block';
         endOfComments.style.display = 'none';
-        console.log(0)
     }
     else {
         emptyContainer.style.display = 'none';

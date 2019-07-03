@@ -28,14 +28,13 @@ class Ticket(models.Model):
     votes = models.IntegerField(default=0)
     created_on = models.DateTimeField(default=datetime.now)
     updated_on = models.DateTimeField(auto_now=True)
-    cost = models.IntegerField(default=0, null=True, blank=True)
     earned = models.IntegerField(default=0, null=True, blank=True)
     issue = models.CharField(max_length=100, blank=False, null=True, choices=ISSUE_CHOICES)
     slug = models.SlugField(null=True, blank=True)
+    vote_profiles = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='vote_profiles_many')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        self.cost = 5 if self.issue == 'feature' else 0
         self.avatar = self.user.profile.avatar
         self.username = self.user.username
         super(Ticket, self).save(*args, **kwargs)
@@ -45,3 +44,5 @@ class Ticket(models.Model):
 
     def get_absolute_url(self):
         return reverse(f'tickets:{self.issue}s')
+
+

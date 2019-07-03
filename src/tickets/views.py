@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Ticket
 from .forms import TicketForm
@@ -24,11 +25,21 @@ class TicketListView(ListView):
 
 class TicketDetailView(DetailView):
     template_name = 'tickets/ticket-detail-view.html'
-    extra_context = {'issue': 'issue details'}
+    extra_context = {'issue': 'issue details', 'already_voted': 'false'}
 
     def get_object(self, queryset=Ticket):
         _id = self.kwargs.get('id')
-        return get_object_or_404(Ticket, id=_id)
+        instance = Ticket.objects.filter(id=_id).first()
+        user = self.request.user
+
+        if instance:
+            if user in instance.vote_profiles.all():
+                self.extra_context['already_voted'] = 'true'
+            else:
+                self.extra_context['already_voted'] = 'false'
+            return instance
+        else:
+            raise Http404
 
 
 class TicketCreateView(CreateView):

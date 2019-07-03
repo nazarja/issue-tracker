@@ -26,8 +26,8 @@ function titleInputAction() {
 }
 
 function descriptionInputAction() {
-    descriptionPreview.innerHTML = descriptionInput.value;
-    descriptionCharsLeft.innerHTML = descriptionInput.value.length;
+    descriptionPreview.innerHTML = (100 - descriptionInput.value.length).toString();
+    descriptionCharsLeft.innerHTML = (2000 - descriptionInput.value.length).toString();
 }
 
 document.querySelector('#id_status').onchange = (event) => {

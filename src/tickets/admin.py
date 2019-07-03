@@ -3,7 +3,8 @@ from .models import Ticket
 
 
 class TicketAdmin(admin.ModelAdmin):
-    readonly_fields = ('id', 'user', 'username', 'slug', 'cost',  'votes', 'updated_on',)
+    readonly_fields = ('id', 'user', 'username', 'slug', 'votes', 'updated_on', 'vote_profiles',)
+    filter_horizontal = ('vote_profiles',)
 
 
 admin.site.register(Ticket, TicketAdmin)

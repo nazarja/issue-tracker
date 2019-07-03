@@ -10,18 +10,34 @@
 	<div class="ui container">
 		{% include 'tickets/partials/ticket-details-preview-item.html' %}
 
+	    <!-- ticket owner controls -->
 		{% if request.user == object.user %}
 			<a href="{% url 'tickets:ticket-update-view' id=object.id slug=object.slug %}" class="ui button tiny submit green">Edit Issue</a>
 			<button id="ticket-delete-btn" class="ui button tiny submit red">Delete Issue</button>
+		{% else %}
+
+			<!-- user voting controls-->
+			{% if object.issue == 'bug' %}
+				<p class="fwsemibold">Vote For This Issue:</p>
+				{% if already_voted == 'true' %}
+					<button class="ui button tiny" disabled>You have already voted for this</button> {{ already_voted }}
+				{% else %}
+					<button id="ticket-vote-free" class="ui button tiny primary" data-id="{{ object.id }}">I have this too</button> {{ already_voted }}
+				{% endif %}
+			{% elif object.issue == 'feature' %}
+				<p class="fwsemibold">Support This Issue:</p>
+				<button id="ticket-vote-single" class="ui button tiny primary" data-id="{{ object.id }}">Single Vote - I Want This Too - &euro; 5.00</button>
+				<button id="ticket-vote-double" class="ui button tiny green" data-id="{{ object.id }}">Double Vote - I Really Want This Too - &euro; 8.00</button>
+			{% endif %}
 		{% endif %}
 	</div>
 
-	<div class="ui container mv3">
+	<div class="ui container">
+		<h3 id="number-of-comments" class="ui container horizontal divider header mt6 mb4">
+			<i class="comment icon"></i> Comments 0
+		</h3>
 		<!-- reply form -->
-		<div id="comment-reply-form" class="mv3">
-			<h3 id="number-of-comments" class="ui container horizontal divider header">
-			  <i class="comment icon"></i> Comments 0
-			</h3>
+		<div id="comment-reply-form">
 			<form id="comment-reply-form" class="all-forms">
 				<label class="pl0 fwsemibold" for="comment-reply">
 					<i class="paper plane icon"></i> Leave a Reply. <span class="pl2">Characters Left: <span id="comment-characters-left">500</span></span>
@@ -31,14 +47,12 @@
 			</form>
 		</div>
 
-		<div class="ui divider mt2"></div>
-
-		<!-- comments -->
-		<div id="comments">
+		<!-- comments container -->
+		<div id="comments" class="mv4">
 			<div id="comments-container" class="ui comments"></div>
 
-			<!-- empty -->
-			<div id="no-comments" class="ui placeholder pv10 tac segment">
+			<!-- empty comments container-->
+			<div id="no-comments" class="ui placeholder pv6 tac segment">
 				<div class="ui icon header">
 					<i class="frown icon"></i>
 					We don't have any Comments for this Ticket
@@ -46,6 +60,7 @@
 			</div>
 		</div>
 
+		<!-- end of comments tag-line -->
 		<div id="end-of-comments" class="ui container horizontal divider header">
 		  <i class="meh icon"></i> Looks like you've reached the end
 		</div>
@@ -57,5 +72,6 @@
 {% endblock %}
 {% block javascript %}
 	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
+	<script src="{%  static 'tickets/js/ticket-vote-api.js' %}"></script>
 	<script src="{%  static 'comments/js/comment-api.js' %}"></script>
 {% endblock %}

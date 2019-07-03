@@ -22,7 +22,7 @@ if ((document.querySelector('#current-page'))) {
     // set pagination button on first load
     if (parseInt(nextPage.dataset.count) <= 8)
         nextPage.setAttribute('disabled', 'true');
-    previousPage.setAttribute('disabled', 'true');
+        previousPage.setAttribute('disabled', 'true');
 
     // global querystring
     queryString = {
@@ -47,7 +47,7 @@ if ((document.querySelector('#current-page'))) {
     // simple next page buttons
     [nextPage, previousPage]
         .forEach(item => item.onclick = (event) => {
-            if (event.target.id === 'next-page') queryString.page += 1;
+            if (event.currentTarget.id === 'next-page') queryString.page += 1;
             else queryString.page -= 1;
             toTopClick.click();
             busyLoader(1000);
@@ -85,7 +85,7 @@ if (document.querySelector('#ticket-delete-btn')) {
 
 function ticketListAction(queryString) {
 
-    let endpoint = `/tickets/api/list/?issue=${queryString.issue}&order=${queryString.order}&page=${queryString.page < 1 ? 1 : queryString.page}`;
+    let endpoint = `/tickets/api/list/?issue=${queryString.issue}&order=${queryString.order}&page=${queryString.page}`;
     endpoint = queryString.query === false ? endpoint : endpoint + `&q=${queryString.query}`;
 
     fetch(endpoint, {
@@ -116,8 +116,8 @@ function ticketDeleteAction() {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-CSRFToken': csrftoken,
-                    'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': csrftoken,
+                'X-Requested-With': 'XMLHttpRequest',
             }),
             credentials: 'same-origin',
         })
@@ -166,7 +166,7 @@ function createTicketList(data) {
                 <div class="content">
                     <div class="left floated">
                         ${status}
-                        <span class="category pl1 tcg70">${item.issue.charAt(0).toUpperCase() + item.issue.slice(1)} </span>
+                        <span class="ticket-category category pl1 tcg70">${item.issue.charAt(0).toUpperCase() + item.issue.slice(1)} </span>
                     </div>
                     <div id="author-container" class="author right floated">
                         <img class="ui avatar image" src="${item.avatar}" height="40" width="40" alt="avatar">
@@ -177,6 +177,7 @@ function createTicketList(data) {
                     </div>
                     <div class="description pt1">
                         <a class="header" href="/tickets/${item.id}/${item.slug}/details/">${item.title}</a>
+                        <a class="ticket-view-details-button category pl1 pr1 right floated ui button mini" href="/tickets/${item.id}/${item.slug}/details/">Vote : View Details</a>
                     </div>
                 </div>
                 <div class="extra content">
