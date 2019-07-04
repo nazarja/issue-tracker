@@ -6,7 +6,6 @@
 
 	<h1 class="callout">Cart Items</h1>
 	<div class="ui container">
-
 		<h2 class="pv1 tac"><i class="shopping basket icon mr2"></i>Review your Cart Items</h2>
 
 		{% if cart_count > 0 %}
@@ -44,7 +43,7 @@
 							<div class="ui equal width center aligned row">
 								<div class="column">Total Votes: <span class="cart-totals">{{ cart_votes }}</span></div>
 								<div class="column">Total Items: <span class="cart-totals">{{ cart_count }}</span></div>
-								<div class="column">Total Cost: <span class="cart-totals">{{ cart_total }}.00</span></div>
+								<div class="column">Total Costs: <span class="cart-totals">{{ cart_total }}.00</span></div>
 							</div>
 						</div>
 					</th>
@@ -61,10 +60,17 @@
 				</tr>
 				</tfoot>
 			</table>
+		{% else %}
+			<!-- Nothing in Cart-->
+			<div id="no-cart-items" class="ui placeholder pv6 tac segment">
+				<div class="ui icon header">
+					<i class="frown icon"></i>
+					You dont have anything in your cart right now
+				</div>
+			</div>
 		{% endif %}
 	</div>
 {% endblock %}
-
 {% block javascript %}
 	<script src="{% static 'cart/js/cart.js'  %}"></script>
 {% endblock %}

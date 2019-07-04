@@ -53,8 +53,12 @@
     }
 }
 
-@media screen and (max-width: 458px) {
+@media screen and (max-width: 500px) {
     #go-to-checkout-button {
         margin-bottom: -1px !important;
+    }
+
+    .cart-totals {
+        display: block;
     }
 }

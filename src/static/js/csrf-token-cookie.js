@@ -24,3 +24,4 @@ function getCookie(name) {
 
 // variable to use for fetch / ajax requests
 var csrftoken = getCookie('csrftoken');
+

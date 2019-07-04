@@ -1,4 +1,15 @@
 
+// busyloader
+if (window.location.href.endsWith('/cart/')) {
+    busyLoader(0);
+}
+
+/*
+===========================================
+    CART EVENT LISTENERS
+===========================================
+*/
+
 // add to cart
 if (document.querySelector('#ticket-vote-single')) {
     const voteSingle = document.querySelector('#ticket-vote-single');
@@ -22,28 +33,47 @@ if (document.querySelector('#ticket-vote-single')) {
             data. value = 8;
             data.votes = 2;
         }
-
-        addToCart(data);
+        postCartTickets('create/', data, 'create')
     });
 }
 
 
 // update cart - remove items
 if (document.querySelector('#update-cart-button')) {
-    const voteSingle = document.querySelector('#update-cart-button');
-    const cartItemsCount = document.querySelectorAll('.cart-item-count');
-    const checkboxes = document.querySelectorAll('[type="checkbox"]');
+    document.querySelector('#update-cart-button').onclick = () => getCartTickets('update');
+    document.querySelector('#go-to-checkout-button').onclick = () => getCartTickets('checkout');
+}
 
-    checkboxes.forEach(item => console.log(item.value));
+/*
+===========================================
+    GET CART UPDATED ITEMS
+===========================================
+*/
+
+function getCartTickets(action) {
+    const checkboxes = document.querySelectorAll('[type="checkbox"]');
+    let data = [];
+
+    checkboxes.forEach(item => !item.checked ?  data.push(item.value): false);
+    console.log(data);
+    data = data.join(',');
+    postCartTickets('update/', data, action);
 }
 
 
 
-function addToCart(data) {
-    const cartItemsCount = document.querySelectorAll('.cart-item-count');
+/*
+===========================================
+    CART POST REQUESTS
+===========================================
+*/
 
+function postCartTickets(endpoint, data, action) {
 
-    fetch(`/cart/update/`, {
+    let body = `&data=${data}`;
+    if (endpoint === 'create/') body = `&value=${data.value}&votes=${data.votes}&id=${data.id}`;
+
+    fetch(`/cart/` + endpoint, {
         headers: new Headers({
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-CSRFToken': csrftoken,
@@ -51,20 +81,28 @@ function addToCart(data) {
         }),
         credentials: 'same-origin',
         method: 'POST',
-        body: `&value=${data.value}&votes=${data.votes}&id=${data.id}`,
+        body: body,
     })
     .then(res => {
-        if (res.status === 200) {
-            return res.json()
-        }
+        if (res.status === 200) return res.json();
     })
     .then(data => {
-        console.log(data);
-        cartItemsCount.forEach(item => item.innerText = parseInt(item.innerText) + 1)
+        if (action === 'create') afterCreated();
+        else if (action === 'update') window.location.href = '/cart/';
+        else if (action === 'checkout') window.location.href = '/checkout/';
+        console.log(data)
     })
     .catch(err => console.log(err))
 }
 
-function removeFromCart() {
+/*
+===========================================
+    AFTER CART POST REQUESTS
+===========================================
+*/
 
+function afterCreated() {
+       document.querySelectorAll('.cart-item-count')
+           .forEach(item => item.innerText = parseInt(item.innerText) + 1);
 }
+
