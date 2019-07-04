@@ -1,0 +1,70 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% block head_title %}View Cart{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'cart/css/cart.css' %}">{% endblock %}
+{% block content %}
+
+	<h1 class="callout">Cart Items</h1>
+	<div class="ui container">
+
+		<h2 class="pv1 tac"><i class="shopping basket icon mr2"></i>Review your Cart Items</h2>
+
+		{% if cart_count > 0 %}
+			<h3 class="on-mobile-width">TICKETS</h3>
+			<table class="ui celled definition very padded inverted table">
+				<thead id="thead" class="full-width no-mobile-width">
+				<tr>
+					<th>REMOVE</th>
+					<th >#ID</th>
+					<th>TICKET</th>
+					<th>VOTES</th>
+					<th>COST</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for item in cart_items %}
+					<tr>
+						<td class="on-mobile-width remove-ticket">REMOVE TICKET</td>
+						<td class="collapsing">
+							<div class="ui fitted slider checkbox">
+								<input type="checkbox" value="{{ item.timestamp }}"> <label></label>
+							</div>
+						</td>
+						<td><span class="on-mobile-width">ID</span>#{{ item.ticket.id }}</td>
+						<td><span class="on-mobile-width">TICKET</span>{{ item.ticket.title }}</td>
+						<td><span class="on-mobile-width">VOTES</span>{{ item.votes }}</td>
+						<td><span class="on-mobile-width">COST</span>&euro; {{ item.total }}.00</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+				<tfoot id="tfoot" class="full-width">
+				<tr>
+					<th colspan="5">
+						<div class="ui equal width grid">
+							<div class="ui equal width center aligned row">
+								<div class="column">Total Votes: <span class="cart-totals">{{ cart_votes }}</span></div>
+								<div class="column">Total Items: <span class="cart-totals">{{ cart_count }}</span></div>
+								<div class="column">Total Cost: <span class="cart-totals">{{ cart_total }}.00</span></div>
+							</div>
+						</div>
+					</th>
+				</tr>
+				<tr>
+					<th colspan="5">
+						<div id="go-to-checkout-button" class="ui right floated green labeled icon mv1 ml1 button">
+							<i class="angle double right icon"></i> Proceed to Checkout
+						</div>
+						<div id="update-cart-button" class="ui right floated orange labeled icon button mv1">
+							<i class="sync alternate icon"></i> Update Cart
+						</div>
+					</th>
+				</tr>
+				</tfoot>
+			</table>
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="{% static 'cart/js/cart.js'  %}"></script>
+{% endblock %}

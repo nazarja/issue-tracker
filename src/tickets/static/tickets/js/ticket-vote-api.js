@@ -1,8 +1,4 @@
 
-// const voteSingle = document.querySelector('#ticket-vote-single');
-// const voteDouble = document.querySelector('#ticket-vote-double');
-
-
 if (document.querySelector('#ticket-vote-free')) {
     const votesCount = document.querySelector('#votes-count');
     const voteFree = document.querySelector('#ticket-vote-free');
@@ -11,7 +7,7 @@ if (document.querySelector('#ticket-vote-free')) {
         event.preventDefault();
         const _id = event.target.dataset.id;
 
-        fetch(`/tickets/api/${_id}/vote/`, {
+        fetch(`/cart/api/${_id}/add/`, {
             headers: new Headers({
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'X-CSRFToken': csrftoken,
@@ -27,8 +23,7 @@ if (document.querySelector('#ticket-vote-free')) {
             }
         })
         .then(data => {
-            console.log(data);
-            if (data.text == 'ok') {
+            if (data.text === 'ok') {
                 voteFree.setAttribute('disabled', 'true');
                 voteFree.classList.add('gey');
                 voteFree.classList.remove('primary');

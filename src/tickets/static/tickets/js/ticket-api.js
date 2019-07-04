@@ -98,7 +98,6 @@ function ticketListAction(queryString) {
     .then(res => res.json())
     .then(data => {
         createTicketList(data);
-        console.log(data)
     })
     .catch(err => console.log(err));
 

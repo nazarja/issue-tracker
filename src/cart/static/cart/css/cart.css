@@ -1,0 +1,60 @@
+
+/*
+===========================================
+    CART STYLES
+===========================================
+*/
+
+.cart-totals {
+    background: grey;
+    color: white;
+    font-weight: bold;
+    padding: 3px 10px;
+    margin: 0;
+    margin-left: 5px;
+    border-radius: 3px;
+}
+
+.on-mobile-width {
+    display: none;
+}
+
+/*
+===========================================
+    CART MEDIA QUERIES
+===========================================
+*/
+
+@media screen and (max-width: 768px) {
+
+    td {
+        max-width: 80vw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis !important;
+    }
+
+    .on-mobile-width {
+        display: inline-block;
+        font-weight: bolder;
+        padding: 2px 6px;
+        min-width: 80px;
+    }
+
+    .remove-ticket {
+        margin: 10px 16px 15px 5px !important;
+        background: none !important;
+    }
+
+    .no-mobile-width {
+        display: none !important;
+        background: var(--black);
+        color: white;
+    }
+}
+
+@media screen and (max-width: 458px) {
+    #go-to-checkout-button {
+        margin-bottom: -1px !important;
+    }
+}

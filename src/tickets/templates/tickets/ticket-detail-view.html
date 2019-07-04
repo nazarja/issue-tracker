@@ -20,9 +20,9 @@
 			{% if object.issue == 'bug' %}
 				<p class="fwsemibold">Vote For This Issue:</p>
 				{% if already_voted == 'true' %}
-					<button class="ui button tiny" disabled>You have already voted for this</button> {{ already_voted }}
+					<button class="ui button tiny" disabled>You have already voted for this</button>
 				{% else %}
-					<button id="ticket-vote-free" class="ui button tiny primary" data-id="{{ object.id }}">I have this too</button> {{ already_voted }}
+					<button id="ticket-vote-free" class="ui button tiny primary" data-id="{{ object.id }}">I have this too</button>
 				{% endif %}
 			{% elif object.issue == 'feature' %}
 				<p class="fwsemibold">Support This Issue:</p>
@@ -74,4 +74,5 @@
 	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
 	<script src="{%  static 'tickets/js/ticket-vote-api.js' %}"></script>
 	<script src="{%  static 'comments/js/comment-api.js' %}"></script>
+	<script src="{%  static 'cart/js/cart.js' %}"></script>
 {% endblock %}

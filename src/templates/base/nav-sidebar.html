@@ -16,7 +16,11 @@
 		<a class="item header" href="{% url 'account_signup' %}">Sign up</a>
 	{% else %}
 		<span class="item">Hi, {{ request.user.username|title }} <img id="side-bar-avatar" src="{{ request.session.avatar }}" alt="avatar"></span>
-		<a class="item" href="">Cart<div id="cart-feed-count" class="ui label green">0</div></a>
+		<a class="item" href="{% url 'cart:cart' %}">Cart
+			<div class="cart-item-count ui label green">
+				{{ cart_count }}
+			</div>
+		</a>
 		<a class="item" href="{% url 'activity_feed:activity_feed' %}">Activity Feed</a>
 		<a class="item" href="{% url 'tickets:bugs' %}">Bugs</a>
 		<a class="item" href="{% url 'tickets:features' %}">Features</a>
