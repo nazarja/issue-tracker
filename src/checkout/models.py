@@ -6,6 +6,12 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
+class OrderManager(models.Manager):
+    def get_latest_orders(self, query=None):
+        queryset = self.get_queryset()
+        return queryset
+
+
 class Order(models.Model):
     ticket = models.ManyToManyField(Ticket, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, null=False, blank=True, on_delete=models.DO_NOTHING)

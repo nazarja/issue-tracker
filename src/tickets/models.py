@@ -18,6 +18,12 @@ ISSUE_CHOICES = (
 )
 
 
+class TicketManager(models.Manager):
+    def get_latest_tickets(self, query=None):
+        queryset = self.get_queryset()
+        return queryset
+
+
 class Ticket(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, editable=False, on_delete=models.CASCADE)
     username = models.CharField(max_length=100, blank=False, null=True)

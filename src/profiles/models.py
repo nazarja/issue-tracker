@@ -18,6 +18,12 @@ def get_random_avatar_picture():
     return '/static/img/avatars/' + choice(get_avatars_files())
 
 
+class ProfileManager(models.Manager):
+    def get_latest_profiles(self, query=None):
+        queryset = self.get_queryset()
+        return queryset
+
+
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, default=1, related_name='profile', on_delete=models.CASCADE)
     avatar = models.CharField(max_length=260, default=get_random_avatar_picture())

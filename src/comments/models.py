@@ -4,6 +4,12 @@ from tickets.models import Ticket
 from django.utils.encoding import smart_text
 
 
+class CommentManager(models.Manager):
+    def get_latest_comments(self, query=None):
+        queryset = self.get_queryset()
+        return queryset
+
+
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.DO_NOTHING)
     username = models.CharField(max_length=100, blank=False, null=True)
