@@ -48,6 +48,10 @@
     position: relative;
 }
 
+#checkout .all-forms label {
+    margin-top: 10px;
+}
+
 .all-auth-form input[type="submit"],
 .all-auth-form button[type="submit"],
 .all-forms input[type="submit"] {
@@ -62,6 +66,13 @@
     resize: vertical;
 }
 
+
+/*
+=================================================
+    Forms - comments
+=================================================
+*/
+
 #comment-reply-form textarea {
     width: 100%;
      border-color: #ccc;
@@ -70,6 +81,37 @@
 .comment .inline-form {
     display: none;
 }
+
+
+/*
+=================================================
+    Forms - Checkout
+=================================================
+*/
+
+#payment-items .header {
+    max-width: 60vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+}
+
+#payment-steps {
+    width: 100%;
+}
+
+#order-form {
+    background-color: #e6e6e6;
+    padding: 30px 10px;
+    border-radius: 10px;
+}
+
+/*
+=================================================
+    Forms - divs
+=================================================
+*/
+
 
 .errorlist {
     text-align: left;
@@ -132,3 +174,4 @@
         position: relative;
     }
 }
+

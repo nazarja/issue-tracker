@@ -1,0 +1,81 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% block head_title %}Checkout{% endblock %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
+{% block content %}
+
+	<h1 class="callout">Checkout</h1>
+	<div id="checkout" class="ui container">
+		<div id="form-small" class="ui padded">
+
+			<!-- page header -->
+			<div id="payment-steps" class="ui steps">
+				<div class="step">
+					<i class="user icon red"></i>
+					<div class="content">
+						<div class="title">Address</div>
+						<div class="description">Fill in your Details</div>
+					</div>
+				</div>
+				<div class="step">
+					<i class="payment icon yellow"></i>
+					<div class="content">
+						<div class="title">Billing</div>
+						<div class="description">Enter billing information</div>
+					</div>
+				</div>
+				<div class="step">
+					<i class="info icon green"></i>
+					<div class="content">
+						<div class="title">Confirm Order</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- divider -->
+			<h4 class="ui horizontal divider header pa3">
+				<i class="edit outline icon red"></i>
+				Personal Details
+			</h4>
+
+			<form id="order-form" class="all-forms tac">
+				{{ form }}
+				<h4 class="ui horizontal divider header pa3">
+					<i class="credit card icon blue"></i>
+					Payment Details
+				</h4>
+
+				{{ payment_form.as_p }}
+				<button type="submit" class="ui button green mt2">Confirm Payment</button>
+			</form>
+			<!-- Item details -->
+			<h4 class="ui horizontal divider header pa3">
+				<i class="shopping bag icon green"></i>
+				Your Items
+			</h4>
+
+			<!-- review basket -->
+			<div id="payment-items" class="ui relaxed divided list">
+				{% for item in cart_items %}
+					<div class="item">
+						<i class="large ticket alternate middle aligned icon"></i>
+						<div class="content">
+							<a class="header">{{ item.ticket.title }}</a>
+							<div class="description">#{{ item.id }} | &euro;{{ item.total }}.00  | {{ item.votes }} Votes</div>
+						</div>
+					</div>
+				{% endfor %}
+
+				<div id="payment-items-totals" class="mv1 fwsemibold">
+					<p class="pb1 pr1 dib">Total Cost: {{ cart_total }}</p>
+					<p class="pb1 pr1 dib">Total Items:  {{ cart_count }}</p>
+					<p class="pb1 pr1 dib">Total Votes: {{ cart_votes }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}

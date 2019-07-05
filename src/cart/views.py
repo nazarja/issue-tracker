@@ -17,7 +17,6 @@ class CartCreateView(View):
     def post(self, request, *args, **kwargs):
         cart = request.session.get('cart', {'cart_items': [], 'cart_count': 0, 'cart_total': 0})
 
-        print()
         cart_item = {
             'id': int(request.POST.get('id')),
             'votes': int(request.POST.get('votes')),

@@ -1,6 +1,8 @@
 """ Production settings - unsuitable for  development """
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
+import os
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ''
 
@@ -22,3 +24,7 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_MAIN = ''
+
+# stripe keys
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')

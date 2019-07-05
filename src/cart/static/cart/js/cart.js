@@ -1,7 +1,7 @@
 
 // busyloader
 if (window.location.href.endsWith('/cart/')) {
-    busyLoader(0);
+    busyLoader(750);
 }
 
 /*
@@ -20,8 +20,8 @@ if (document.querySelector('#ticket-vote-single')) {
         event.preventDefault();
 
         let data = {
-            value: 0,
             id: event.target.dataset.id,
+            value: 0,
             votes: 0,
         };
 
@@ -30,7 +30,7 @@ if (document.querySelector('#ticket-vote-single')) {
             data.votes = 1;
         }
         else {
-            data. value = 8;
+            data.value = 8;
             data.votes = 2;
         }
         postCartTickets('create/', data, 'create')
@@ -71,7 +71,7 @@ function getCartTickets(action) {
 function postCartTickets(endpoint, data, action) {
 
     let body = `&data=${data}`;
-    if (endpoint === 'create/') body = `&value=${data.value}&votes=${data.votes}&id=${data.id}`;
+    if (endpoint === 'create/') body = `&id=${data.id}&value=${data.value}&votes=${data.votes}`;
 
     fetch(`/cart/` + endpoint, {
         headers: new Headers({

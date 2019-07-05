@@ -17,9 +17,9 @@
 					<a class="item header" href="{% url 'account_login' %}">Login</a>
 					<a class="item header" href="{% url 'account_signup' %}">Sign up</a>
 				{% else %}
-					<a class="item cart-popup" href="#" data-content="View Cart">
+					<a class="item cart-popup" href="{% url 'cart:cart' %}" data-content="View Cart">
 						<i class="shop icon"></i>
-						<div id="cart-feed-count" class="ui label green">0</div>
+						<div class="cart-item-count ui label green">{{ cart_count }}</div>
 					</a>
 					<div id="username-small" class="item">
 						<span class="avatar-label ui black label">
