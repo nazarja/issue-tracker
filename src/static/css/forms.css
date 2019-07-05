@@ -85,29 +85,6 @@
 
 /*
 =================================================
-    Forms - Checkout
-=================================================
-*/
-
-#payment-items .header {
-    max-width: 60vw;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis !important;
-}
-
-#payment-steps {
-    width: 100%;
-}
-
-#order-form {
-    background-color: #e6e6e6;
-    padding: 30px 10px;
-    border-radius: 10px;
-}
-
-/*
-=================================================
     Forms - divs
 =================================================
 */

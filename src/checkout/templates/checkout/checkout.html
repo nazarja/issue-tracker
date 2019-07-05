@@ -3,6 +3,7 @@
 {% block head_title %}Checkout{% endblock %}
 {% block css %}
 	<link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+	<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}"/>
 {% endblock %}
 {% block content %}
 
@@ -11,12 +12,12 @@
 		<div id="form-small" class="ui padded">
 
 			<!-- page header -->
-			<div id="payment-steps" class="ui steps">
+			<div id="payment-steps" class="ui steps mv3">
 				<div class="step">
-					<i class="user icon red"></i>
+					<i class="shopping basket icon red"></i>
 					<div class="content">
-						<div class="title">Address</div>
-						<div class="description">Fill in your Details</div>
+						<div class="title">Basket</div>
+						<div class="description">Review your items</div>
 					</div>
 				</div>
 				<div class="step">
@@ -34,32 +35,9 @@
 				</div>
 			</div>
 
-			<!-- Payment Form -->
-			<form id="order-form" class="all-forms tac mt2">
-
-				<h4 class="ui horizontal divider header pt1 pb3 ph3">
-					<i class="edit outline icon red"></i>
-					Personal Details
-				</h4>
-
-				{{ form }}
-				<h4 class="ui horizontal divider header pa3">
-					<i class="credit card icon blue"></i>
-					Payment Details
-				</h4>
-
-				{{ payment_form.as_p }}
-				<button type="submit" class="ui button green mt2">Confirm Payment</button>
-			</form>
-
-			<!-- Item details -->
-			<h4 class="ui horizontal divider header pa3">
-				<i class="shopping bag icon green"></i>
-				Your Items
-			</h4>
-
-			<!-- review basket -->
-			<div id="payment-items" class="ui relaxed divided list">
+			<!-- TOTALS / ITEMS -->
+			<div id="payment-items" class="ui relaxed divided list mv3">
+				<h3>Your Items</h3>
 				{% for item in cart_items %}
 					<div class="item">
 						<i class="large ticket alternate middle aligned icon"></i>
@@ -69,15 +47,38 @@
 						</div>
 					</div>
 				{% endfor %}
-
 				<div id="payment-items-totals" class="mv1 fwsemibold">
-					<p class="pb1 pr1 dib">Total Cost: {{ cart_total }}</p>
+					<p class="pb1 pr1 dib">Total Cost: &euro;{{ cart_total }}.00</p>
 					<p class="pb1 pr1 dib">Total Items:  {{ cart_count }}</p>
 					<p class="pb1 pr1 dib">Total Votes: {{ cart_votes }}</p>
 				</div>
+			</div>
+
+			<!-- PAYMENT FORM -->
+			<h4 class="ui horizontal divider header mt3 mb5 ph3">
+				<i class="credit card icon blue"></i>
+				Payment Details
+			</h4>
+			<div class="ui segment very padded">
+				<form id="payment-form" method="POST" action="{% url 'checkout:checkout-charge-view' %}" data-token="{{ publishable }}">
+					<div class="form-row">
+						<label for="card-element">Credit or debit card</label>
+						<!-- A Stripe Element will be inserted here. -->
+						<div id="card-element"></div>
+
+						<!-- Used to display form errors. -->
+						<div id="card-errors" role="alert"></div>
+					</div>
+
+					<!-- payment button -->
+					{% csrf_token %}
+					<button type="submit" class="ui button primary mt2">PAY NOW WITH STRIPE</button>
+				</form>
 			</div>
 		</div>
 	</div>
 {% endblock %}
 {% block javascript %}
+	<script src="https://js.stripe.com/v3/"></script>
+	<script type="text/javascript" src="{% static 'checkout/js/stripe.js' %}"></script>
 {% endblock %}

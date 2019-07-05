@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import CheckoutView
+from .views import CheckoutView, CheckoutChargeView
 from django.contrib.auth.decorators import login_required
 
 app_name = 'checkout'
 
 urlpatterns = [
     path('', login_required(CheckoutView.as_view()), name='checkout-view'),
+    path('charge/', login_required(CheckoutChargeView.as_view()), name='checkout-charge-view'),
 ]

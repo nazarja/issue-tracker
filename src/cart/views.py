@@ -15,7 +15,7 @@ class CartListView(View):
 class CartCreateView(View):
 
     def post(self, request, *args, **kwargs):
-        cart = request.session.get('cart', {'cart_items': [], 'cart_count': 0, 'cart_total': 0})
+        cart = request.session.get('cart', {'cart_items': [], 'cart_count': 0, 'cart_votes': 0, 'cart_total': 0})
 
         cart_item = {
             'id': int(request.POST.get('id')),
@@ -24,6 +24,8 @@ class CartCreateView(View):
             'timestamp': timezone.now().isoformat(),
         }
         cart['cart_items'].append(cart_item)
+        cart['cart_count'] += 1
+        cart['cart_total'] += int(request.POST.get('value'))
         request.session['cart'] = cart
         return JsonResponse({'cart': request.session['cart']})
 

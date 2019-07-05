@@ -1,27 +1,21 @@
 from django.db import models
 from tickets.models import Ticket
 from django.utils import timezone
+from django.conf import settings
+import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 class Order(models.Model):
-    full_name = models.CharField(max_length=80, blank=False)
-    street_address1 = models.CharField(max_length=100, blank=False)
-    street_address2 = models.CharField(max_length=100, blank=True)
-    town_or_city = models.CharField(max_length=60, blank=False)
-    postcode = models.CharField(max_length=20, blank=True)
-    county = models.CharField(max_length=40, blank=False)
-    country = models.CharField(max_length=40, blank=False)
-    date = models.DateField(default=timezone.now)
+    ticket = models.ManyToManyField(Ticket, blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, null=False, blank=True, on_delete=models.DO_NOTHING)
+    votes = models.IntegerField(null=True, blank=False)
+    total = models.IntegerField(null=True, blank=False)
+    date = models.DateTimeField()
 
     def __str__(self):
-        return f'{self.date} | {self.id} | {self.full_name}'
+        return f'{self.id} | {self.total}  | {self.votes}'
 
-
-class OrderItem(models.Model):
-    order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)
-    ticket = models.ForeignKey(Ticket, null=False, on_delete=models.CASCADE)
-    votes = models.IntegerField(blank=False)
-    total = models.IntegerField(blank=False)
-
-    def __str__(self):
-        return f'{self.ticket.id} | {self.total}  | {self.votes}'
+    def save(self, *args, **kwargs):
+        self.date = timezone.now()
+        super(Order, self).save(*args, **kwargs)

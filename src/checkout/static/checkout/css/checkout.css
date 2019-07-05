@@ -1,0 +1,62 @@
+
+/*
+=================================================
+    Forms - Checkout
+=================================================
+*/
+
+#payment-items .header {
+    max-width: 60vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+}
+
+#payment-steps {
+    width: 100%;
+}
+
+#order-form {
+    background-color: #e6e6e6;
+    padding: 30px 10px;
+    border-radius: 10px;
+}
+
+.form-row label {
+    position: relative;
+    top: -50px;
+    font-size: 20px;
+    background-color: white;
+    padding-right: 10px;
+}
+
+/*#payment-items-totals {*/
+/*    background-color: #e6e6e6;*/
+/*    padding: 20px 10px;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/* stripe elements */
+.StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
