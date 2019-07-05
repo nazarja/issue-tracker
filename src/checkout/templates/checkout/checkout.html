@@ -34,13 +34,14 @@
 				</div>
 			</div>
 
-			<!-- divider -->
-			<h4 class="ui horizontal divider header pa3">
-				<i class="edit outline icon red"></i>
-				Personal Details
-			</h4>
+			<!-- Payment Form -->
+			<form id="order-form" class="all-forms tac mt2">
 
-			<form id="order-form" class="all-forms tac">
+				<h4 class="ui horizontal divider header pt1 pb3 ph3">
+					<i class="edit outline icon red"></i>
+					Personal Details
+				</h4>
+
 				{{ form }}
 				<h4 class="ui horizontal divider header pa3">
 					<i class="credit card icon blue"></i>
@@ -50,6 +51,7 @@
 				{{ payment_form.as_p }}
 				<button type="submit" class="ui button green mt2">Confirm Payment</button>
 			</form>
+
 			<!-- Item details -->
 			<h4 class="ui horizontal divider header pa3">
 				<i class="shopping bag icon green"></i>
