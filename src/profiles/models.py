@@ -7,6 +7,7 @@ from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.contrib import messages
 from tickets.models import Ticket
+from django.utils import timezone
 
 
 def get_avatars_files():
@@ -19,14 +20,16 @@ def get_random_avatar_picture():
 
 
 class ProfileManager(models.Manager):
-    def get_latest_profiles(self, query=None):
-        queryset = self.get_queryset()
-        return queryset
+    def get_latest(self, query=None):
+        all_queryset = self.get_queryset().exclude(user=query).order_by('-created_on')[:5]
+        return all_queryset
 
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, default=1, related_name='profile', on_delete=models.CASCADE)
     avatar = models.CharField(max_length=260, default=get_random_avatar_picture())
+    created_on = models.DateTimeField(default=timezone.now)
+    objects = ProfileManager()
 
     def __str__(self):
         return self.user.username

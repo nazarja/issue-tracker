@@ -19,9 +19,10 @@ ISSUE_CHOICES = (
 
 
 class TicketManager(models.Manager):
-    def get_latest_tickets(self, query=None):
-        queryset = self.get_queryset()
-        return queryset
+    def get_latest(self, query=None):
+        all_queryset = self.get_queryset().exclude(user=query).order_by('-updated_on')[:5]
+        user_queryset = self.get_queryset().filter(user=query).order_by('-updated_on')[:5][:5]
+        return all_queryset | user_queryset
 
 
 class Ticket(models.Model):
@@ -39,6 +40,7 @@ class Ticket(models.Model):
     issue = models.CharField(max_length=100, blank=False, null=True, choices=ISSUE_CHOICES)
     slug = models.SlugField(null=True, blank=True)
     vote_profiles = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='vote_profiles_many')
+    objects = TicketManager()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

@@ -5,9 +5,10 @@ from django.utils.encoding import smart_text
 
 
 class CommentManager(models.Manager):
-    def get_latest_comments(self, query=None):
-        queryset = self.get_queryset()
-        return queryset
+    def get_latest(self, query=None):
+        all_queryset = self.get_queryset().exclude(user=query).order_by('-updated_on')[:5]
+        user_queryset = self.get_queryset().filter(user=query).order_by('-updated_on')[:5][:5]
+        return all_queryset | user_queryset
 
 
 class Comment(models.Model):
@@ -16,6 +17,7 @@ class Comment(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     text = models.CharField(max_length=500, blank=False, null=True)
     updated_on = models.DateTimeField(auto_now=True)
+    objects = CommentManager()
 
     def __str__(self):
         issue = self.ticket.issue
