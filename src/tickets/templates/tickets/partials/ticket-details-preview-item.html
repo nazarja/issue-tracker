@@ -32,7 +32,7 @@
 				<div id="extra-content-right" class="right floated fr">
 					<span class="pr1"><i class="thumbs up outline icon blue"></i> <span id="votes-count">{{ object.votes }}<span> votes</span>
 					{% if object.issue == 'feature' %}
-						<span class="pr1"><i class="money bill alternate outline icon green"></i> {{ object.earned }} earned</span>
+						<span class="pl1"><i class="money bill alternate outline icon green"></i> &euro;{{ object.earned }} earned</span>
 					{% endif %}
 				</div>
 			</div>
@@ -72,7 +72,7 @@
 				<div id="extra-content-right" class="right floated fr">
 					<span class="pr1"><i class="thumbs up outline icon blue"></i> 0 votes</span>
 					{% if object.issue == 'feature' %}
-						<span class="pr1"><i class="money bill alternate outline icon green"></i> 0 earned</span>
+						<span class="pl1"><i class="money bill alternate outline icon green"></i> &euro;0 earned</span>
 					{% endif %}
 				</div>
 			</div>

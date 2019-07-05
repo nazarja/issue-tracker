@@ -1,8 +1,10 @@
 from django.urls import path
-from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from .views import ActivityFeedListView
+
 
 app_name = 'activity_feed'
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='activity_feed/feed.html'), name='activity_feed'),
+    path('', login_required(ActivityFeedListView.as_view()), name='activity_feed'),
 ]

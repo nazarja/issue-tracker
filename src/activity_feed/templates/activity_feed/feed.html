@@ -4,5 +4,28 @@
 {% block css %}<link rel="stylesheet" href="{% static 'activity_feed/css/feed.css' %}"/>{% endblock %}
 {% block content %}
 	<h1 class="callout">Activity Feed</h1>
-	<div class="ui container"></div>
+	<div class="ui container">
+
+
+	<div class="ui tabular menu">
+		<div class="right menu">
+
+			<a class="item active" data-tab="tab-recent-feed">
+				Recent Activity Feed
+			</a>
+			<a class="item" data-tab="tab-profile-feed">
+				My Profile Feed
+			</a>
+		</div>
+	</div>
+
+	<div class="ui tab active" data-tab="tab-recent-feed">1</div>
+	<div class="ui tab" data-tab="tab-profile-feed">2</div>
+
+	</div>
+{% endblock %}
+{% block javascript %}
+	<script>
+        $('.tabular.menu .item').tab();
+	</script>
 {% endblock %}

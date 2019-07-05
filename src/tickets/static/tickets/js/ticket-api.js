@@ -155,7 +155,7 @@ function createTicketList(data) {
                     '<div class="ui yellow horizontal label">In Progress</div>' :  '<div class="ui green horizontal label">Resolved</div>';
 
         // determine if feature
-        let feature = item.issue === 'feature' ? `<span class="pr1"><i class="money bill alternate outline icon green"></i> ${item.earned} earned</span>` : '';
+        let feature = item.issue === 'feature' ? `<span class="pr1"><i class="money bill alternate outline icon green"></i> &euro;${item.earned} earned</span>` : '';
 
 
         // create element - map over results and create html
