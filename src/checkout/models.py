@@ -11,10 +11,10 @@ class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, null=False, blank=True, on_delete=models.DO_NOTHING)
     votes = models.IntegerField(null=True, blank=False)
     total = models.IntegerField(null=True, blank=False)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.id} | {self.total}  | {self.votes}'
+        return f'#{self.id} | Amount:{self.total}  | User: {self.user} | Votes: {self.votes}'
 
     def save(self, *args, **kwargs):
         self.date = timezone.now()

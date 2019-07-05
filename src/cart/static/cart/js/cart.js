@@ -1,9 +1,4 @@
 
-// busyloader
-if (window.location.href.endsWith('/cart/')) {
-    busyLoader(750);
-}
-
 /*
 ===========================================
     CART EVENT LISTENERS
