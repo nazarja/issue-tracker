@@ -98,6 +98,12 @@
     margin: 10px;
 }
 
+.ticket-title {
+    position: relative;
+    left: 2.5%;
+    max-width: 80%;
+}
+
 #author-container-details img.ui.avatar.image {
     width: 80px !important;
     height: 80px !important;
@@ -160,6 +166,10 @@
         position: absolute;
         right: 27px;
         top: 13px;
+    }
+
+    .ticket-title {
+        max-width: 95%;
     }
 }
 

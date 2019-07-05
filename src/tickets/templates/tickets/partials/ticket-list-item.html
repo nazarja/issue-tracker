@@ -9,7 +9,7 @@
 			<img class="ui avatar image" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
 		</div>
 		<div class="description pt1">
-			<a class="header left floated" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title|title }}</a>
+			<a class="header left floated ticket-title" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title|title }}</a>
 			<a class="ticket-view-details-button category pl1 pr1 right floated ui button mini" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">Vote : View Details</a>
 		</div>
 	</div>

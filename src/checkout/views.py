@@ -67,7 +67,15 @@ class CheckoutChargeView(View):
             # reset cart to zero and redirect
             messages.success(request, "Thank you for your payment!")
             request.session['cart'] = {'cart_items': [], 'cart_count': 0, 'cart_votes': 0, 'cart_total': 0}
-            return redirect('/activity-feed/')
+            return redirect('/checkout/payment-accepted/')
         else:
             messages.error(request, "We cant take payment right now, please try again later.")
-            return redirect('/activity-feed/')
+            return redirect('/checkout/')
+
+
+class CheckoutSuccessView(View):
+    template_name = 'checkout/success.html'
+    context = {}
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.context)
