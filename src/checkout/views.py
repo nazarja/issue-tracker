@@ -56,6 +56,7 @@ class CheckoutChargeView(View):
 
                 # increase tickets votes and add user to manytomany
                 ticket = get_object_or_404(Ticket, id=item['id'])
+                ticket.status = 'in progress'
                 ticket.votes += item['votes']
                 ticket.earned += item['value']
                 ticket.vote_profiles.add(user)
