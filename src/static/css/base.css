@@ -181,6 +181,14 @@ span.avatar-label.ui.black.label {
     text-overflow: ellipsis !important;
 }
 
+#activity-feed .user {
+    color: #1e70bf;
+}
+
+#activity-feed .code {
+    font-family: Menlo,Consolas,Monaco,"Andale Mono",monospace !important;
+}
+
 /*
 =================================================
     Busy Loader

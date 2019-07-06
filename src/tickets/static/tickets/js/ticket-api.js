@@ -168,8 +168,8 @@ function createTicketList(data) {
                         <span class="ticket-category category pl1 tcg70">${item.issue.charAt(0).toUpperCase() + item.issue.slice(1)} </span>
                     </div>
                     <div id="author-container" class="author right floated">
+                        <span id="author-username">${item.username.charAt(0).toUpperCase() + item.username.slice(1)}</span>
                         <img class="ui avatar image" src="${item.avatar}" height="40" width="40" alt="avatar">
-                        <span id="author-username">${item.username}</span>
                     </div>
                     <div class="meta">
             
