@@ -55,7 +55,7 @@ function editDeleteCommentListeners() {
             text.innerHTML = textarea.value;
             text.style.display = 'block';
             actions.style.display = 'block';
-            PostPutPComments('PUT', textarea.value, _id);
+            PostPutComments('PUT', textarea.value, _id);
         }
     });
 

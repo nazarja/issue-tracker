@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from tickets.models import Ticket
+from django.utils import timezone
 from django.utils.encoding import smart_text
 
 
@@ -16,6 +17,7 @@ class Comment(models.Model):
     username = models.CharField(max_length=100, blank=False, null=True)
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     text = models.CharField(max_length=500, blank=False, null=True)
+    created_on = models.DateTimeField(default=timezone.now)
     updated_on = models.DateTimeField(auto_now=True)
     objects = CommentManager()
 

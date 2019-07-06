@@ -7,7 +7,7 @@ if (document.querySelector('#ticket-vote-free')) {
         event.preventDefault();
         const _id = event.target.dataset.id;
 
-        fetch(`/cart/api/${_id}/add/`, {
+        fetch(`/tickets/api/${_id}/vote/`, {
             headers: new Headers({
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'X-CSRFToken': csrftoken,

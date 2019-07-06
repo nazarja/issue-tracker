@@ -22,11 +22,11 @@ if (location.href.includes('update')) {
 
 function titleInputAction() {
     titlePreview.innerHTML = titleInput.value;
-    titleCharsLeft.innerHTML = titleInput.value.length;
+    titleCharsLeft.innerHTML = (100 - titleInput.value.length).toString();
 }
 
 function descriptionInputAction() {
-    descriptionPreview.innerHTML = (100 - descriptionInput.value.length).toString();
+    descriptionPreview.innerHTML = descriptionInput.value;
     descriptionCharsLeft.innerHTML = (2000 - descriptionInput.value.length).toString();
 }
 

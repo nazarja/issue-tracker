@@ -23,40 +23,207 @@
 
 		<!-- other users -->
 		<div class="ui tab active" data-tab="tab-recent-feed">
-			{% for object in object_list %}
-				{% with object|class_name as model %}
-					{% if model == 'Ticket' and object.username != request.user.username %}
-						<p>Ticket:  {{ object.username }} - {{ object.updated_on }}</p>
-					{% elif  model == 'Comment' and object.username != request.user.username %}
-						<p>Comment: {{ object.username }} - {{ object.updated_on }}</p>
-					{% elif model == 'Profile' and object.user != request.user %}
-						<p>Profile: {{ object.user.username }} - {{ object.created_on }}</p>
-					{% elif model == 'Order' and object.user != request.user %}
-						<p>Order: {{ object.user.username }} - {{ object.date }}</p>
-					{% endif %}
-				{% endwith %}
-			{% endfor %}
+			<div class="ui small feed">
+				{% for object in object_list %}
+					{% with object|class_name as model %}
+						{% if model == 'Ticket' and object.username != request.user.username %}
+							<div class="event">
+								<div class="label">
+									<img src="{{ object.user.profile.avatar }}" alt="avatar image">
+								</div>
+								<div class="content">
+									<div class="summary">
+										<a class="user">
+											{{ object.user.username|title }}
+										</a> Created a new {{ object.issue|title }}
+										<div class="date">
+											{{ object.created_on|timesince }}
+										</div>
+									</div>
+									<div class="meta">
+										<a class="like">
+											<i class="terminal alternate black icon"></i> {{ object.title }}
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="ui divider"></div>
+						{% elif  model == 'Comment' and object.username != request.user.username %}
+							<div class="event">
+								<div class="label">
+									<img src="{{ object.user.profile.avatar }}" alt="avatar image">
+								</div>
+								<div class="content">
+									<div class="summary">
+										<a>{{ object.user.username|title }}</a> Made a Comment on a Ticket #{{ object.ticket.id }}
+										<div class="date">
+											{{ object.updated_on|timesince }}
+										</div>
+									</div>
+									<div class="meta">
+										<a class="like">
+											<i class="comment alternate blue icon"></i> {{ object.text }}
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="ui divider"></div>
+						{% elif model == 'Profile' and object.user != request.user %}
+							<div class="event">
+								<div class="label">
+									<img src="{{ object.user.profile.avatar }}" alt="avatar image">
+								</div>
+								<div class="content">
+									<div class="summary">
+										<a class="user">
+											{{ object.user.username|title }}
+										</a> Just Joined  - Welcome Them!
+										<div class="date">
+											{{ object.created_on|timesince }}
+										</div>
+									</div>
+									<div class="meta">
+										<a class="like">
+											<i class="thumbs up green icon"></i> Thanks for Joining {{ object.user.username|title }}
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="ui divider"></div>
+						{% elif model == 'Order' and object.user != request.user %}
+							<div class="event">
+								<div class="label">
+									<img src="{{ object.user.profile.avatar }}" alt="avatar image">
+								</div>
+								<div class="content">
+									<div class="summary">
+										<a class="user">
+											{{ object.user.username|title }}
+										</a> Supported a Ticket
+										<div class="date">
+											{{ object.date|timesince }}
+										</div>
+									</div>
+									<div class="meta">
+										<a class="like">
+											<i class="certificate icon orange"></i> Paid for {{ object.votes }} Vote(s), Nice one!
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="ui divider"></div>
+						{% endif %}
+					{% endwith %}
+				{% endfor %}
+			</div>
 		</div>
 
 		<!-- my profile -->
 		<div class="ui tab" data-tab="tab-profile-feed">
-			{% for object in object_list %}
-				{% with object|class_name as model %}
-					{% if model == 'Ticket' and object.username == request.user.username %}
-						<p>Ticket:  {{ object.username }} - {{ object.updated_on }}</p>
-					{% elif  model == 'Comment' and object.username == request.user.username %}
-						<p>Comment: {{ object.username }} - {{ object.updated_on }}</p>
-					{% elif model == 'Profile' and object.user == request.user %}
-						<p>Profile: {{ object.user.username }} - {{ object.created_on }}</p>
-					{% elif model == 'Order' and object.user == request.user %}
-						<p>Order: {{ object.user.username }} - {{ object.date }}</p>
-					{% endif %}
-				{% endwith %}
-			{% endfor %}
+			<div class="ui small feed">
+				{% for object in object_list %}
+					{% with object|class_name as model %}
+						{% if model == 'Ticket' and object.username == request.user.username %}
+							<div class="event">
+									<div class="label">
+										<img src="{{ object.user.profile.avatar }}" alt="avatar image">
+									</div>
+									<div class="content">
+										<div class="summary">
+											<a class="user">
+												{{ object.user.username|title }}
+											</a> Created a new {{ object.issue|title }}
+											<div class="date">
+												{{ object.created_on|timesince }}
+											</div>
+										</div>
+										<div class="meta">
+											<a class="like">
+												<i class="terminal alternate black icon"></i> {{ object.title|title }}
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="ui divider"></div>
+						{% elif  model == 'Comment' and object.username == request.user.username %}
+							<div class="event">
+								<div class="label">
+									<img src="{{ object.user.profile.avatar }}" alt="avatar image">
+								</div>
+								<div class="content">
+									<div class="summary">
+										<a>{{ object.user.username|title }}</a> Made a comment on a Ticket #{{ object.ticket.id }}
+										<div class="date">
+											{{ object.updated_on|timesince }}
+										</div>
+									</div>
+									<div class="meta">
+										<a class="like">
+											<i class="comment alternate blue icon"></i> {{ object.text }}
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="ui divider"></div>
+						{% elif model == 'Order' and object.user == request.user %}
+							<div class="event">
+								<div class="label">
+									<img src="{{ object.user.profile.avatar }}" alt="avatar image">
+								</div>
+								<div class="content">
+									<div class="summary">
+										<a class="user">
+											{{ object.user.username|title }}
+										</a> Supported a Ticket
+										<div class="date">
+											{{ object.date|timesince }}
+										</div>
+									</div>
+									<div class="meta">
+										<a class="like">
+											<i class="certificate icon orange"></i> Paid for {{ object.votes }} Vote(s), Nice one!
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="ui divider"></div>
+							{% elif model == 'Profile' and object.user == request.user %}
+							<div class="event">
+								<div class="label">
+									<img src="{{ object.user.profile.avatar }}" alt="avatar image">
+								</div>
+								<div class="content">
+									<div class="summary">
+										<a class="user">
+											{{ object.user.username|title }}
+										</a> You Just Joined!
+										<div class="date">
+											{{ object.created_on|timesince }}
+										</div>
+									</div>
+									<div class="meta">
+										<a class="like">
+											<i class="thumbs up green icon"></i> Thanks for Joining {{ object.user.username|title }}
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="ui divider"></div>
+						{% endif %}
+					{% endwith %}
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="ui stacked segment mt1">
+			<h4 class="ui header">
+				<i class="plug icon"></i>
+				<span class="content">
+					<a href="{% url 'activity_feed:activity_feed' %}">Refresh Content ...</a>
+				</span>
+			</h4>
 		</div>
 	</div>
-
-
 {% endblock %}
 {% block javascript %}
 	<script>

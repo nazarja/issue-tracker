@@ -8,8 +8,9 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class OrderManager(models.Manager):
     def get_latest(self, query=None):
-        user_queryset = self.get_queryset().filter(user=query).order_by('-date')[:5]
-        return user_queryset
+        all_queryset = self.get_queryset().exclude(user=query).order_by('-created_on')[:5]
+        user_queryset = self.get_queryset().filter(user=query).order_by('-created_on')[:5]
+        return all_queryset | user_queryset
 
 
 class Order(models.Model):
@@ -18,6 +19,7 @@ class Order(models.Model):
     votes = models.IntegerField(null=True, blank=False)
     total = models.IntegerField(null=True, blank=False)
     date = models.DateTimeField(auto_now=True)
+    created_on = models.DateTimeField(default=timezone.now)
     objects = OrderManager()
 
     def __str__(self):

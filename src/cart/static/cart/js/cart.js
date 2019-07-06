@@ -85,7 +85,6 @@ function postCartTickets(endpoint, data, action) {
         if (action === 'create') afterCreated();
         else if (action === 'update') window.location.href = '/cart/';
         else if (action === 'checkout') window.location.href = '/checkout/';
-        console.log(data)
     })
     .catch(err => console.log(err))
 }

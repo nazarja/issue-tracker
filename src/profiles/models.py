@@ -22,7 +22,8 @@ def get_random_avatar_picture():
 class ProfileManager(models.Manager):
     def get_latest(self, query=None):
         all_queryset = self.get_queryset().exclude(user=query).order_by('-created_on')[:5]
-        return all_queryset
+        user_queryset = self.get_queryset().filter(user=query)[:1]
+        return all_queryset | user_queryset
 
 
 class Profile(models.Model):
