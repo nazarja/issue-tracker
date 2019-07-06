@@ -5,24 +5,24 @@
 {% block content %}
 
 	<h1 class="callout">Charts</h1>
-	<div class="ui container">
+	<div id="charts" class="ui container">
 
 		<h4 class="ui horizontal divider header mt3 mb5 ph3">
 			<i class="balance scale icon"></i>
 			Totals by Ticket Type
 		</h4>
 
-		<div id="charts-grid" class="ui grid stackable">
+		<div class="ui grid stackable charts-grid">
 			<div class="three column row">
-				<div class="column pa2">
+				<div class="column pa2 smaller-width">
 					<p>Total Votes for All Bugs and Features</p>
 					<canvas id="highestVotes" width="400" height="400"></canvas>
 				</div>
-				<div class="column pa2">
+				<div class="column pa2 smaller-width">
 					<p>Total Number of Bugs and Features</p>
 					<canvas id="numOfTickets" width="400" height="400"></canvas>
 				</div>
-				<div class="column pa2">
+				<div class="column pa2 smaller-width">
 					<p>Total Status of All Bugs and Features</p>
 					<canvas id="ticketStatus" width="400" height="400"></canvas>
 				</div>
@@ -34,17 +34,17 @@
 			Highest Tickets by Earned and Votes
 		</h4>
 
-		<div id="charts-grid" class="ui grid stackable">
+		<div class="ui grid stackable charts-grid">
 			<div class="three column row">
-				<div class="column pa2">
+				<div class="column pa2 smaller-width">
 					<p>Highest Voted Bugs</p>
 					<canvas id="highestBugs" width="400" height="400"></canvas>
 				</div>
-				<div class="column pa2">
+				<div class="column pa2 smaller-width">
 					<p>Highest Voted Features</p>
 					<canvas id="highestFeatures" width="400" height="400"></canvas>
 				</div>
-				<div class="column pa2">
+				<div class="column pa2 smaller-width">
 					<p>Highest Currently Worked On Bugs and Features</p>
 					<canvas id="highestStatus" width="400" height="400"></canvas>
 				</div>

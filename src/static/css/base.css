@@ -189,6 +189,7 @@ span.avatar-label.ui.black.label {
     font-family: Menlo,Consolas,Monaco,"Andale Mono",monospace !important;
 }
 
+
 /*
 =================================================
     Busy Loader
@@ -294,6 +295,12 @@ footer {
 
     #logo-title-mobile {
         padding-top: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #charts .smaller-width {
+       padding: 15% !important;
     }
 }
 

@@ -29,7 +29,6 @@ function getChartsData() {
     })
     .then(res => res.json())
     .then(data => {
-       console.log(data)
        createCharts(data);
     })
     .catch(err => console.log(err));
