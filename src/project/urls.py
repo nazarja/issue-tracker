@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from .views import handler404, handler500
 
 
 urlpatterns = [
@@ -15,4 +16,8 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('tickets/', include('tickets.urls')),
 ]
+
+
+
+
 

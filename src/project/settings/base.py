@@ -10,7 +10,7 @@ SECRET_KEY = ''
 DEBUG = True
 
 # Allowed Hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [

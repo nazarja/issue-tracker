@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block head_title %}500 Error | Internal Server Error{% endblock %}
+{% block content %}
+	<div id="errors_404_500" class="tac vertically centered">
+
+		<!-- ROTATING GLOBE -->
+		<div class="tac">
+			<i class="ui icon globe"></i>
+		</div>
+
+		<!-- TEXT -->
+		<p>Oh no, you broke the Internet. </p>
+		<p>Wait .. its us, not you! Just a 500 internal server error!</p>
+
+		<!-- HOME BUTTON -->
+		<a href="{% url 'pages:index' %}">
+			<button class="ui button secondary">HOME</button>
+		</a>
+	</div>
+{% endblock %}

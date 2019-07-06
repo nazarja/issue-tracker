@@ -1,0 +1,21 @@
+{% extends './base/base.html' %}
+{% load static %}
+{% block head_title %}404 Error | Page Not Found{% endblock %}
+{% block content %}
+	<div id="errors_404_500" class="tac vertically centered">
+
+		<!-- ROTATING GLOBE -->
+		<div class="tac">
+			<i class="ui icon globe"></i>
+		</div>
+
+		<!-- TEXT -->
+		<p>Oh no, you broke the Internet. </p>
+		<p>Wait .. its just a 404 page not found error!</p>
+
+		<!-- HOME BUTTON -->
+		<a href="{% url 'pages:index' %}">
+			<button class="ui button secondary">HOME</button>
+		</a>
+	</div>
+{% endblock %}

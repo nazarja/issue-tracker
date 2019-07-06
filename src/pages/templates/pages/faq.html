@@ -6,79 +6,50 @@
 
 	<h1 class="callout">FAQ's</h1>
 	<div class="ui container">
-		<h2 class="mt2 mb3 tac">Your Frequently Asked Questions, Answered.</h2>
-		<div class="ui styled fluid accordion">
 
-			<!-- Bugs -->
-			<div class="active title">
-				<i class="dropdown icon"></i>
-				Bugs
+		<h2 class="mt2 mb3 tac divider horizontal ui">
+			Your Frequently Asked Questions, Answered.
+		</h2>
+		<div class="ui grid">
+			<div class="four wide column">
+				<div class="ui vertical fluid tabular menu">
+					<a class="item active" data-tab="bugs">Bugs</a>
+					<a class="item" data-tab="features">Features</a>
+					<a class="item" data-tab="charts">Charts</a>
+					<a class="item" data-tab="feed">Activity Feed</a>
+					<a class="item" data-tab="contact">Contact</a>
+					<a class="item" data-tab="stripe">Stripe / Payments</a>
+					<a class="item" data-tab="avatar">Avatar</a>
+					<a class="item" data-tab="account">Account</a>
+				</div>
 			</div>
-			<div class="active content">
-				<p>Description</p>
-			</div>
-
-			<!-- Features -->
-			<div class="title">
-				<i class="dropdown icon"></i>
-				Features
-			</div>
-			<div class="content">
-				<p>Description</p>
-			</div>
-
-			<!-- ChartsJS -->
-			<div class="title">
-				<i class="dropdown icon"></i>
-				Charts
-			</div>
-			<div class="content">
-				<p>Description</p>
-			</div>
-
-			<!-- Activity Feed -->
-			<div class="title">
-				<i class="dropdown icon"></i>
-				Activity Feed
-			</div>
-			<div class="content">
-				<p>Description</p>
-			</div>
-
-			<!-- Contact Form -->
-			<div class="title">
-				<i class="dropdown icon"></i>
-				Contact
-			</div>
-			<div class="content">
-				<p>Description</p>
-			</div>
-
-			<!-- Shopping Cart -->
-			<div class="title">
-				<i class="dropdown icon"></i>
-				Cart
-			</div>
-			<div class="content">
-				<p>Description</p>
-			</div>
-
-			<!-- Stripe / Payments -->
-			<div class="title">
-				<i class="dropdown icon"></i>
-				Stripe / Payment System
-			</div>
-			<div class="content">
-				<p>Description</p>
-			</div>
-
-			<!-- Account / Profile / Avatar -->
-			<div class="title">
-				<i class="dropdown icon"></i>
-				Account / Avatar
-			</div>
-			<div class="content">
-				<p>Description</p>
+			<div class="twelve wide stretched column">
+				<div class="ui segment">
+					<div class="ui tab active pl1 pt1" data-tab="bugs">
+						<h3>Bugs</h3>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="features">
+						<h3>Features</h3>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="charts">
+						<h3>Charts</h3>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="feed">
+						<h3>Activity Feed</h3>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="contact">
+						<h3>Contact</h3>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="stripe">
+						<h3>Stripe / Payments</h3>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="avatar">
+						<h3>Avatar</h3>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="account">
+						<h3>Account</h3>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -86,12 +57,6 @@
 
 {% block javascript %}
 	<script>
-        $('.ui.accordion')
-            .accordion({
-                selector: {
-                    trigger: '.title'
-                }
-            })
-        ;
+        $('.tabular.menu .item').tab();
 	</script>
 {% endblock %}
