@@ -1,11 +1,10 @@
 {% extends '../base/base.html' %}
 {% load static %}
 {% block head_title %}FAQ's{% endblock %}
-{% block css %} <link rel="stylesheet" href="{% static 'pages/css/faq.css' %}"/>{% endblock %}
 {% block content %}
 
 	<h1 class="callout">FAQ's</h1>
-	<div class="ui container">
+	<div id="faq" class="ui container">
 
 		<h2 class="mt2 mb3 tac divider horizontal ui">
 			Your Frequently Asked Questions, Answered.
@@ -13,41 +12,186 @@
 		<div class="ui grid">
 			<div class="four wide column">
 				<div class="ui vertical fluid tabular menu">
-					<a class="item active" data-tab="bugs">Bugs</a>
-					<a class="item" data-tab="features">Features</a>
-					<a class="item" data-tab="charts">Charts</a>
+					<a class="item active" data-tab="account">Account</a>
 					<a class="item" data-tab="feed">Activity Feed</a>
-					<a class="item" data-tab="contact">Contact</a>
-					<a class="item" data-tab="stripe">Stripe / Payments</a>
 					<a class="item" data-tab="avatar">Avatar</a>
-					<a class="item" data-tab="account">Account</a>
+					<a class="item" data-tab="tickets">Tickets</a>
+					<a class="item" data-tab="comments">Comments</a>
+					<a class="item" data-tab="create-edit">Create or Edit</a>
+					<a class="item" data-tab="charts">Charts</a>
+					<a class="item" data-tab="cart">Cart</a>
+					<a class="item" data-tab="stripe">Payments</a>
+					<a class="item" data-tab="contact">Contact</a>
 				</div>
 			</div>
 			<div class="twelve wide stretched column">
 				<div class="ui segment">
-					<div class="ui tab active pl1 pt1" data-tab="bugs">
-						<h3>Bugs</h3>
-					</div>
-					<div class="ui tab pl1 pt1" data-tab="features">
-						<h3>Features</h3>
-					</div>
-					<div class="ui tab pl1 pt1" data-tab="charts">
-						<h3>Charts</h3>
+					<div class="ui tab active pl1 pt1" data-tab="account">
+						<h3>Account</h3>
+						<ul class="ui list pt1">
+							<li>Your account is the gateway to the <i>IssueTracker site.</i></li>
+							<li>If you haven't already, you can click the sign up button to be get started.</li>
+							<li class="pa1"><b>Your Choices:</b>
+								<ul>
+									<li>You can sign up with your email address and a unique username.</li>
+									<li>Or alternatively sign up with your Github Account, well grab your details for you.</li>
+									<li>You sign in with either your email or username</li>
+								</ul>
+							</li>
+							<li>Upon signing up, you'll receive a welcome email from our support team.</li>
+							<li>Should you ever forget your password, on the login page you'll be able to request a password reset email link.</li>
+							<li>If you have signed up with Github, you may set a password and obtain a full account.</li>
+							<li>You'll find more helpful links in the Help &amp; Support dropdown in the nav-bar.</li>
+						</ul>
 					</div>
 					<div class="ui tab pl1 pt1" data-tab="feed">
 						<h3>Activity Feed</h3>
-					</div>
-					<div class="ui tab pl1 pt1" data-tab="contact">
-						<h3>Contact</h3>
-					</div>
-					<div class="ui tab pl1 pt1" data-tab="stripe">
-						<h3>Stripe / Payments</h3>
+						<ul class="ui list pt1">
+							<li>The activity feed is your first port of call on entering the site.</li>
+							<li>Here you will be able view recent users activity and your own personal activity too.</li>
+							<li class="pa1"><b>The Activity Feed Consists Of:</b>
+								<ul>
+									<li>You and others when making new comments on a ticket.</li>
+									<li>You and others when creating a new bug or feature.</li>
+									<li>You and others when a new user joins the site, Say Hi!</li>
+									<li>You and others when purchasing votes for a feature, and the number of votes.</li>
+								</ul>
+							</li class>
+							<li>Links to comments and tickets can be accessed beside the id of that ticket.</li>
+							<li>You wont appear on the main feed, you'll need to click the 'My Profile' tab to see your own activity.</li>
+						</ul>
 					</div>
 					<div class="ui tab pl1 pt1" data-tab="avatar">
 						<h3>Avatar</h3>
+						<ul class="ui list pt1">
+							<li>Everyone is assigned an Avatar image upon signing up to the site, there're cool!</li>
+							<li>If you wish to change your avatar, click on the Help & Support tab and then choose "Change Avatar Picture"</li>
+							<li class="pa1"><b>Avatar Gallery</b>
+								<ul>
+									<li>The avatar gallery contains a good selection of avatars to choose from, your current image will be already highlighted.</li>
+									<li>To change your image, just click on any image and its done, magic!</li>
+									<li>You'll receive a short notification to confirm the change.</li>
+								</ul>
+							</li>
+							<li>Your new avatar image will now appear on all your new and previously existing actions on the site.</li>
+						</ul>
 					</div>
-					<div class="ui tab pl1 pt1" data-tab="account">
-						<h3>Account</h3>
+					<div class="ui tab pl1 pt1" data-tab="tickets">
+						<h3>Tickets</h3>
+						<ul class="ui list pt1">
+							<li>Where there's Code, there's a Bug!</li>
+							<li>Tickets are free to create and  voting increases popularity.</li>
+							<li class="pa1"><b>On the Bugs and Feature's Pages You Can:</b>
+								<ul>
+									<li>View the most recently created tickets and paginate through the results.</li>
+									<li>Using the search bar will search through all tickets titles and description's for your search term.</li>
+									<li>Using the filter will filter your results, you can also search and filter results together.</li>
+									<li>Should your Search become to narrow, just click the reset all button to start again.</li>
+								</ul>
+							</li>
+							<li>Click the Details button the view the tickets full details and either vote or leave a comment.</li>
+							<li>You can only vote on for a bug once, and you cant vote for your own bug.</li>
+							<li>To vote for a feature, a small fee is required, a discount is given for purchasing a double vote, nice!.</li>
+						</ul>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="comments">
+						<h3>Comments</h3>
+						<ul class="ui list pt1">
+							<li>Leave a comment and join in the conversation!</li>
+							<li>Comments are organised from the most the recent, just underneath the tickets details.</li>
+							<li class="pa1"><b>Features of the Comments Section:</b>
+								<ul>
+									<li>Post a comment and  while you are typing, keep note of how many characters you have left.</li>
+									<li>Update a comment on the spot, inline editing makes it a breeze to correct any mistakes!</li>
+									<li>Not happy with your comment, remove it. You be asked to confirm before its finalised in case you change your mind.</li>
+								</ul>
+							</li>
+							<li>If there are no comments yet, you'll see a placeholder indicating that, be the first a leave one!</li>
+						</ul>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="create-edit">
+						<h3>Create or Edit a Ticket - for Free!</h3>
+						<ul class="ui list pt1">
+							<li>Creating a Ticket is Easy, on either the bugs or features page click the <i>"Create new ..."</i> button.</li>
+							<li>To update a ticket, you'll find the update button on the tickets details page. Only the owner can see these buttons.</li>
+							<li class="pa1"><b>Edit and Create Tickets Pages Have:</b>
+								<ul>
+									<li>A preview is provided so you can see how it will look live.</li>
+									<li>You have the ability to create or edit a title, description and a ticket status.</li>
+									<li>You'll have live feedback on how many remaining characters you have left to write.</li>
+									<li>If you are editing the ticket, you'll have the option to delete the ticket, you'll be required to confirm that you wish to delete it again.</li>
+								</ul>
+							</li>
+							<li>Some details for new tickets, such as a ticket id or an updated date, may not be available just yet.</li>
+							<li>After your ticket has been created or updated, depending on if its a bug or feature, you'll be redirected to the listing page for that issue.</li>
+
+						</ul>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="charts">
+						<h3>Charts</h3>
+						<ul class="ui list pt1">
+							<li>Charts are a useful way to visualise data!</li>
+							<li>We make use of Chart.js for display our tickets information.</li>
+							<li class="pa1"><b>On the Charts Page You'll See:</b>
+								<ul>
+									<li>Total Votes for All Bugs and Features</li>
+									<li>Total Number of Bugs and Features</li>
+									<li>Total Status of All Bugs and Features</li>
+									<li>Highest Voted Bug Tickets by ID</li>
+									<li>Highest Voted Feature Tickets by ID</li>
+									<li>Features and Bugs that are being worked on, sorted by earnings and additionally sub-sorted by votes.</li>
+								</ul>
+							</li>
+							<li>The charts are mobile responsive and are viewable on a wide range of device sizes.</li>
+						</ul>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="cart">
+						<h3>Cart</h3>
+						<ul class="ui list pt1">
+							<li>Support features development buy purchasing votes. </li>
+							<li>You have the option to purchase multiple votes, both single and double. Each item will be a separate item.</li>
+							<li class="pa1"><b>Your Shopping Cart Has:</b>
+								<ul>
+									<li>You'll see an itemised list of the items you have chosen</li>
+									<li>You'll see the number of votes and the cost of that item.</li>
+									<li>You have the ability to remove any items for your cart by selecting the remove item button and clicking the update cart button.</li>
+									<li>An updated total price and item list will then be revised and shown to you before proceeding to the checkout.</li>
+								</ul>
+							</li>
+							<li>As you click buy votes, you'll see your cart item number increase.</li>
+							<li>Items will stay in your cart until you logout.</li>
+						</ul>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="stripe">
+						<h3>Payments</h3>
+						<ul class="ui list pt1">
+							<li>We know how important privacy and security is to you!</li>
+							<li>That's why we use Stripe as our payment processor.</li>
+							<li class="pa1"><b>Time To Checkout:</b>
+								<ul>
+									<li>You'll be able to review your basket once more and see the final charges.</li>
+									<li>We use Stripe own "Elements" code for taking and validating your cards details.</li>
+									<li>Upon successful payment, you'll be notified and brought to a success screen where you can then continue to another area of of site.</li>
+									<li>If for some reason your payment has failed, you will be prompted to try again.</li>
+								</ul>
+							</li>
+							<li>No details are every stored by us, not even your billing address, we just dont ask for them.</li>
+						</ul>
+					</div>
+					<div class="ui tab pl1 pt1" data-tab="contact">
+						<h3>Contact</h3>
+						<ul class="ui list pt1">
+							<li>Have something to ask us, drop us an email ...</li>
+							<li>Both logged in an anonymous users can use the contact form.</li>
+							<li class="pa1"><b>On The Contact Form You'll Find:</b>
+								<ul>
+									<li>A contact form consisting of name, email, subject and message fields.</li>
+									<li>Logged in users will have some of their details pre-populated and are not editable.</li>
+									<li>Our social media links to contact us further, should you need too.</li>
+								</ul>
+							</li>
+							<li>After you've submitted the form, you'll receive an email confirming that we have got your message.</li>
+						</ul>
 					</div>
 				</div>
 			</div>

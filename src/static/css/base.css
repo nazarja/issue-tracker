@@ -181,6 +181,11 @@ span.avatar-label.ui.black.label {
     text-overflow: ellipsis !important;
 }
 
+#faq li {
+    padding: 5px !important;
+    line-height: 18px;
+}
+
 #activity-feed .user {
     color: #1e70bf;
 }
