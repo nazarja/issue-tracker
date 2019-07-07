@@ -1,5 +1,11 @@
+
+<!-- only if not creating a new ticket -->
 {% if 'update' in request.path or 'details' in request.path %}
+
+	<!-- card  preview -->
 	<div id="ticket-details" class="mv1 card">
+
+		<!-- top segment -->
 		<div class="ui segment top attached">
 			<div id="author-container-details" class="author fr">
 				<span id="author-username">{{ object.user.username|title }}</span>
@@ -15,6 +21,8 @@
 				<i class="time">{{ object.created_on }}</i>
 			</div>
 		</div>
+
+		<!-- middle segment -->
 		<div class="ui segment bottom attached pa2">
 			<div class="description">
 				<a id="title" class="header no-click fwsemibold" href="#">{{ object.title|title }}</a>
@@ -22,6 +30,8 @@
 			<div class="description mv1">
 				<p id="description" class="header">{{ object.description|capfirst }}</p>
 			</div>
+
+			<!-- bottom segment -->
 			<div class="extra content">
 				<div id="extra-content-left" class="left floated fl">
 					<div class="meta tcg70">
@@ -38,8 +48,12 @@
 			</div>
 		</div>
 	</div>
+
+<!-- if creating a new ticket -->
 {% else %}
 	<div id="ticket-details" class="mv1 card">
+
+		<!-- top segment -->
 		<div class="ui segment top attached">
 			<div id="author-container-details" class="author fr">
 				<span id="author-username">{{ request.user.username }}</span>
@@ -55,6 +69,8 @@
 				<i class="time"> {% now "jS F Y H:i" %} </i>
 			</div>
 		</div>
+
+		<!-- middle segment -->
 		<div class="ui segment bottom attached pa2">
 			<div class="description">
 				<a id="title" class="header no-click fwsemibold" href="#">Title</a>
@@ -62,6 +78,8 @@
 			<div class="description mv1">
 				<p id="description" class="header">Description</p>
 			</div>
+
+			<!-- bottom segment -->
 			<div class="extra content">
 				<div id="extra-content-left" class="left floated fl">
 					<div class="meta tcg70">

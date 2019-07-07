@@ -1,7 +1,7 @@
 
 /*
 =================================================
-    Forms - All-Auth and Semantic
+    Forms - ALL-AUTH AND SEMANTIC UI FORMS
 =================================================
 */
 
@@ -40,12 +40,12 @@
 .all-auth-form label,
 .all-forms label, .all-forms textarea label  {
     display: block;
-    margin: 0 0 .28571429rem 0;
-    color: rgba(0,0,0,.87);
-    font-size: .92857143em;
-    text-align: left;
-    padding-left: 5%;
     position: relative;
+    margin: 0 0 .28571429rem 0;
+    padding-left: 5%;
+    text-align: left;
+    font-size: .92857143em;
+    color: rgba(0,0,0,.87);
 }
 
 #checkout .all-forms label {
@@ -55,8 +55,8 @@
 .all-auth-form input[type="submit"],
 .all-auth-form button[type="submit"],
 .all-forms input[type="submit"] {
-    margin-top: 30px;
     max-width: 160px;
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 
@@ -69,13 +69,14 @@
 
 /*
 =================================================
-    Forms - comments
+    FORMS - COMMENTS
 =================================================
 */
 
+
 #comment-reply-form textarea {
     width: 100%;
-     border-color: #ccc;
+    border-color: #ccc;
 }
 
 .comment .inline-form {
@@ -85,7 +86,7 @@
 
 /*
 =================================================
-    Forms - divs
+    FORMS IN DIVS
 =================================================
 */
 
@@ -113,7 +114,7 @@
     line-height: 1.5em;
 }
 
-/*  assets / modals */
+/*  ASSETS / MODALS */
 #form-small {
     max-width: 700px !important;
     margin: auto;
@@ -135,20 +136,21 @@
 
 /*
 =================================================
-    Forms - Media Queries
+    FORMS - MEDIA QUERIES
 =================================================
 */
 
 
 @media screen and (max-width: 768px) {
+
     #vertical-divider {
         display: none;
     }
 
     #horizontal-divider {
         display: block;
-        width: 100%;
         position: relative;
+        width: 100%;
     }
 }
 

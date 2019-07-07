@@ -1,19 +1,31 @@
 <div id="ticket" class="ui card">
+
+	<!-- top segment -->
 	<div class="content">
 		<div class="left floated">
+
+			<!-- item status, issue type -->
 			{% include 'tickets/partials/ticket-item-status.html' %}
 			<span class="ticket-category category pl1 tcg70">{{ issue|title }} </span>
 		</div>
+
+		<!-- author, username, avatar -->
 		<div id="author-container" class="author right floated">
 			<span id="author-username">{{ object.user.username|title }}</span>
 			<img class="ui avatar image" src="{{ object.user.profile.avatar }}" height="40" width="40" alt="avatar">
 		</div>
+
+		<!-- middle segment , title, description -->
 		<div class="description pt1">
 			<a class="header left floated ticket-title" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">{{ object.title|title }}</a>
 			<a class="ticket-view-details-button category pl1 pr1 right floated ui button mini" href="{% url 'tickets:ticket-detail-view' id=object.id slug=object.slug %}">Vote : View Details</a>
 		</div>
 	</div>
+
+	<!-- bottom segment -->
 	<div class="extra content">
+
+		<!-- id, date -->
 		<div id="extra-content-left" class="left floated">
 			<div class="meta">
 				<span class="code tcb"> #{{ object.id }}</span>
@@ -21,6 +33,8 @@
 				<span class="time time-since">{{ object.created_on|date:"r" }}</span>
 			</div>
 		</div>
+
+		<!-- votes, earned -->
 		<div id="extra-content-right" class="right floated">
 			<span class="pr1"><i class="thumbs up outline icon blue"></i> {{ object.votes }} votes</span>
 			{% if object.issue == 'feature' %}

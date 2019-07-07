@@ -54,6 +54,8 @@ if ((document.querySelector('#current-page'))) {
             setTimeout(() => ticketListAction(queryString), 1000);
         });
 
+    // when reset button is clicked
+    // reset all values including the global queryString object
     resetAllButton.onclick = () => {
         queryString.page = 1;
         queryString.query = '';
@@ -82,9 +84,10 @@ if (document.querySelector('#ticket-delete-btn')) {
 =========================================================
 */
 
-
+// GET REQUESTS
 function ticketListAction(queryString) {
 
+    // only if a query has been passed should we include it in the endpoint url
     let endpoint = `/tickets/api/list/?issue=${queryString.issue}&order=${queryString.order}&page=${queryString.page}`;
     endpoint = queryString.query === false ? endpoint : endpoint + `&q=${queryString.query}`;
 
@@ -100,11 +103,13 @@ function ticketListAction(queryString) {
         createTicketList(data);
     })
     .catch(err => console.log(err));
-
 }
 
 
+// DELETE REQUESTS
 function ticketDeleteAction() {
+
+    //  get tickets id from the confirm delete modal
     const ticketDeleteConfirmBtn = document.querySelector('#ticket-delete-confirm-btn');
     const _id = ticketDeleteConfirmBtn.dataset.id;
     const issue = ticketDeleteConfirmBtn.dataset.issue;
@@ -135,7 +140,8 @@ function ticketDeleteAction() {
 =========================================================
 */
 
-
+// creates tickets html dynamically when called
+// gets used for pagination, filtering, search and reset all
 function createTicketList(data) {
     const container = document.querySelector('#ticket-list-container');
     const emptyContainer = document.querySelector('.ui.placeholder');
@@ -205,16 +211,20 @@ function createTicketList(data) {
 
 
 // enable disable pagination buttons
+// after paginating through pages, decide if the buttons should be disabled
+// also set the current page numbers html
 function setPagination(next, previous) {
     const currentPage = document.querySelector('#current-page');
     const nextPage = document.querySelector('#next-page');
     const previousPage = document.querySelector('#previous-page');
+
     next == null ? nextPage.setAttribute('disabled', 'true') : nextPage.removeAttribute('disabled');
     previous == null ? previousPage.setAttribute('disabled', 'true') :  previousPage.removeAttribute('disabled');
     currentPage.innerHTML = queryString.page;
 }
 
-
+// re-rendering the page with javascript causes a difference in using moment.js and django's
+// template filter timesince, therefore all dates must be rendered with moment js to keep the dates the same
 function timeSince() {
     const time = document.querySelectorAll('.time-since');
     time.forEach(item =>

@@ -156,6 +156,26 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 8
 }
 
+# cors settings
+CORS_URLS_REGEX = r'^/api.*'
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://localhost:8080',
+]
+
+# email setup
+EMAIL_HOST = ''
+EMAIL_POST = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+EMAIL_MAIN = ''
+
+STRIPE_PUBLISHABLE_KEY = ''
+STRIPE_SECRET_KEY = ''
+
 
 
 

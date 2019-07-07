@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>
 {% endblock %}
 {% block content %}
+
 	<h1 class="callout">{{ issue|title }}</h1>
 
 	<!-- dynamic ticket preview partial -->
@@ -13,26 +14,35 @@
 		{% include 'tickets/partials/ticket-details-preview-item.html' %}
 	</div>
 
+	<!-- divider -->
 	<h3 class="ui container horizontal divider header mv3">
 	  <i class="wpforms icon"></i> Preview
 	</h3>
 
+	<!-- characters left indicators -->
 	<div id="chars-left-metadata" class="fwnormal tal mb1 ui container">
 		<div class="title-chars-left dib">Title chars left: <span class="fwsemibold">100</span></div>
 		<div class="description-chars-left dib pl1">Description chars left: <span class="fwsemibold">2000</span></div>
 	</div>
+
+	<!-- update form -->
 	<div class="ui container tac middle aligned segment raised padded ma2 pt3">
 		<form class="all-forms" method="POST">
 			{% csrf_token %}
 			{{ form.as_p }}
 			<button class="ui button submit green">{{ button_text|title }} Ticket</button>
+
+			<!-- only if editing the ticket and the owner show delete button -->
 			{% if request.user == object.user and  'update' in request.path %}
 				<button id="ticket-delete-btn" class="ui button submit red">Delete Ticket</button>
 			{% endif %}
 		</form>
 	</div>
+
+	<!-- delete confirmation modal -->
 	{% include 'tickets/partials/ticket-delete-item.html' %}
 {% endblock %}
+
 {% block javascript %}
 	<script src="{%  static 'tickets/js/ticket-api.js' %}"></script>
 	<script src="{%  static 'tickets/js/ticket-details-preview.js' %}"></script>

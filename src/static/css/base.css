@@ -1,7 +1,21 @@
 
 /*
 =================================================
-   Variables
+   THIS FILE SERVES AS A BASE TO ALL PAGES WITH
+   COMMON STYLES.
+
+   NOTE:
+   SO MANY " !IMPORTANT " RULES WERE NECESSARY
+   AS SEMANTIC UI WAS VERY DIFFICULT TO WORK WITH
+=================================================
+*/
+
+
+
+
+/*
+=================================================
+  VARIABLES
 =================================================
 */
 
@@ -18,7 +32,7 @@
 
 /*
 =================================================
-   @font-face Fonts
+   @FONT-FACE
 =================================================
 */
 
@@ -33,7 +47,7 @@
     font-family: 'Work Sans';
 }
 
-/* Fonts Reset */
+/* FONTS RESET */
 body, button, .item {
     font-family: 'Fira Sans', sans-serif !important;
 }
@@ -45,7 +59,7 @@ h1, h2, h3 {
 
 /*
 =================================================
-    General
+    GENERAL
 =================================================
 */
 
@@ -66,27 +80,27 @@ header {
 
 #to-top-btn {
     position: fixed;
-    z-index: 1000;
     bottom: 40px;
     right: -50px;
     transition: 0.5s ease-in-out;
+    z-index: 1000;
 }
 
 
 /*
 =================================================
-    Nav-bar
+    NAV-BAR
 =================================================
 */
 
 
 nav {
-    background-color: var(--black);
     width: 100vw;
     margin: -1px;
+    background-color: var(--black);
 }
 
-/* menu items */
+/* MENU ITEMS */
 #logo-title-first {
     font-size: 20px;
     font-weight: bolder;
@@ -110,7 +124,7 @@ nav {
     min-width: 90px !important;
 }
 
-/* nav-bar adjustments*/
+/* NAV-BAR ADJUSTMENTS */
 #nav-bar-large {
     margin-left: -30px;
 }
@@ -122,7 +136,7 @@ nav {
 
 /*
 =================================================
-    Nav-bar Avatar
+    NAV-BAR AVATAR
 =================================================
 */
 
@@ -133,41 +147,43 @@ span.avatar-label.ui.black.label {
     margin-left: -5px !important;
 }
 
-.ui.black.label, .ui.black.labels .label {
+.ui.black.label,
+.ui.black.labels .label {
     background-color: var(--black) !important;
 }
 
 .ui.label > img.avatar-label-image {
     height: 25px !important;
-    border-radius: 50%;
     padding-right: 5px;
+    border-radius: 50%;
 }
 
 #side-bar-avatar {
+    position: relative;
     float: right;
+    top: -6px;
     height: 25px;
     width: 25px;
-    top: -6px;
-    position: relative;
     border-radius: 50%;
 }
 
 
 /*
 =================================================
-    Common Assets
+    COMMON ASSETS -
+    TO LITTLE CSS TO WARRANT A SEPARATE CSS FILE
 =================================================
 */
 
 
 .callout  {
-    width: 100vw;
-    padding: 30px 5px 30px 5px;
-    background:  linear-gradient(90deg, rgba(81,191,144,.95) 50%, rgba(65,162,200,.95) 100%);
     position: relative;
-    color: white;
-    text-align: center;
+    width: 100vw;
     margin-bottom: 50px;
+    padding: 30px 5px 30px 5px;
+    text-align: center;
+    color: white;
+    background:  linear-gradient(90deg, rgba(81,191,144,.95) 50%, rgba(65,162,200,.95) 100%);
 }
 
 .no-click {
@@ -181,11 +197,13 @@ span.avatar-label.ui.black.label {
     text-overflow: ellipsis !important;
 }
 
+/* FAQ */
 #faq li {
     padding: 5px !important;
     line-height: 18px;
 }
 
+/* ACTIVITY FEED */
 #activity-feed .user {
     color: #1e70bf;
 }
@@ -197,7 +215,7 @@ span.avatar-label.ui.black.label {
 
 /*
 =================================================
-    Busy Loader
+    BUSY LOADER
 =================================================
 */
 
@@ -262,7 +280,7 @@ span.avatar-label.ui.black.label {
 
 /*
 =================================================
-    Footer
+    FOOTER
 =================================================
 */
 
@@ -283,18 +301,18 @@ footer {
 */
 
 #errors_404_500 {
-    background: linear-gradient(90deg, rgba(81, 191, 144, .95) 50%, rgba(65, 162, 200, .95) 100%);
     top: 0;
     left: 0;
-    background-size: cover;
-    font-size: 2em;
     min-height: 80vh;
-    padding: 10%;
-    color: white;
-    z-index: -1;
-    padding-top: 15vh;
     margin-bottom: -150px;
+    padding: 10%;
+    padding-top: 15vh;
+    font-size: 2em;
     font-weight: bold;
+    color: white;
+    background: linear-gradient(90deg, rgba(81, 191, 144, .95) 50%, rgba(65, 162, 200, .95) 100%);
+    background-size: cover;
+    z-index: -1;
 }
 
 #errors_404_500 i {
@@ -303,18 +321,20 @@ footer {
 
 /*
 =================================================
-    Nav-bar Media Queries
+    NAV-BAR MEDIA QUERIES
 =================================================
 */
 
 @media screen and (max-width: 1000px) {
+
     #username-large {
         display: none;
     }
 }
 
-/* hide large nav, show small nav*/
+/* HIDE LARGE NAV, SHOW SMALL NAV */
 @media screen and (max-width: 800px) {
+
     #nav-bar-large {
         display: none !important;
     }
@@ -329,13 +349,15 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+
     #charts .smaller-width {
        padding: 15% !important;
     }
 }
 
-/* hide logo title*/
+/*  HIDE LOGO TITLE */
 @media screen and (max-width: 600px) {
+
     #logo-title * {
         font-size: 1em;
     }

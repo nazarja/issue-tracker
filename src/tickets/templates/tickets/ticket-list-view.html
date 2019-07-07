@@ -1,18 +1,18 @@
 {% extends '../base/base.html' %}
 {% load static %}
 {% block head_title %}{{ issue|title }}s{% endblock %}
-{% block css %}
-	<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}"/>{% endblock %}
 {% block content %}
 
 	<h1 class="callout" data-issue="{{ issue }}">{{ issue|title }}s</h1>
 	<div class="ui container">
 
-	<!-- top menu -->
+		<!-- top menu -->
 		<div id="ticket-segment" class="ui top attached menu borderless stackable pv1">
 			<div id="icon-bug" class="item">
 				<i class="icon bug"></i>
 			</div>
+
 			<!-- right menu-->
 			<div class="right item">
 
@@ -40,6 +40,8 @@
 						{% endif %}
 					</div>
 				</div>
+
+				<!-- create new feature or bug button -->
 				<div id="ticket-create-new-btn" class="ml1" >
 					<a href="{% url 'tickets:ticket-create-view' issue=issue %}" class="ui button grey">Create New {{ issue|title }}</a>
 				</div>
@@ -53,6 +55,7 @@
 			<!-- loading animation -->
 			{% include 'tickets/partials/ticket-empty-content.html' %}
 
+			<!-- empty list container -->
 			<div id="ticket-list-container">
 				{% for object in object_list %}
 					{% include 'tickets/partials/ticket-list-item.html' %}
@@ -78,6 +81,7 @@
 		</div>
 	</div>
 {% endblock %}
+
 {% block javascript %}
 	<script src="{% static 'tickets/js/ticket-api.js' %}"></script>
 {% endblock %}

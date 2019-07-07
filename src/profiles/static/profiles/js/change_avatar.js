@@ -23,6 +23,7 @@ function changeAvatar(event) {
     $(event.target).transition('pulse');
 
     const url = `/static/img/avatars/${event.target.dataset.url}`;
+
     // change currently visible profile avatar images
     ['#avatar-1', '#avatar-2', '#side-bar-avatar', '#avatar-modal'].forEach(item => document.querySelector(item).src = url);
 
@@ -30,6 +31,12 @@ function changeAvatar(event) {
     changeAvatarPostRequest(url);
 }
 
+
+/*
+=======================================================
+    Change Avatar Post Request
+=======================================================
+*/
 
 // POST Request to DB - Show Modal
 function changeAvatarPostRequest(url) {

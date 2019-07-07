@@ -1,7 +1,7 @@
 
 /*
 =======================================================
- Official Django Documentation CSRF Cookie Function
+ OFFICIAL DJANGO DOCUMENTATION CSRF COOKIE FUNCTION
 =======================================================
 */
 

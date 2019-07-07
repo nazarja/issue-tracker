@@ -1,6 +1,8 @@
+
+
 /*
 =======================================
-    Tickets Container
+    TICKETS CONTAINER
 =======================================
 */
 
@@ -16,7 +18,7 @@
 
 /*
 =======================================
-    Tickets Menu
+    TICKETS MENU BAR ITEMS
 =======================================
 */
 
@@ -33,14 +35,14 @@
 }
 
 #reset-all-values {
-    top: -21px;
     position: relative;
+    top: -21px;
     cursor: pointer;
 }
 
 /*
 =======================================
-    Ticket Items
+    TICKET ITEMS
 =======================================
 */
 
@@ -68,7 +70,7 @@
 
 /*
 =======================================
-    Tickets Empty Containers
+    TICKET EMPTY CONTAINER
 =======================================
 */
 
@@ -86,7 +88,7 @@
 
 /*
 =======================================
-    Ticket Details
+    TICKET DETAILS
 =======================================
 */
 
@@ -118,7 +120,7 @@
 
 /*
 =======================================
-    Comments
+    COMMENTS
 =======================================
 */
 
@@ -143,13 +145,16 @@
     background-color: #e2e2e2;
 }
 
+
 /*
 =======================================
-    Ticket Media Queries
+    TICKETS MEDIA QUERIES
 =======================================
 */
 
+
 @media screen and (max-width: 1000px) {
+
     #ticket #author-container {
         display: block;
         float: none;
@@ -175,6 +180,7 @@
 
 
 @media screen and (max-width: 800px) {
+
     #ticket-bottom-segment,
     .responsive-padding {
         padding: 16px !important;
@@ -204,9 +210,10 @@
     }
 }
 
+
 @media screen and (max-width: 600px) {
 
-    /*  bugs / features */
+    /*  BUGS , FEATURES */
     #extra-content-left,
     #extra-content-right {
         display: block;
@@ -217,15 +224,15 @@
         margin-bottom: 5px;
     }
 
-    /* details / preview */
+    /* DETAILS, PREVIEW */
     #author-username {
         margin: 10px;
     }
 
     #author-container-details {
-        margin-top: 10px;
-        float: none;
         display: block;
+        float: none;
+        margin-top: 10px;
     }
 
     #author-container-details img.ui.avatar.image {
@@ -245,6 +252,7 @@
         display: none;
     }
 }
+
 
 @media screen and (max-width: 400px) {
 

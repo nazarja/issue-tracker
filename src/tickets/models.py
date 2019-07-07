@@ -36,6 +36,11 @@ class TicketManager(models.Manager):
 
 
 class Ticket(models.Model):
+    """
+    a ticket can be either a bug or a feature, a ticket is associated to its creator via a foreign key.
+    a ticket can have many people that have voted for it. the tickets url will be its id and its title.
+    a ticket must keep track of how many votes and money has been obtained.
+    """
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, editable=False, on_delete=models.CASCADE)
     username = models.CharField(max_length=100, blank=False, null=True)
     avatar = models.CharField(max_length=100, blank=True, null=True, default='/static/img/avatars/tim.png')
@@ -53,15 +58,24 @@ class Ticket(models.Model):
     objects = TicketManager()
 
     def save(self, *args, **kwargs):
+        """
+        override save function, on save:
+        slug field becomes a slugified version of the tickets title
+        username is current users username and avatar assigned for easy access to it
+        """
         self.slug = slugify(self.title)
         self.avatar = self.user.profile.avatar
         self.username = self.user.username
         super(Ticket, self).save(*args, **kwargs)
 
     def __str__(self):
-        return smart_text(f'{self.issue}: no. {self.id} - by {self.username} | {self.title}')
+        return smart_text(f'{self.issue}: No: {self.id} by {self.username} | {self.title}')
 
     def get_absolute_url(self):
+        """
+            depending on if a bug or feature is saved, the user will be returned to the
+            bug or feature main page after submitting their ticket
+        """
         return reverse(f'tickets:{self.issue}s')
 
 

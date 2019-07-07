@@ -1,19 +1,19 @@
 
 /*
 =================================================
-    Callout Segment
+    CALLOUT SEGMENT
 =================================================
 */
 
 
 .callout  {
+    position: relative;
     min-height: 70vh;
+    margin-bottom: 0;
     padding: 30px 5px 30px 5px;
     background:  linear-gradient(90deg, rgba(81,191,144,.95) 50%, rgba(65,162,200,.95) 100%), url('/static/img/images/callout.jpg')  no-repeat center;
     background-size: cover;
-    position: relative;
     text-align: left;
-    margin-bottom: 0;
 }
 
 .callout {
@@ -55,23 +55,23 @@
 
 /*
 =================================================
-    Statistics - Segment
+    STATISTICS SEGMENT
 =================================================
 */
 
 
 #statistics {
-    background-color: var(--black);
-    color: white;
-    text-align: center;
-    padding: 50px 10px;
     margin-bottom: 100px;
+    padding: 50px 10px;
+    text-align: center;
+    color: white;
+    background-color: var(--black);
 }
 
 
 /*
 =================================================
-    Pricing - Segment
+    PRICING SEGMENT
 =================================================
 */
 
@@ -81,11 +81,11 @@
 }
 
 #pricing .euro {
-    vertical-align: top;
-    padding: 3px;
-    position: relative;
     display: inline-block;
+    position: relative;
     top: -17px;
+    padding: 3px;
+    vertical-align: top;
 }
 
 

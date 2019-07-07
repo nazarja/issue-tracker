@@ -4,26 +4,26 @@
 import os
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 # Allowed Hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.getenv('HEROKU_HOST_URL')]
 
 # Cors Settings
 CORS_URLS_REGEX = r'^/api.*'
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = []
+CORS_ORIGIN_WHITELIST = [os.getenv('HEROKU_CORS_WHITELIST')]
 
-# email setup - SendGrid.com
-EMAIL_HOST = ''
+# email setup - MailGun.com
+EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_POST = 587
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_USER')
 EMAIL_USE_TLS = True
-EMAIL_MAIN = ''
+EMAIL_MAIN = os.getenv('EMAIL_MAIN')
 
 # stripe keys
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE')

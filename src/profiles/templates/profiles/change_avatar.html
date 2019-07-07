@@ -9,15 +9,17 @@
 	<!-- Avatar Choice Gallery-->
 	<div class="ui container segment">
 		<div id="avatar-gallery">
+
+			<!-- loop over avatar images and create the gallery-->
 			{% for avatar in  avatars %}
 				<img
-						class="{% if avatar in request.session.avatar %}avatar-gallery-item-selected{% endif %} avatar-gallery-item avatar-gallery-item ui"
-						src="{% static 'img/avatars/'|add:avatar %}" data-url="{{ avatar }}" data-content="Choose Avatar" alt="{{ avatar }}">
+					class="{% if avatar in request.session.avatar %}avatar-gallery-item-selected{% endif %} avatar-gallery-item avatar-gallery-item ui"
+					src="{% static 'img/avatars/'|add:avatar %}" data-url="{{ avatar }}" data-content="Choose Avatar" alt="{{ avatar }}">
 			{% endfor %}
 		</div>
 	</div>
 
-	<!-- confirm avatar changed -->
+	<!-- confirm avatar changed modal -->
 	<div class="ui tiny modal">
 		<div class="header">
 			Avatar Changed
@@ -32,6 +34,7 @@
 		</div>
 	</div>
 {% endblock %}
+
 {% block javascript %}
 	<script type="application/javascript" src="{% static 'profiles/js/change_avatar.js' %}"></script>
 {% endblock %}

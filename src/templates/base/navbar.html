@@ -8,19 +8,31 @@
 			<a class="toc item">
 				<i class="sidebar icon"></i>
 			</a>
+
+			<!-- logo -->
 			<a id="logo-title" class="ui item" href="{% url 'pages:index' %}">
 				<span id="logo-title-first" >Issue</span>
 				<span id="logo-title-last">Tracker</span>
 			</a>
+
+			<!-- right hand side menu -->
 			<div class="right menu">
+
+				<!-- not logged in -->
 				{% if not user.is_authenticated %}
 					<a class="item header" href="{% url 'account_login' %}">Login</a>
 					<a class="item header" href="{% url 'account_signup' %}">Sign up</a>
+
+				<!-- logged in -->
 				{% else %}
+
+					<!-- cart icon and cart count -->
 					<a class="item cart-popup" href="{% url 'cart:cart' %}" data-content="View Cart">
 						<i class="shop icon"></i>
 						<div class="cart-item-count ui label green">{{ cart_count }}</div>
 					</a>
+
+					<!-- username and avatar -->
 					<div id="username-small" class="item">
 						<span class="avatar-label ui black label">
 							<img id="avatar-1" class="avatar-label-image avatar image" src="{{ request.session.avatar }}" alt="avatar">
@@ -39,15 +51,21 @@
 					<img height="50" width="50" src="{% static 'img/logos/logo.png' %}" alt="bug logo">
 				</a>
 			</div>
+
+			<!-- not logged in -->
 			{% if not user.is_authenticated  %}
 				<a class="ui item" href="{% url 'pages:index' %}">
 					<span id="logo-title-first" >Issue</span>
 					<span id="logo-title-last">Tracker</span>
 				</a>
+
+				<!-- only visible on home page -->
 				{% if request.path == '/' %}
 					<a class="item" href="#pricing">Pricing</a>
 					<a class="item" href="#how-it-works">How it Works?</a>
 				{% endif %}
+
+			<!-- logged in -->
 			{% else %}
 				<a class="item" href="{% url 'tickets:bugs' %}">Bugs</a>
 				<a class="item" href="{% url 'tickets:features' %}">Features</a>
@@ -55,14 +73,21 @@
 				<a class="item" href="{% url 'activity_feed:activity_feed' %}">Activity Feed</a>
 			{% endif %}
 
+			<!-- right hand side menu -->
 			<div class="right menu">
+
+				<!-- logged in -->
 				{% if user.is_authenticated %}
+
+					<!-- cart icon and cart count -->
 					<a class="item cart-popup" href="{% url 'cart:cart' %}" data-content="View Cart">
 						<i class="shop icon"></i>
 						<div class="cart-item-count ui label green">
 							{{ cart_count }}
 						</div>
 					</a>
+
+				<!-- not logged in -->
 				{% endif %}
 				<div class="ui dropdown item">
 					Help &amp; Support
@@ -70,12 +95,16 @@
 					<div class="menu inverted">
 						<a class="item" href="{% url 'pages:faq' %}">FAQ's</a>
 						<a class="item" href="{% url 'contact:contact' %}">Contact Us</a>
+
+						<!-- logged in -->
 						{% if user.is_authenticated  %}
 							<a class="item" href="{% url 'account_set_password' %}">Change Password</a>
 							<a class="item" href="{% url 'profiles:change_avatar' %}">Change Avatar Picture</a>
 						{% endif %}
 					</div>
 				</div>
+
+				<!-- logged in -->
 				{% if user.is_authenticated %}
 					<div id="username-large" class="item">
 						<span class="avatar-label ui black label">
@@ -83,8 +112,9 @@
 							Hi, {{ user.username|title }}
 						</span>
 					</div>
-
 					<a class="item header" href="{% url 'account_logout' %}">Logout</a>
+
+				<!-- not logged in -->
 				{% else %}
 					<div class="ui buttons">
 						<div class="nav-bar-button">

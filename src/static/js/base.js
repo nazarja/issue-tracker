@@ -1,7 +1,7 @@
 
 /*
 =======================================================
-    JavaScript Functions common to all pages
+    JAVASCRIPT FUNCTIONS COMMON TO ALL PAGES
 =======================================================
 */
 

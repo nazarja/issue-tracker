@@ -1,4 +1,5 @@
 {% load static %}
+
 <div class="ui vertical inverted sidebar menu left" style="">
 	<a id="logo-title-mobile" class="ui item" href="{% url 'pages:index' %}">
 		<span id="logo-title-first" >Issue</span>
@@ -6,21 +7,33 @@
 	</a>
 
 	{% if not user.is_authenticated  %}
+
+		<!-- only viewable on home page -->
 		{% if request.path == '/' %}
 			<a class="item" href="#pricing">Pricing</a>
 			<a class="item" href="#how-it-works">How it works?</a>
 		{% endif %}
+
+		<!-- always viewable -->
 		<a class="item" href="{% url 'pages:faq' %}">FAQ's</a>
 		<a class="item" href="{% url 'contact:contact' %}">Contact</a>
 		<a class="item header" href="{% url 'account_login' %}">Login</a>
 		<a class="item header" href="{% url 'account_signup' %}">Sign up</a>
+
+	<!-- user logged in -->
 	{% else %}
+
+		<!-- username and avatar -->
 		<span class="item">Hi, {{ request.user.username|title }} <img id="side-bar-avatar" src="{{ request.session.avatar }}" alt="avatar"></span>
+
+		<!-- cart and cart count -->
 		<a class="item" href="{% url 'cart:cart' %}">Cart
 			<div class="cart-item-count ui label green">
 				{{ cart_count }}
 			</div>
 		</a>
+
+		<!-- rest of menu -->
 		<a class="item" href="{% url 'activity_feed:activity_feed' %}">Activity Feed</a>
 		<a class="item" href="{% url 'tickets:bugs' %}">Bugs</a>
 		<a class="item" href="{% url 'tickets:features' %}">Features</a>
