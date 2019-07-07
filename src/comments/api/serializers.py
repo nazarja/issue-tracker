@@ -4,12 +4,18 @@ from tickets.models import Ticket
 
 
 class TicketSerializer(serializers.ModelSerializer):
+    """
+    ticket model required to assign as foreign key to comment
+    """
     class Meta:
         model = Ticket
         fields = '__all__'
 
 
 class CommentListSerializer(serializers.ModelSerializer):
+    """
+    return serialized comment objects, method fields required
+    """
     avatar = serializers.SerializerMethodField(read_only=True)
     username = serializers.SerializerMethodField(read_only=True)
     current_user = serializers.SerializerMethodField(read_only=True)
@@ -20,9 +26,11 @@ class CommentListSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'user', 'username', 'avatar', 'updated_on', 'current_user')
 
     def get_avatar(self, obj):
+        # return the users avatar image to display with comment
         return obj.user.profile.avatar
 
     def get_username(self, obj):
+        # return the users username to display with comment
         return obj.user.username
 
     def get_current_user(self, obj):
@@ -30,6 +38,9 @@ class CommentListSerializer(serializers.ModelSerializer):
 
 
 class CommentCreateSerializer(serializers.ModelSerializer):
+    """
+    creates a new comment, current user and ticket as foreign keys are required
+    """
     avatar = serializers.SerializerMethodField(read_only=True)
     username = serializers.SerializerMethodField(read_only=True)
     ticket = serializers.PrimaryKeyRelatedField(queryset=Ticket.objects.all())
@@ -41,9 +52,11 @@ class CommentCreateSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'user', 'username', 'avatar', 'updated_on', 'current_user')
 
     def get_avatar(self, obj):
+        # return the users avatar image to display with comment
         return obj.user.profile.avatar
 
     def get_username(self, obj):
+        # return the users username to display with comment
         return obj.user.username
 
     def get_current_user(self, obj):
@@ -51,6 +64,9 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 
 
 class CommentUpdateSerializer(serializers.ModelSerializer):
+    """
+    only fields required are id for lookup and text to update
+    """
     class Meta:
         model = Comment
         fields = ('id', 'text')

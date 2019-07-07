@@ -20,9 +20,19 @@ def get_random_avatar_picture():
 
 
 class ProfileManager(models.Manager):
+    """
+    model manager for activity feed,
+    return queryset's for the user's and other user's joining action
+    """
     def get_latest(self, query=None):
+        """
+        exclude the user from one queryset,
+        include in a separate query to ensure we get current user results
+        """
         all_queryset = self.get_queryset().exclude(user=query).order_by('-created_on')[:5]
         user_queryset = self.get_queryset().filter(user=query)[:1]
+
+        # join together with a pipe to return as a single queryset
         return all_queryset | user_queryset
 
 

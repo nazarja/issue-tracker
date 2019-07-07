@@ -1,17 +1,18 @@
 {% extends '../base/base.html' %}
 {% load static %}
 {% block head_title %}Charts{% endblock %}
-{% block css %}<link rel="stylesheet" href="{% static 'charts/css/charts.css' %}"/>{% endblock %}
 {% block content %}
 
 	<h1 class="callout">Charts</h1>
 	<div id="charts" class="ui container">
 
+		<!-- divider -->
 		<h4 class="ui horizontal divider header mt3 mb5 ph3">
 			<i class="balance scale icon"></i>
 			Totals by Ticket Type
 		</h4>
 
+		<!-- first row of charts -->
 		<div class="ui grid stackable charts-grid">
 			<div class="three column row">
 				<div class="column pa2 smaller-width">
@@ -29,11 +30,13 @@
 			</div>
 		</div>
 
+		<!-- divider -->
 		<h4 class="ui horizontal divider header mt3 mb5 ph3">
 			<i class="chart line icon"></i>
 			Highest Tickets by Earned and Votes
 		</h4>
 
+		<!-- second row of charts -->
 		<div class="ui grid stackable charts-grid">
 			<div class="three column row">
 				<div class="column pa2 smaller-width">
@@ -50,10 +53,11 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 {% endblock %}
+
 {% block javascript %}
+	<!-- Using Chart.js -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 	<script src="{% static 'charts/js/charts.js' %}"></script>
 {% endblock %}

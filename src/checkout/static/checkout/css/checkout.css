@@ -1,7 +1,7 @@
 
 /*
 =================================================
-    Forms - Checkout
+    Checkout STYLES
 =================================================
 */
 
@@ -17,26 +17,27 @@
 }
 
 #order-form {
-    background-color: #e6e6e6;
     padding: 30px 10px;
     border-radius: 10px;
+    background-color: #e6e6e6;
 }
 
 .form-row label {
     position: relative;
     top: -50px;
+    padding-right: 10px;
     font-size: 20px;
     background-color: white;
-    padding-right: 10px;
 }
 
-/*#payment-items-totals {*/
-/*    background-color: #e6e6e6;*/
-/*    padding: 20px 10px;*/
-/*    border-radius: 5px;*/
-/*}*/
 
-/* stripe elements */
+/*
+=================================================
+   Stripe Elements Default Styles
+=================================================
+*/
+
+
 .StripeElement {
   box-sizing: border-box;
   height: 40px;

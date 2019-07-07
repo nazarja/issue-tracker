@@ -1,28 +1,35 @@
 
 /*
 ===========================================
-    CART STYLES
+    CART PAGE STYLES
 ===========================================
 */
 
+
 .cart-totals {
+    margin: 0 0 0 5px;
+    padding: 3px 10px;
+    border-radius: 3px;
     background: grey;
     color: white;
     font-weight: bold;
-    padding: 3px 10px;
-    margin: 0;
-    margin-left: 5px;
-    border-radius: 3px;
 }
 
 .on-mobile-width {
     display: none;
 }
 
+
 /*
 ===========================================
     CART MEDIA QUERIES
 ===========================================
+*/
+
+/*
+    for smaller screens, collapsed table I must
+    remove and add some header information and force
+    text overflow to truncate.
 */
 
 @media screen and (max-width: 768px) {
@@ -41,19 +48,21 @@
         min-width: 80px;
     }
 
-    .remove-ticket {
-        margin: 10px 16px 15px 5px !important;
-        background: none !important;
-    }
-
     .no-mobile-width {
         display: none !important;
         background: var(--black);
         color: white;
     }
+
+    .remove-ticket {
+        margin: 10px 16px 15px 5px !important;
+        background: none !important;
+    }
 }
 
+
 @media screen and (max-width: 500px) {
+
     #go-to-checkout-button {
         margin-bottom: -1px !important;
     }

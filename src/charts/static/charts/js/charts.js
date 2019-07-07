@@ -5,6 +5,7 @@
 ============================================
 */
 
+// set default colors
 const colors = [
     'rgba(255, 104, 94, ',
     'rgba(74, 198, 253, ',
@@ -18,7 +19,8 @@ const colors = [
     'rgba(246, 153, 36, ',
 ];
 
-// Get Request
+
+// get request to charts api view for charts data
 function getChartsData() {
     fetch('/charts/api/data/', {
         method: 'GET',
@@ -27,29 +29,47 @@ function getChartsData() {
         }),
         credentials: 'same-origin',
     })
-    .then(res => res.json())
-    .then(data => {
-       createCharts(data);
-    })
-    .catch(err => console.log(err));
+        .then(res => res.json())
+        .then(data => {
+            createCharts(data);
+        })
+        .catch(err => console.log(err));
 }
+
 getChartsData();
 
 
-// function to create and display the charts
+/*
+============================================
+    CREATE CHARTS
+
+    function is split into two sub loops,
+    each loop creates a separate row of charts
+============================================
+*/
+
 function createCharts(data) {
 
+    // first row of charts
     [data.highestVotes, data.numOfTickets, data.ticketStatus].forEach((dataset, i) => {
 
+        // selectors for charts canvas divs
         const ids = ['highestVotes', 'numOfTickets', 'ticketStatus'];
+
+        // colors arrays
         const backgroundColorsArray = [];
         const borderColorsArray = [];
+
+        // assign colors based on length of dataset
         for (let x in dataset) {
             backgroundColorsArray.push(colors[x] + '0.2)');
             borderColorsArray.push(colors[x] + '1)');
         }
+
+        // set labels - either first choice or second
         let dataLabels = i < 2 ? ['Bugs', 'Features'] : ['Needs Help', 'In Progress', 'Resolved'];
 
+        // 3 bar charts
         var ctx = document.getElementById(ids[i]).getContext('2d');
         var newChart = new Chart(ctx, {
             type: 'bar',
@@ -64,7 +84,7 @@ function createCharts(data) {
                 }]
             },
             options: {
-                 scales: {
+                scales: {
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
@@ -75,24 +95,34 @@ function createCharts(data) {
         });
     });
 
+    // second row of charts
+    [data.highestBugs, data.highestFeatures, data.highestStatus].forEach((dataset, i) => {
 
-     [data.highestBugs, data.highestFeatures, data.highestStatus].forEach((dataset, i) => {
-
+        // selectors for charts canvas divs
         const ids = ['highestBugs', 'highestFeatures', 'highestStatus'];
+
+        // colors arrays
         const backgroundColorsArray = [];
         const borderColorsArray = [];
+
+        // assign colors based on length of dataset
         for (let x in dataset) {
             backgroundColorsArray.push(colors[x] + '0.2)');
             borderColorsArray.push(colors[x] + '1)');
         }
+
+        // label and datasets
         let dataLabels = [];
         let datasetArray = [];
 
+        // each dataset needs to be split into two
+        // separate arrays of labels and values
         dataset.forEach(item => {
             dataLabels.push(`${item.title}`);
             datasetArray.push(item.votes);
         });
 
+        // polar area charts
         var ctx = document.getElementById(ids[i]).getContext('2d');
         var newChart = new Chart(ctx, {
             type: 'polarArea',
@@ -107,7 +137,7 @@ function createCharts(data) {
                 }]
             },
             options: {
-                 scales: {
+                scales: {
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
@@ -118,156 +148,3 @@ function createCharts(data) {
         });
     });
 }
-
-
-
-
-
-
-
-    // // votes per bugs and features
-    // var ctx = document.getElementById('highestVotes').getContext('2d');
-    // var highestVotes = new Chart(ctx, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: ['Bugs', 'Features'],
-    //         datasets: [{
-    //             label: 'No. of Votes',
-    //             data: data.highestVotes,
-    //             backgroundColor: [
-    //                 'rgba(0, 190, 74, 0.2)',
-    //                 'rgba(74, 198, 253, 0.2)',
-    //             ],
-    //             borderColor: [
-    //                 'rgba(0, 190, 74, 1)',
-    //                 'rgba(74, 198, 253, 1)',
-    //             ],
-    //             borderWidth: 1
-    //         }]
-    //     },
-    //    options: {
-    //          scales: {
-    //             yAxes: [{
-    //                 ticks: {
-    //                     beginAtZero: true
-    //                 }
-    //             }]
-    //         }
-    //     }
-    // });
-
-    // // number of bugs and features
-    // var ctx2 = document.getElementById('numOfTickets').getContext('2d');
-    // var numOfTickets = new Chart(ctx2, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: ['Bugs', 'Features'],
-    //         datasets: [{
-    //             label: 'No. of Tickets',
-    //             data: data.numOfTickets,
-    //             backgroundColor: [
-    //                 'rgba(0, 190, 74, 0.2)',
-    //                 'rgba(74, 198, 253, 0.2)',
-    //             ],
-    //             borderColor: [
-    //                  'rgba(0, 190, 74, 1)',
-    //                 'rgba(74, 198, 253, 1)',
-    //             ],
-    //             borderWidth: 1
-    //         }]
-    //     },
-    //     options: {
-    //          scales: {
-    //             yAxes: [{
-    //                 ticks: {
-    //                     beginAtZero: true
-    //                 }
-    //             }]
-    //         }
-    //     }
-    // });
-
-
-    // // ticket status
-    // var ctx3 = document.getElementById('ticketStatus').getContext('2d');
-    // var ticketStatus = new Chart(ctx3, {
-    //     type: 'polarArea',
-    //     data: {
-    //         labels: ['Needs Help', 'In Progress', 'Resolved'],
-    //         datasets: [{
-    //             label: 'Status of Tickets',
-    //             data: data.ticketStatus,
-    //             backgroundColor: [
-    //                 'rgba(255, 104, 94, 0.2)',
-    //                 'rgba(74, 198, 253, 0.2)',
-    //                 'rgba(0, 190, 74, 0.2)',
-    //             ],
-    //             borderColor: [
-    //                 'rgba(255, 104, 94, 1)',
-    //                 'rgba(74, 198, 253, 1)',
-    //                 'rgba(0, 190, 74, 1)',
-    //             ],
-    //             borderWidth: 1
-    //         }]
-    //     },
-    //     options: {
-    //          scales: {
-    //             yAxes: [{
-    //                 ticks: {
-    //                     beginAtZero: true
-    //                 }
-    //             }]
-    //         }
-    //     }
-    // });
-
-
-    // // ticket status
-    // var labels6 = [];
-    // var data6 = [];
-    //
-    // data.highestStatus.forEach(item => {
-    //     labels6.push(`Name: ${item.title}`);
-    //     data6.push(item.votes);
-    // });
-    //
-    // var ctx6 = document.getElementById('highestStatus').getContext('2d');
-    // var highestStatus = new Chart(ctx6, {
-    //     type: 'pie',
-    //     data: {
-    //         labels: labels6,
-    //         datasets: [{
-    //             label: 'Status of Tickets',
-    //             data: data6,
-    //             backgroundColor: [
-    //                 'rgba(255, 104, 94, 0.2)',
-    //                 'rgba(74, 198, 253, 0.2)',
-    //                 'rgba(0, 190, 74, 0.2)',
-    //                 'rgba(255, 104, 94, 0.2)',
-    //                 'rgba(74, 198, 253, 0.2)',
-    //                 'rgba(0, 190, 74, 0.2)',
-    //                 'rgba(255, 104, 94, 0.2)',
-    //                 'rgba(74, 198, 253, 0.2)',
-    //                 'rgba(0, 190, 74, 0.2)',
-    //                 'rgba(255, 104, 94, 0.2)',
-    //                 'rgba(74, 198, 253, 0.2)',
-    //                 'rgba(0, 190, 74, 0.2)',
-    //             ],
-    //             borderColor: [
-    //                 'rgba(255, 104, 94, 1)',
-    //                 'rgba(74, 198, 253, 1)',
-    //                 'rgba(0, 190, 74, 1)',
-    //                 'rgba(255, 104, 94, 1)',
-    //                 'rgba(74, 198, 253, 1)',
-    //                 'rgba(0, 190, 74, 1)',
-    //                 'rgba(255, 104, 94, 1)',
-    //                 'rgba(74, 198, 253, 1)',
-    //                 'rgba(0, 190, 74, 1)',
-    //                 'rgba(255, 104, 94, 1)',
-    //                 'rgba(74, 198, 253, 1)',
-    //                 'rgba(0, 190, 74, 1)',
-    //             ],
-    //             borderWidth: 1
-    //         }]
-    //     },
-    // });

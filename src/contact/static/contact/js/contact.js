@@ -1,17 +1,33 @@
 
-// selectors
+/*
+=======================================================
+    GLOBAL VARIABLES
+=======================================================
+*/
+
 const form = document.querySelector('#contact-form');
 const name = document.querySelector('#id_name');
 const email = document.querySelector('#id_email');
 const subject = document.querySelector('#id_subject');
 const message = document.querySelector('#id_message');
+
+
+// form submit event listener
 form.onsubmit = (event) => postContactForm(event);
 
-// dont allow editing username/email if user is not anon
+// dont allow editing username / email if user is a logged in user
 if (name.value.length) {
     name.setAttribute('readonly', 'true');
     email.setAttribute('readonly', 'true');
 }
+
+
+/*
+=======================================================
+    POST FORM ACTIONS
+=======================================================
+*/
+
 
 // post form
 function postContactForm(event) {
@@ -32,10 +48,10 @@ function postContactForm(event) {
     .catch(err => console.log(err))
 }
 
-// fetch callback
+// successful form posted
 function onSuccessFormSubmit(data) {
 
-    // clear fields
+    // clear form fields is anonymous user
     if (!data.isAuth) {
         name.value = '';
         email.value = '';
@@ -43,7 +59,7 @@ function onSuccessFormSubmit(data) {
     subject.value = '';
     message.value = '';
 
-    // show modal
+    // show modal to confirm successful form posted to backend
     document.querySelector('#form-response-text').innerHTML = data.text;
     if (document.querySelector('.ui.tiny.modal')) {
         $('.ui.tiny.modal')

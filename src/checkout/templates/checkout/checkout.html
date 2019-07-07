@@ -11,7 +11,7 @@
 	<div id="checkout" class="ui container">
 		<div id="form-small" class="ui padded">
 
-			<!-- page header -->
+			<!-- page header - steps -->
 			<div id="payment-steps" class="ui steps mv3">
 				<div class="step">
 					<i class="shopping basket icon red"></i>
@@ -35,9 +35,11 @@
 				</div>
 			</div>
 
-			<!-- TOTALS / ITEMS -->
+			<!-- cart - review items -->
 			<div id="payment-items" class="ui relaxed divided list mv3">
 				<h3>Your Items</h3>
+
+				<!-- cart items list -->
 				{% for item in cart_items %}
 					<div class="item">
 						<i class="large ticket alternate middle aligned icon"></i>
@@ -47,6 +49,8 @@
 						</div>
 					</div>
 				{% endfor %}
+
+				<!-- review - total amount and votes -->
 				<div id="payment-items-totals" class="mv1 fwsemibold">
 					<p class="pb1 pr1 dib">Total Cost: &euro;{{ cart_total }}.00</p>
 					<p class="pb1 pr1 dib">Total Items:  {{ cart_count }}</p>
@@ -54,23 +58,24 @@
 				</div>
 			</div>
 
-			<!-- PAYMENT FORM -->
+			<!-- payment - divider -->
 			<h4 class="ui horizontal divider header mt3 mb5 ph3">
 				<i class="credit card icon blue"></i>
 				Payment Details
 			</h4>
+
+			<!-- stripe payment form -->
 			<div class="ui segment very padded">
 				<form id="payment-form" method="POST" action="{% url 'checkout:checkout-charge-view' %}" data-token="{{ publishable }}">
+
+					<!-- stripe element will be inserted in this div -->
 					<div class="form-row">
 						<label for="card-element">Credit or debit card</label>
-						<!-- A Stripe Element will be inserted here. -->
 						<div id="card-element"></div>
-
-						<!-- Used to display form errors. -->
 						<div id="card-errors" role="alert"></div>
 					</div>
 
-					<!-- payment button -->
+					<!-- payment submit button -->
 					{% csrf_token %}
 					<button type="submit" class="ui button primary mt2">PAY NOW WITH STRIPE</button>
 				</form>
@@ -78,6 +83,7 @@
 		</div>
 	</div>
 {% endblock %}
+
 {% block javascript %}
 	<script src="https://js.stripe.com/v3/"></script>
 	<script type="text/javascript" src="{% static 'checkout/js/stripe.js' %}"></script>

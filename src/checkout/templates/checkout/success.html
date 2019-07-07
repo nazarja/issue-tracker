@@ -1,40 +1,46 @@
 {% extends '../base/base.html' %}
 {% load static %}
 {% block head_title %}Thank You{% endblock %}
-{% block css %}
-	<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}"/>
-{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}"/>{% endblock %}
 {% block content %}
 
 	<h1 class="callout">Your Payment Has Been Accepted</h1>
 	<div id="checkout" class="ui container">
+
+		<!-- Middle aligned choice block -->
 		<div id="form-small" class="ui center aligned basic segment">
 			<div class="ui icon header">
 				<i class="happy icon"></i>
 				Thank You For Supporting These Features!
 				Your Votes Have Been Added!
 			</div>
+
+			<!-- button - return to activity feed -->
 			<div class="ui placeholder pv6 tac segment">
 				<p class="ft4">Return to the Activity Feed</p>
 				<a href="{% url 'activity_feed:activity_feed' %}"  class="ui green labeled icon button mb3">
 					<i class="circle notch icon"></i>
 					Feed
 				</a>
+
+				<!-- or -->
 				<div class="ui horizontal divider">
 					Or
 				</div>
+
+				<!-- button - return to features -->
 				<p class="mt3 ft4">Return to the Features Page</p>
 				<a href="{% url 'tickets:features' %}" class="ui blue labeled icon button">
 					Features
 					<i class="file code icon"></i>
 				</a>
 			</div>
+
+			<!-- end of page divider -->
 			<h4 class="ui horizontal divider header mt3 ph3">
 				<i class="credit card icon blue"></i>
 				Payment Successful
 			</h4>
 		</div>
 	</div>
-{% endblock %}
-{% block javascript %}
 {% endblock %}

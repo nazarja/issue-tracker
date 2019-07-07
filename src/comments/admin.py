@@ -3,6 +3,9 @@ from .models import Comment
 
 
 class CommentAdmin(admin.ModelAdmin):
+    """
+    need readonly fields to be viewable in admin
+    """
     readonly_fields = ('id', 'user', 'username', 'updated_on',)
 
 

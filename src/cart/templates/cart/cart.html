@@ -8,9 +8,12 @@
 	<div class="ui container">
 		<h2 class="pv1 tac"><i class="shopping basket icon mr2"></i>Review your Cart Items</h2>
 
+		<!-- only show if cart has an item -->
 		{% if cart_count > 0 %}
 			<h3 class="on-mobile-width">TICKETS</h3>
 			<table class="ui celled definition very padded inverted table">
+
+				<!-- header menu -->
 				<thead id="thead" class="full-width no-mobile-width">
 				<tr>
 					<th>REMOVE</th>
@@ -21,6 +24,8 @@
 				</tr>
 				</thead>
 				<tbody>
+
+				<!-- cart items -->
 				{% for item in cart_items %}
 					<tr>
 						<td class="on-mobile-width remove-ticket">REMOVE TICKET</td>
@@ -36,6 +41,8 @@
 					</tr>
 				{% endfor %}
 				</tbody>
+
+				<!-- cart totals -->
 				<tfoot id="tfoot" class="full-width">
 				<tr>
 					<th colspan="5">
@@ -48,6 +55,8 @@
 						</div>
 					</th>
 				</tr>
+
+				<!-- update cart - checkout button -->
 				<tr>
 					<th colspan="5">
 						<div id="go-to-checkout-button" class="ui right floated green labeled icon mv1 ml1 button">
@@ -61,7 +70,8 @@
 				</tfoot>
 			</table>
 		{% else %}
-			<!-- Nothing in Cart-->
+
+			<!-- show placeholder if nothing in cart-->
 			<div id="no-cart-items" class="ui placeholder pv6 tac segment">
 				<div class="ui icon header">
 					<i class="frown icon"></i>
@@ -71,6 +81,7 @@
 		{% endif %}
 	</div>
 {% endblock %}
+
 {% block javascript %}
 	<script src="{% static 'cart/js/cart.js'  %}"></script>
 {% endblock %}

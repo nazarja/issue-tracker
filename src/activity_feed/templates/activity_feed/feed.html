@@ -2,7 +2,6 @@
 {% load static %}
 {% load class_name %}
 {% block head_title %}Activity Feed{% endblock %}
-{% block css %}<link rel="stylesheet" href="{% static 'activity_feed/css/feed.css' %}"/>{% endblock %}
 {% block content %}
 
 	<h1 class="callout">Activity Feed</h1>
@@ -11,21 +10,18 @@
 		<!-- Tab Menu -->
 		<div class="ui tabular menu">
 			<div class="right menu">
-				<a class="item active" data-tab="tab-recent-feed">
-					Recent Activity Feed
-				</a>
-				<a class="item" data-tab="tab-profile-feed">
-					My Profile Feed
-				</a>
+				<a class="item active" data-tab="tab-recent-feed">Recent Activity Feed</a>
+				<a class="item" data-tab="tab-profile-feed">My Profile Feed</a>
 			</div>
 		</div>
 
-
-		<!-- other users -->
+		<!-- activity feed for other users action only -->
 		<div class="ui tab active" data-tab="tab-recent-feed">
 			<div class="ui small feed">
 				{% for object in object_list %}
 					{% with object|class_name as model %}
+
+						<!-- create ticket action -->
 						{% if model == 'Ticket' and object.username != request.user.username %}
 							<div class="event">
 								<div class="label">
@@ -48,6 +44,8 @@
 								</div>
 							</div>
 							<div class="ui divider"></div>
+
+						<!-- create comment action -->
 						{% elif  model == 'Comment' and object.username != request.user.username %}
 							<div class="event">
 								<div class="label">
@@ -70,6 +68,8 @@
 								</div>
 							</div>
 							<div class="ui divider"></div>
+
+						<!-- purchased votes action -->
 						{% elif model == 'Order' and object.user != request.user %}
 							<div class="event">
 								<div class="label">
@@ -92,6 +92,8 @@
 								</div>
 							</div>
 							<div class="ui divider"></div>
+
+							<!-- new user joined action -->
 							{% elif model == 'Profile' and object.user != request.user %}
 							<div class="event">
 								<div class="label">
@@ -120,11 +122,13 @@
 			</div>
 		</div>
 
-		<!-- my profile -->
+		<!-- current user (my profile) actions only -->
 		<div class="ui tab" data-tab="tab-profile-feed">
 			<div class="ui small feed">
 				{% for object in object_list %}
 					{% with object|class_name as model %}
+
+						<!-- create ticket action -->
 						{% if model == 'Ticket' and object.username == request.user.username %}
 							<div class="event">
 									<div class="label">
@@ -147,6 +151,8 @@
 									</div>
 								</div>
 								<div class="ui divider"></div>
+
+						<!-- create comment action -->
 						{% elif  model == 'Comment' and object.username == request.user.username %}
 							<div class="event">
 								<div class="label">
@@ -169,6 +175,8 @@
 								</div>
 							</div>
 							<div class="ui divider"></div>
+
+						<!-- purchase votes action -->
 						{% elif model == 'Order' and object.user == request.user %}
 							<div class="event">
 								<div class="label">
@@ -191,6 +199,8 @@
 								</div>
 							</div>
 							<div class="ui divider"></div>
+
+							<!-- user joined action -->
 							{% elif model == 'Profile' and object.user == request.user %}
 							<div class="event">
 								<div class="label">
@@ -230,6 +240,7 @@
 		</div>
 	</div>
 {% endblock %}
+
 {% block javascript %}
 	<script>
         $('.tabular.menu .item').tab();

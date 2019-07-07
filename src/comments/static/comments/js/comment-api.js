@@ -22,7 +22,7 @@ const endOfComments = document.querySelector('#end-of-comments');
 */
 
 
-// listen for new reply
+// listen for new reply to a comment
 function newPostListener() {
     postTicketReply.onsubmit = () => {
         event.preventDefault();
@@ -31,13 +31,14 @@ function newPostListener() {
 }
 
 
-// listen for edit or delete actions
+// listen for edit or delete actions on a single comment
 function editDeleteCommentListeners() {
     const editComment = document.querySelectorAll('.edit');
     const deleteComment = document.querySelectorAll('.delete');
 
 
-    // inline editing
+    // inline editing - the comment text will be replaced by a text input with
+    // its value set to the comment text
     editComment.forEach(comment => comment.onclick = (event) => {
         const _id = event.target.dataset.editid;
         const actions = event.target.parentElement;
@@ -49,6 +50,7 @@ function editDeleteCommentListeners() {
         text.style.display = 'none';
         actions.style.display = 'none';
 
+        // on submit update comment text html and post data
         form.onsubmit = (event) => {
             event.preventDefault();
             form.style.display = 'none';
@@ -59,17 +61,22 @@ function editDeleteCommentListeners() {
         }
     });
 
-    // delete comment
+    // delete comment - on click
     deleteComment.forEach(comment => comment.onclick = (event) => {
         const deleteBtn = event.target;
         const deleteButtons = deleteBtn.nextElementSibling;
+
+
+        // confirm with user first
         deleteButtons.style.display = 'block';
         deleteBtn.style.color = '#2185d0';
         deleteBtn.innerText = 'Are you Sure?';
 
+        // if ok - post data
         deleteButtons.firstElementChild.onclick = () =>
             GetDeleteComments('DELETE', event.target.dataset.deleteid);
 
+        // if cancelled
         deleteButtons.lastElementChild.onclick = () => {
            deleteButtons.style.display = 'none';
            deleteBtn.innerText = 'Delete';
@@ -79,7 +86,7 @@ function editDeleteCommentListeners() {
 }
 
 
-// reply form chars left
+// reply form chars left visual indicators
 function replyCharactersLeftListener() {
     ticketReplyFormTextArea.onkeypress = () =>
         commentCharacterLeft.innerHTML = (500 - ticketReplyFormTextArea.value.length).toString();
@@ -92,7 +99,7 @@ function replyCharactersLeftListener() {
 */
 
 
-// get only
+// get and delete requests only
 function GetDeleteComments(method, _id=null) {
 
     let endpoint;
@@ -194,6 +201,8 @@ function createComments(data) {
     // listener for edit / delete actions
     numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${data.count}`;
     editDeleteCommentListeners();
+
+    // check for empty comments count
     updateNumberOfComments();
 }
 
@@ -204,7 +213,7 @@ function createComments(data) {
 =========================================================
 */
 
-
+// return a single comment
 function createCommentHTML(item) {
 
     // only allow current user to edit or delete comment
@@ -213,6 +222,7 @@ function createCommentHTML(item) {
         <a class="reply delete" data-deleteid="${item.id}">Delete</a>`
         : item.actions = '';
 
+    // comment html
     return `
             <div class="comment mv1 pb1" data-commentid="${item.id}">
                 <a class="avatar">
@@ -251,6 +261,8 @@ function updateNumberOfComments(direction) {
     else if (direction === 'decrease'){
         numberOfComments.innerHTML = ` <i class="comment icon"></i> Comments ${num - 1}`;
     }
+
+    // check for empty comments count
     isEmptyCommentsContainer();
 }
 
@@ -275,12 +287,13 @@ function isEmptyCommentsContainer() {
 */
 
 
+// gets the id of a ticket from the url
 function getURL() {
     let url = window.location.href;
     return url.match(/tickets\/\d+/g)[0].match(/\d+/g)[0];
 }
 
-
+// on page load  -startup functions to run
 function init() {
     GetDeleteComments('GET');
     newPostListener();

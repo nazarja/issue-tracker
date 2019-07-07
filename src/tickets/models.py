@@ -19,9 +19,19 @@ ISSUE_CHOICES = (
 
 
 class TicketManager(models.Manager):
+    """
+    model manager for activity feed,
+    return queryset's for the user's and other user's ticket creation actions
+    """
     def get_latest(self, query=None):
+        """
+        exclude the user from one queryset,
+        include in a separate query to ensure we get current user results
+        """
         all_queryset = self.get_queryset().exclude(user=query).order_by('-updated_on')[:5]
         user_queryset = self.get_queryset().filter(user=query).order_by('-updated_on')[:5][:5]
+
+        # join together with a pipe to return as a single queryset
         return all_queryset | user_queryset
 
 
