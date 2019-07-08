@@ -11,20 +11,24 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 
 # Allowed Hosts
-ALLOWED_HOSTS = [os.getenv('HEROKU_HOST_URL')]
+ALLOWED_HOSTS = [
+    'https://issue-tracker-sm.herokuapp.com/'
+]
 
 # Cors Settings
 CORS_URLS_REGEX = r'^/api.*'
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = [os.getenv('HEROKU_CORS_WHITELIST')]
+CORS_ORIGIN_WHITELIST = [
+    'https://issue-tracker-sm.herokuapp.com/'
+]
 
 # email setup - MailGun.com
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_POST = 587
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
-EMAIL_MAIN = os.getenv('EMAIL_MAIN')
+EMAIL_MAIN = 'IssueTracker Support <support@issuetracker.seanmurphy.eu>'
 
 # stripe keys
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE')
