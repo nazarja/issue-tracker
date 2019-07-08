@@ -23,21 +23,14 @@
 
 ## Overview
 
-Issue Tracker is a Bug and Feature Ticket Creation site where users can create tickets which can then be voted on to increase the tickets rank to be worked on by the in-house developers.
-
-The main development features included the login system, activity feed and ticket creation editing and commenting on those tickets.
-
-The login system uses django AllAuth and allows users to sign up and in with Github as well as the option of just using a username and email address.
-
-The ticket section makes good use of pagination, filtering and search functions as well as server side rendering to enhance to user experience.
-
-Commenting on a ticket is a breeze, CRUD operation can be performed on issue, including inline editing, the comment itself will turn into an editable input for ease of use.
-
-Editing Creating a ticket looks great with a live preview while you type of how your ticket will look live, with friendly indicators of how many characters you can have left to use.
-
-The design for the website's concept is based on the use of lots of primary colors, a clean interface and takes inspiration and heavy usage of Semantic UI's design principles. 
-
-I hope you enjoy viewing and using this site as much as I have had building it (tough as it was)!
+- Issue Tracker is a Bug and Feature Ticket Creation site where users can create tickets which can then be voted on to increase the tickets rank to be worked on by the in-house developers.
+- The main development features included the login system, activity feed and ticket creation editing and commenting on those tickets.
+- The login system uses django AllAuth and allows users to sign up and in with Github as well as the option of just using a username and email address.
+- The ticket section makes good use of pagination, filtering and search functions as well as server side rendering to enhance to user experience.
+- Commenting on a ticket is a breeze, CRUD operation can be performed on comment, including inline editing, the comment itself will turn into an editable input for ease of use.
+- Editing Creating a ticket looks great with a live preview while you type of how your ticket will look live, with friendly indicators of how many characters you can have left to use.
+- The design for the website's concept is based on the use of lots of primary colors, a clean interface and takes inspiration and heavy usage of Semantic UI's design principles. 
+- I hope you enjoy viewing and using this site as much as I have had building it (tough as it was)!
 
 ---
 
@@ -302,74 +295,93 @@ By default the admin user is the sender of the email, if the user is not logged 
 
 ## Technologies
 
-> *Python, Django, Django Rest Framework, Jinja, Django AllAuth, Postgres, Sqlite3, JavaScript, JSON, JQuery, Chart.js, CSS, Semantic UI, BeardCSS, Git, Heroku*  
+> *Python, Django, Django Rest Framework, Jinja, Django AllAuth, Postgres, Sqlite3, JavaScript, JSON, JQuery, Chart.js, CSS, Semantic UI, BeardCSS, MailGun, Git, Heroku*  
  
 - Python  
 https://docs.python.org/3/  
+Used as the backend language  
 
-- Django 
-https://www.djangoproject.com/ 
-
+- Django   
+https://www.djangoproject.com/   
+Used as the main framwework to create, serve, and interact with the application. 
 
 - Django Rest Framework  
-https://www.django-rest-framework.org/ 
+https://www.django-rest-framework.org/   
+Used in conjuction with JavaScript to enhance the user experience and, also performs view creations in the form of List, Create, Update, Delete. And well as the testing on the api frontend.
 
+- Django's Jinja   
+http://jinja.pocoo.org/  
+Used for the html templates, make good use of partials, template tags and filters. 
 
-- Django's Jinja 
-http://jinja.pocoo.org/ 
+- Django AllAuth  
+https://django-allauth.readthedocs.io  
+Used to manage the user auth model, including social authentication and user management.
 
-
-- Django AllAuth
-https://django-allauth.readthedocs.io
-
-
-- Postgres - Sqlite3
+- Postgres - Sqlite3  
 https://www.postgresql.org/
+Sqlite3 was used in Development, Postgres is used on the Heroku deployed application.
 
+- Pycharm  
+https://www.jetbrains.com/pycharm/  
+Pycharm was used to develop the project and came in really useful for its built in tools including linting, code suggestions, error checking and viewing the sqlite database.
 
 - JavaScript  
-https://www.ecma-international.org/  
-
+https://www.ecma-international.org/   
+JavaScript was used extensively for making request to the django backend for query data, as well as DOM manipulation. Provideing a good user experience to a lot of the application.  
 
 - JSON  
 https://www.ecma-international.org/  
+JSON responses was often sent and returned by both the front and backend for data communication between them both.
 
 
+- CSS, BearsCSS, Semantic UI  
+http://www.w3.org/Style/CSS/members    
+http://buildwithbeard.com/  
+https://semantic-ui.com/  
+Semantic UI was the main CSS Framework of choice, although it is mainly a component library and I sought out BeardCSS for applying classes that altered padding and margins.
 
-- CSS, BearsCSS, Semantic UI
-http://www.w3.org/Style/CSS/members  
-http://buildwithbeard.com/
-https://semantic-ui.com/
 
-
-- Chart.js
-https://www.chartjs.org/
-
+- Chart.js  
+https://www.chartjs.org/  
+Chart.js is used to create the graphs, JavaScript requests data from the backend and passes the data to chart.js and with a little configuartion, charts are born.
 
 - JQuery  
 https://jquery.com/    
-
+JQuery is a requiremnet of Semantic UI, and is used to initiate some of semantics components such as tab-able menu's, modals and popups 
 
 - Stripe  
 https://stripe.com/ie  
-
+Stripe is used as the payment processor for charging credit or debit cards, only the card number is used.
 
 - WhiteNoise  
 http://whitenoise.evans.io/en/stable/   
-      
+WhiteNoise is used to serve the staticfiles of application when its live on the Heroku Server
 
+- MailGun  
+https://www.mailgun.com/  
+MailGun was used to send emails, which are rooted through a sub-domain of my personal website.
 
 ---
 
 ## Testing
 
 ####  Automated written tests
+
 #### Browser Testing
+
 ####  User testing
 
 ---
 
 ## GIT
+
+Git has been used extensively through the entire project build. I have regularly made commits at each meaningful stage and also at regular intervals to save me work.
+
+I have created different branches to develop important apps such as the tickets app and the comments app. On completion, I would then merge the branch into the master branch and push to github.
+
+I have made use of the .gitignore file to exclude my unneeded files such as pycache, venv and pycharm files and folders.
+
+Unsure of what to exclude for django I referenced gitignore.io for a generic django template to help me decide what to exclude from pushing to github. 
 
 ---
 
@@ -389,5 +401,17 @@ http://whitenoise.evans.io/en/stable/
 
 ###  Content and Media
 
-### Code  
+##### Images
+- avatar images are taken from Semantic UI's example avatars 
+- github logo and image are taken from https://github.com
+- callout background image under the gradient taken from https://wallhere.com
+
+#### Code  
 - Busy Loader: https://tobiasahlin.com/spinkit/
+
+
+#### Thanks  
+
+Stack Overflow was an unbelievably source of information for this project and I think I browsed my pages on Stack Overflow than I could remember. No code is a direct copy.
+
+I payed for a month's subscription to the course's on codingforentrepreneurs.com where I learned how to use the rest framework and class based views. Credit to Justin for being an awesome teacher, and diving into deep parts of django.

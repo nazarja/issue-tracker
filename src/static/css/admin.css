@@ -1,0 +1,42 @@
+/*
+====================================
+    ADMIN AREA STYLING
+====================================
+*/
+
+#header {
+    height: 50px;
+    background: #262626;
+    color: #fff;
+}
+
+#branding h1 {
+    color: #fff;
+    font-weight: bold;
+}
+
+a:link,
+a:visited {
+    color: #1a6ebb;
+}
+
+div.breadcrumbs {
+    background: #30caa0;
+    color: #fff;
+}
+
+div.breadcrumbs a {
+    color: #333;
+}
+
+.module h2, .module caption,
+.inline-group h2 {
+    background: #51c297;
+}
+
+.button, input[type=submit],
+input[type=button],
+.submit-row input, a.button {
+    background: #747474;
+    color: #fff;
+}
