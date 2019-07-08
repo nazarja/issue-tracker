@@ -383,11 +383,62 @@ Unsure of what to exclude for django I referenced gitignore.io for a generic dja
 
 #### Deployment to Heroku
 
+For this project deployment to heroku was a little more complected than previous projects, where I had found it easy just to link my repository through the github dashboard and deploy from there, as I had opted to contain the project inside a `src` folder and as Heroku expects the projects files to be in the root directory, the deploy failed.
+
+To overcome this issue, with a quick google I found that git has a `subtree` command. Perfect. As setting the heroku remote, I could push to heroku with the command `git subtree push --prefix src heroku master`.
+
+My deployment process was as follows:
+- Finalise that all `print()`, `console.log()` statement had been removed and that the application is working as expected.
+- Installed `whitenoise` and configured my settings file for it, performed a test with debug off and collected staticfiles to ensure it worked and the 404, 500 pages work as expected.
+- Installed `heroku-cli` on my machine, logged in and added the heroku remote to git.
+- On heroku I added the Postgres add-on .   
+- Installed pillow, dj-database-url and gunicorn.
+- Created a Profile, runtime.txt and requirements.txt
+- Further set-up my settings (production.py) to read from the env vars on Heroku which I set it.
+- Pushed to heroku and when the build process had successfully finished, ran migrations and created a superuser.
+- The application was now fully deployed and ready for the database to be populated. 
+
 #### Setting the project up in a local development environment
+
+*My settings files are split into `base.py`, `local.py` and `production.py`*
+*Local.py is excluded from the online repository.
 
 **Tools you may need:**  
 
+Python 3 installed on your machine https://www.python.org/downloads/
+PIP installed on your machine https://pip.pypa.io/en/stable/installing/
+Git installed on your machine: https://gist.github.com/derhuerst/1b15ff4652a867391f03
+A text editor such as Pycharm https://www.jetbrains.com/pycharm/ or https://code.visualstudio.com/ Visual Studio Code
+A free account at https://www.mailgun.com/ MailGun
+
 **Instructions**
+
+###### Setting up the project files  
+
+- Click the download zip button on the github repository or open a terminal and enter `git clone`https://github.com/nazarja/issue-tracker.git
+- if possible open a terminal session in the unzip folder or `cd` to the correct location
+Next your need to install a virtual environment for the python interpreter, I recommend using pythons built in virtual environment. Enter the command `python -m venv venv` . NOTE: Your python command may differ, such as `python3` or `py`.
+- Activate the `venv` with the command `source venv/bin/activate`, again this may differ depending on your operating system, please check https://docs.python.org/3/library/venv.html for further instructions.
+- If needed, Upgrade pip locally by `pip install --upgrade pip`.
+- Install all required modules with the command `pip -r requirements.txt`.
+- In the `src/project/settings/` folder create a new file called `local.py`. Copy all the values from `production.py` to this file. You'll now need to change the values of all variables to your personal values.
+** Note: You'll need to set up an account at Stripe and Mailgun to get your personal api keys**
+- Once that has been done, you may `cd` into the `src` folder and run `./manage.py migrate`
+- Followed by `./manage.py createsuperuser`, and follows the prompts in the terminal.
+- launch the application with `./manage.py ruunserver`
+- The application should now be launch-able, but not quite fully functional just yet.    
+
+###### Setting up Github Social Login Integration
+
+- On Github set up a new OAuth application at https://github.com/settings/applications/new
+- follow the onscreen instructions, your Homepage URL should be `http://127.0.0.1:8000`, and the Authorization callback URL should be `http://127.0.0.1:8000/accounts/github/login/callback`
+- Login to the admin panel as the superuser you have just created, the admin panel is located at `127.0.0.1:8000/admin`  
+- Navigate to the `Sites` link, followed by a link called `example.com`. 
+- Change the Domain name to `127.0.0.1` and save
+- Back at the admin panel index, navigate to `Social applications`  and click add new social application
+- Add `Github` as the name and provider, fill in your ClientID and Secret Key from the github application you registered, and choose the site you created a few steps previously, 127.0.0.1
+
+*That's it, you should be good to go!* 
 
 ---
 
