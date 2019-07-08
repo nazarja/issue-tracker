@@ -93,7 +93,6 @@ To simplify user experience and encourage users to sign up! Most features of the
 Sitemap:
     ![sitemap](planning/wireframes/sitemap.png "Sitemap")
     
-
 ### Front-end pages:
 
 *Unregistered users*
@@ -131,7 +130,6 @@ Sitemap:
 ---
 
 ## UX-Design
-
 
 UX, Colors and Design
 
@@ -183,8 +181,6 @@ Nearly all models contain a created and updated and user fields. In many cases i
 One major issue I had was that I used django all-auth as an accounts manager, while this was excellent, a feature I implemented required some additional research.
 
 To give each user an avatar and the ability to change their avatar image and associate the avatar to them when displaying a comment, ticket etc.. I needed to hook into the post_save and pre_save signals that are sent on creation. That way I could intercept a login or signup, grab the instance object and create a Profile object from that linking a `OneToOn`e field with the user model.
-
-
 
 ---
 
@@ -333,13 +329,11 @@ JavaScript was used extensively for making request to the django backend for que
 https://www.ecma-international.org/  
 JSON responses was often sent and returned by both the front and backend for data communication between them both.
 
-
 - CSS, BearsCSS, Semantic UI  
 http://www.w3.org/Style/CSS/members    
 http://buildwithbeard.com/  
 https://semantic-ui.com/  
 Semantic UI was the main CSS Framework of choice, although it is mainly a component library and I sought out BeardCSS for applying classes that altered padding and margins.
-
 
 - Chart.js  
 https://www.chartjs.org/  
@@ -399,15 +393,20 @@ Unsure of what to exclude for django I referenced gitignore.io for a generic dja
 
 ## Credits
 
+Aside from the aforementioned below, all code is my own work, referencing and making use of official documentation when needed.
+
 ###  Content and Media
 
 ##### Images
+
 - avatar images are taken from Semantic UI's example avatars 
 - github logo and image are taken from https://github.com
 - callout background image under the gradient taken from https://wallhere.com
 
 #### Code  
+
 - Busy Loader: https://tobiasahlin.com/spinkit/
+- Learned the admin styling from Brad Traversy of https://www.traversymedia.com/
 
 
 #### Thanks  
