@@ -12,15 +12,14 @@ DEBUG = False
 
 # Allowed Hosts
 ALLOWED_HOSTS = [
-    'https://issue-tracker-sm.herokuapp.com/'
+    '127.0.0.1',
+    'issue-tracker-sm.herokuapp.com',
 ]
 
 # Cors Settings
 CORS_URLS_REGEX = r'^/api.*'
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = [
-    'https://issue-tracker-sm.herokuapp.com/'
-]
+CORS_ORIGIN_WHITELIST = [os.getenv('CORS_ORIGIN_WHITELIST')]
 
 # email setup - MailGun.com
 EMAIL_HOST = os.getenv('EMAIL_HOST')
