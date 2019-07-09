@@ -428,11 +428,12 @@ My deployment process was as follows:
 
 **Tools you may need:**  
 
-Python 3 installed on your machine https://www.python.org/downloads/
-PIP installed on your machine https://pip.pypa.io/en/stable/installing/
-Git installed on your machine: https://gist.github.com/derhuerst/1b15ff4652a867391f03
-A text editor such as Pycharm https://www.jetbrains.com/pycharm/ or https://code.visualstudio.com/ Visual Studio Code
-A free account at https://www.mailgun.com/ MailGun
+Python 3 installed on your machine: https://www.python.org/downloads/   
+PIP installed on your machine: https://pip.pypa.io/en/stable/installing/    
+Git installed on your machine: https://gist.github.com/derhuerst/1b15ff4652a867391f03    
+A text editor such as Pycharm https://www.jetbrains.com/pycharm/     
+Or  Visual Studio Code https://code.visualstudio.com/  
+A free account at https://www.mailgun.com/ MailGun  
 
 **Instructions**
 
