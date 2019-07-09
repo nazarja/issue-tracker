@@ -361,9 +361,32 @@ MailGun was used to send emails, which are rooted through a sub-domain of my per
 
 ####  Automated written tests
 
+Admittedly, I found this the biggest challenge of writing the project, perhaps as I had left it until the end of the project I found it more difficult to test, and on hindsight and the future, I think I would be better served doing the testing as I go along.
+
+I have used django built in `TestCase` for testing, and I going app by app, tested the views, forms and models associated with each app. Using django allauth here proved an extra challenge as well as having used so many foreign keys and manytomany fields. The pattern generally followed:
+  
+- import the user models, create a user by username and password and log them in for full access to the site.
+- create a new object instance of save it, if a manytomany field is needed as the object requires it be saved before adding to those fields
+- create a ticket if needed
+- test the routes response status codes 
+- test whether an object list is iin the global context and its values
+- test if a form is delivering the correct data or incorrect in the case of form_invalid
+- test if a model instance saves correctly, does the save override method add data to the object as it should
+- test routes that receive get, post, put, delete requests, I simulated the request with ie `self.client.post`  and check the objects has been created / changed  / deleted
+- test that the context processor changes as it should after a page refresh
+
+
 #### Browser Testing
 
+While my main choice of browser for development is google chrome, I regularly checked the performance on firefox and opera browsers. Making use of browser resizing and dev tools device toolbars on each browser to test responsiveness and how how the grid, fonts and media queries were performing and the consistency between each. Adjusting to find a happy medium for all three.
+
+After I had test deployed the site to heroku I was able to see the real life versions which I was able to test on a android phone, amazon fire tablet and at different orientations. Unfortunately, I have no safari devices which I am able test on.
+
+The two css libraries in use, semantic ui and beardcss, and the few media queries I wrote were quite sufficient and while there was a few times that trying to override the css styles of those libraries become difficult I was able to get it fixed without any real issues. 
+
 ####  User testing
+
+As always, I have asked multiple friends, and other students from the course to test the website on their devices and received positive feedback  on their side of things on errors, indicating that there was not too many issues to be found. I am satisfied with the outcome.
 
 ---
 
