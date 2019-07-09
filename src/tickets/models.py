@@ -53,7 +53,7 @@ class Ticket(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     earned = models.IntegerField(default=0, null=True, blank=True)
     issue = models.CharField(max_length=100, blank=False, null=True, choices=ISSUE_CHOICES)
-    slug = models.SlugField(null=True, blank=True)
+    slug = models.SlugField(max_length=100, null=True, blank=True)
     vote_profiles = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='vote_profiles_many')
     objects = TicketManager()
 
