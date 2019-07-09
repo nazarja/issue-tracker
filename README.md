@@ -480,6 +480,7 @@ Aside from the aforementioned below, all code is my own work, referencing and ma
 
 #### Code  
 
+- Text for the tickets: titles, description and comments are taken from real issues on github, tried to keep it authentic!
 - Busy Loader: https://tobiasahlin.com/spinkit/
 - Learned the admin styling from Brad Traversy of https://www.traversymedia.com/
 
@@ -489,3 +490,5 @@ Aside from the aforementioned below, all code is my own work, referencing and ma
 Stack Overflow was an unbelievably source of information for this project and I think I browsed my pages on Stack Overflow than I could remember. No code is a direct copy.
 
 I payed for a month's subscription to the course's on codingforentrepreneurs.com where I learned how to use the rest framework and class based views. Credit to Justin for being an awesome teacher, and diving into deep parts of django.
+
+And a big thank you to [2BN-Chris](https://github.com/10xOXR)  and [2BN-Tim](https://github.com/TravelTimN), for testing each one of my projects and providing feedback! 
