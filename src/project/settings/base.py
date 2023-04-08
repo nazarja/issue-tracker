@@ -3,6 +3,9 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+if os.path.exists("env.py"):
+    import env
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ''
 
@@ -58,6 +61,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 30
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 SOCIAL_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none' 
 ACCOUNT_EMAIL_SUBJECT_PREFIX = 'IssueTracker Support'
 ACCOUNT_SESSION_REMEMBER = False
 ACCOUNT_PRESERVE_USERNAME_CASING = False
@@ -175,6 +179,14 @@ EMAIL_MAIN = ''
 
 STRIPE_PUBLISHABLE_KEY = ''
 STRIPE_SECRET_KEY = ''
+
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'SCOPE': [
+            'user',
+        ],
+    }
+}
 
 
 

@@ -13,8 +13,6 @@ DEBUG = os.environ.get('DEBUG')
 # Allowed Hosts
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'issue-tracker-sm.herokuapp.com',
-    '8000-nazarja-issuetracker-iodl854ew7z.ws-eu93.gitpod.io',
     'issue-tracker-sm.onrender.com',
 ]
 

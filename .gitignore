@@ -35,6 +35,9 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+src/env.py
+env.py
+
 
 
 

@@ -1,10 +1,14 @@
+asgiref==3.6.0
 certifi==2019.6.16
+cffi==1.15.1
 chardet==3.0.4
+cryptography==40.0.1
 defusedxml==0.6.0
 dj-database-url==0.5.0
 Django==2.2.2
-django-allauth==0.39.1
+django-allauth==0.54.0
 django-cors-headers==3.0.2
+django-six==1.0.5
 djangorestframework==3.9.4
 djangorestframework-jwt==1.11.0
 gunicorn==19.9.0
@@ -12,6 +16,7 @@ idna==2.8
 oauthlib==3.0.1
 Pillow==6.1.0
 psycopg2-binary==2.8.3
+pycparser==2.21
 PyJWT==1.7.1
 python3-openid==3.1.0
 pytz==2019.1
